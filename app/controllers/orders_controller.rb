@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :sendorder]
 
-def sendorder
+  def sendorder
   @order.quantities.each do |q| # change stock levels and calc order total
     oldqty = q.product.qty
     newqty = oldqty - q.qty
@@ -55,21 +55,6 @@ end
         @order = current_user.orders.where(active: true).last #for sidecart
       end #for sidecart
     end
-
-    if user_signed_in?
-      if (current_user.has_role? :user) || (current_user.has_role? :rep) #hide hidden products for customers
-        @products = @products.where(hidden: false)
-      end
-    end
-  end
-  if user_signed_in?
-      if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
-        @order = current_user.mimic.account.user.orders.where(active:true).last
-      else
-        @order = current_user.orders.where(active: true).last
-      end
-      @quantity = Quantity.new
-  end
   end
 
   # GET /orders/new
@@ -135,4 +120,4 @@ end
     def order_params
       params.require(:order).permit(:total, :user_id, :notes, :cust_order_number, :order_number, :delivery_date)
     end
-end
+  end
