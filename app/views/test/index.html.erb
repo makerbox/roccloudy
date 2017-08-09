@@ -1,5 +1,7 @@
-LAST DISCOUNT UPLOADED AT <%= @lastdiscount.created_at %>
-
+LAST DISCOUNT UPLOADED AT <%= @lastdiscount.created_at %><br>
+Unity customers = <% @customers.each do |customer| %>
+<%= customer.sort %> -- <%= customer.brands %><br>
+<% end %>
 
 
 <%= link_to 'PULL', home_pull_path, class: 'btn btn-info' %>
