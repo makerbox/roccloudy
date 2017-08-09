@@ -55,8 +55,8 @@ end
         @order = current_user.orders.where(active: true).last #for sidecart
       end #for sidecart
     end
-    if params[:order]
-      @order = params[:order]
+    if params[:id]
+      @order = Order.find(params[:id])
     end
   end
 
