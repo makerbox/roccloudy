@@ -1,4 +1,5 @@
 <h1>Thank you - your order has been sent</h1>
+<%= @sent %>
 <p>
 <% if (current_user.has_role? :admin) || (current_user.has_role? :rep) %>
 Please select a new customer to place another order.
