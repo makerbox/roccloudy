@@ -14,7 +14,6 @@ def unity
 end
 
 def confirm
-    @sent = params[:sent]
 end
 
   def pull

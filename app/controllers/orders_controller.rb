@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     q.product.update(qty: newqty)
   end
   orderno = 'w' + (Order.count + 1).to_s
-  sent = DateTime.now
+  sent = DateTime.now.to_datetime
   @order.update(active: false, sent: sent, total: params[:total], order_number: orderno) # move order to pending and give it a total
   
   @account = @order.user.account
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     current_user.mimic.destroy
   end
 
-  redirect_to home_confirm_path(sent: sent)
+  redirect_to home_confirm_path
 end
 
 # def cart #if there aren't any active orders, then create one
