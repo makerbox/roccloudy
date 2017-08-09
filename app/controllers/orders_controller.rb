@@ -55,6 +55,9 @@ end
         @order = current_user.orders.where(active: true).last #for sidecart
       end #for sidecart
     end
+    if params[:order]
+      @order = params[:order]
+    end
   end
 
   # GET /orders/new
