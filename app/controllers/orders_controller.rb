@@ -57,6 +57,7 @@ end
     end
     if params[:id]
       @order = Order.find(params[:id])
+      @showbuttons = 'nowshow'
     end
   end
 
