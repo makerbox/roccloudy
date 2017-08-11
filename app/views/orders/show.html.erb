@@ -1,6 +1,6 @@
 <span id="notice"><%= notice %></span>
 <% if @order %>
-<% if @showbuttons = 'noshow' %>
+<% if @showbuttons == 'noshow' %>
   <% @order.total = 0 %>
     <% if @order.quantities.any? %>
     <% @order.quantities.each do |po| %>
@@ -54,7 +54,7 @@
     <% end %>
     <% end %>
     <hr>
-    **TOTAL (excl. freight & GST) = $<%= number_with_precision(@order.total, precision: 2) %>
+    TOTAL (excl. freight & GST) = $<%= number_with_precision(@order.total, precision: 2) %>
     
     <hr>
     <% if !@order.notes.blank? %>
