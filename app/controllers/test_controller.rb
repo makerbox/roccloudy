@@ -3,6 +3,6 @@ class TestController < ApplicationController
 	
 	def index
        @lastdiscount = Discount.all.last
-       @customers = Account.all.where(sort: 'U')
+
   end
 end
