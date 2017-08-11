@@ -56,7 +56,7 @@ end
       when 'REPQLD1'
         @accounts = @accounts.where('rep = ? OR rep = ?', 'SG', 'SGW')
       when 'REPQLD2'
-        @accounts = @accounts.where(state: 'QLD')
+        @accounts = @accounts.where('rep = ? OR rep = ?', 'SK', 'SKT', 'SKN')
     end
     # if current_user.email != 'web@roccloudy.com'
     #   @accounts = @accounts.where(rep: current_user.account.code)
