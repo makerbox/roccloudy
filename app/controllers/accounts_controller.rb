@@ -54,7 +54,7 @@ end
       when 'REPVIC'
         @accounts = @accounts.where(state: 'VIC')
       when 'REPQLD1'
-        @accounts = @accounts.where('rep == ? OR rep == ?', 'SG', 'SGW')
+        @accounts = @accounts.where('rep = ? OR rep = ?', 'SG', 'SGW')
       when 'REPQLD2'
         @accounts = @accounts.where(state: 'QLD')
     end
