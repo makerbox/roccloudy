@@ -127,6 +127,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:total, :user_id, :notes, :cust_order_number, :order_number, :delivery_date)
+      params.require(:order).permit(:showcart, :total, :user_id, :notes, :cust_order_number, :order_number, :delivery_date)
     end
   end
