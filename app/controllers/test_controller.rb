@@ -14,13 +14,12 @@ class TestController < ApplicationController
               @code = p.Code.strip
               @qty = p.QtyInStock
               @rqty = p.QtyReserved
-              @onhand = @qty - @rqty
               @group = p.ProductGroup.to_s.strip
               @pricecat = p.PriceCat.to_s.strip
               @results << @code
               @results << @qty
               @results << @rqty
-              @results << @onhand
+              @results << @qty - @rqty
               @results << @group
               @results << @pricecat
           	end
