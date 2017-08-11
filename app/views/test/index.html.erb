@@ -1,7 +1,7 @@
 LAST DISCOUNT UPLOADED AT ----------<%= @lastdiscount.created_at %>
 <hr>
 <% Discount.all.each do |d| %>
-<%= d.disctype %><br>
+<%= d.producttype %><br>
 <% end %>
 
 
