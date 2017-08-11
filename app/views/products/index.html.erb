@@ -14,7 +14,7 @@
             <%= cl_image_tag(product.code.strip) %>
             
             <div class="product-index-text">
-              <%= product.code %> | <%= product.description %>
+              <%= product.code %> | <%= product.description %> ..<%= product.pricecat %>
             </div>
             <% if user_signed_in? %>
               <% if current_user.account || ((current_user.has_role? :admin) || (current_user.has_role? :rep)) %>
