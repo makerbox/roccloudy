@@ -58,7 +58,7 @@ end
     end
     if params[:id]
       @order = Order.find(params[:id])
-      if params[:showcart]
+      if params[:showcart] == 'show'
         @showbuttons = 'show'
       else
         @showbuttons = 'noshow'
