@@ -1,7 +1,7 @@
 LAST DISCOUNT UPLOADED AT ----------<%= @lastdiscount.created_at %>
-<%= @results %><hr>
-<% Product.all.each do |p| %>
-"<%= p.pricecat %>",
+<hr>
+<% Discount.all.each do |d| %>
+<%= d.disctype %><br>
 <% end %>
 
 
