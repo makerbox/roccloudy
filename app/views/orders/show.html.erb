@@ -1,4 +1,4 @@
-<span id="notice"><%= @showbuttons %><%= notice %></span>
+<span id="notice"><%= notice %></span>
 <% if @order %>
 <% if @showbuttons = 'noshow' %>
   <% @order.total = 0 %>
@@ -68,7 +68,7 @@
   <% @order.total = 0 %>
     <% if @order.quantities.any? %>
     <% @order.quantities.each do |po| %>
-    <div class="po">
+    <div class="po">||||
       <%= link_to product_path(Product.find_by(code: po.product.code)) do %>
       <div class="product-thumbnail">
       <%= cl_image_tag(po.product.code.strip) %>
