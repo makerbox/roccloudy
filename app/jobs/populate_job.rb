@@ -205,7 +205,7 @@ class PopulateJob
               price5 = p.SalesPrice5
               rrp = p.SalesPrice6
               qty = p.QtyInStock
-              qty = qty - p.QtyReserved
+              qty = qty - p.QtyReserve
               if p.AllowDisc == 1
                 allow_disc = true
               else
@@ -463,7 +463,6 @@ class PopulateJob
       #------------------------- SET DEFAULT SELLER LEVEL ---------------------
       unset = Account.all.where(seller_level: nil)
       unset.each do |acct|
-        @results << 'found'
         acct.update_attributes(seller_level: '1')
       end
 
@@ -513,6 +512,8 @@ class PopulateJob
       createrep('qld2@roccloudy.com', 'REPQLD2')
       createrep('nz@roccloudy.com', 'REPNZ')
       createrep('office@roccloudy.com', 'ADMINOFFICE')
+
+
 
 
 
