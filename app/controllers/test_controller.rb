@@ -13,7 +13,7 @@ class TestController < ApplicationController
               
               @qty << p.QtyInStock
               @qty << p.QtyReserve
-              @qty << qty - p.QtyReserve
+              
           end
       end
       dbh.disconnect
