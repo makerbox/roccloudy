@@ -10,7 +10,7 @@ class TestController < ApplicationController
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
           @products.each do |p|
             if p.Inactive == 0
-              
+              @qty << p.Code
               @qty << p.QtyInStock
               @qty << p.QtyReserve
               
