@@ -36,10 +36,10 @@ class TestController < ApplicationController
                   filedate = File.mtime(filename) #get date modified
                   lastupdated = Product.all.find_by(code: code).updated_at
                   timediff = lastupdated - filedate
-                  if timediff <= 400 #update image if it's under a day old
+                  # if timediff <= 400 #update image if it's under a day old
                     Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
                   	@results << code
-                  end
+                  # end
                 else
                   Product.all.find_by(code: code).destroy
                 end
