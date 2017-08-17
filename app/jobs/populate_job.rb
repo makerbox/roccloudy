@@ -220,9 +220,11 @@ class PopulateJob
                 filename = "E:\\Attache\\Attache\\Roc\\Images\\Product\\" + code + ".jpg"
                 if File.exist?(filename)
                   filedate = File.mtime(filename) #get date modified
-                  Product.all.find_by(code: code).update_attribute(imageurl: filedate) #imageurl isn't used for anything, so use it to keep track of updates
-                  # Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
-                  # stop from overloading transformations
+                  lastupdated = Product.all.find_by(code: code).updated_at
+                  timediff = lastupdated - filedate
+                  if timediff <= 1 #update image if it's under a day old
+                    Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
+                  end
                 else
                   Product.all.find_by(code: code).destroy
                 end
