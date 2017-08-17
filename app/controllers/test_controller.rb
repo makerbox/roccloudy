@@ -8,7 +8,7 @@ class TestController < ApplicationController
 
       # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
-          @products.each do |p|
+          @products.first(100).each do |p|
             if p.Inactive == 0
               code = p.Code.strip
               # # needs category
