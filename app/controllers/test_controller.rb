@@ -16,7 +16,9 @@ class TestController < ApplicationController
                   # Product.all.find_by(code: code).update_attribute(imageurl: filedate) #imageurl isn't used for anything, so use it to keep track of updates
                   # Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
                   # stop from overloading transformations
-                  @results << filedate.to_datetime
+                  if Product.all.where(code: code).updated_at <= filedate
+                  	@results << filedate
+                  end
                 # else
                   # Product.all.find_by(code: code).destroy
                 end
