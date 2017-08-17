@@ -14,6 +14,8 @@ class TestController < ApplicationController
                 if File.exist?(filename)
                   filedate = File.mtime(filename).to_date
                   productdate = Product.all.find_by(code: code).updated_at.to_date
+                  qty = p.QtyInStock - p.QtyReserve
+                  Product.all.find_by(code: code).update_attributes(qty: qty)
                   if filedate >= productdate
                   		@results << 'PRODUCT'
                   		@results << code
