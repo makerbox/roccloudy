@@ -219,6 +219,8 @@ class PopulateJob
                 Product.all.find_by(code: code).update_attributes(allow_disc: allow_disc, pricecat: pricecat, group: group, code: code, description: description, price1: price1, price2: price2, price3: price3, price4: price4, price5: price5, rrp: rrp, qty: qty)
                 filename = "E:\\Attache\\Attache\\Roc\\Images\\Product\\" + code + ".jpg"
                 if File.exist?(filename)
+                  filedate = File.mtime(filename) #get date modified
+                  Product.all.find_by(code: code).update_attribute(imageurl: filedate) #imageurl isn't used for anything, so use it to keep track of updates
                   # Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
                   # stop from overloading transformations
                 else
