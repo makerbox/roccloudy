@@ -22,8 +22,9 @@ class TestController < ApplicationController
                   	
                   @results << code
                   @results << qty
+                  @results << Product.all.find_by(code: code).qty
                   @results << filedate
-                  	@results << Product.all.find_by(code: code).updated_at
+                  @results << Product.all.find_by(code: code).updated_at
                   end
                 # else
                   # Product.all.find_by(code: code).destroy
