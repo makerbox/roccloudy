@@ -6,7 +6,7 @@ class TestController < ApplicationController
        	dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
        	# -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
-          @products.first(150).each do |p|
+          @products.first(500).each do |p|
             if p.Inactive == 0
               code = p.Code.strip
               if Product.all.where(code: code).exists?
@@ -24,7 +24,7 @@ class TestController < ApplicationController
 	                  @results << 'product updated >'
 	                  @results << productdate
 	              	@results << '======'
-	              	@results << (filedate - productdate).to_i
+	              	@results << (productdate - filedate).to_i
                 end
               end
             end
