@@ -1,6 +1,8 @@
 
-<% @qty.each do |d| %>
-<%= d %><br>
+<% @products.each do |d| %>
+<%= d.code %><br>
+<%= d.imageurl %> -- <%= d.qty %>
+<hr>
 <% end %>
 
 
