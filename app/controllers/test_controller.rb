@@ -16,7 +16,7 @@ class TestController < ApplicationController
                   productdate = Product.all.find_by(code: code).updated_at.to_date
                   qty = p.QtyInStock - p.QtyReserve
                   # Product.all.find_by(code: code).update_attributes(qty: qty)
-                  
+                  if (productdate - filedate).to_i < 300
                   		@results << 'PRODUCT'
                   		@results << code
 	                  @results << 'file updated >'
@@ -25,6 +25,7 @@ class TestController < ApplicationController
 	                  @results << productdate
 	              	@results << '======'
 	              	@results << (productdate - filedate).to_i
+	              end
                 end
               end
             end
