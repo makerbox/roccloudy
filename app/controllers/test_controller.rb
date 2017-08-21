@@ -5,8 +5,9 @@ class TestController < ApplicationController
        	@results = []
 
 
-        Account.all.each do |a|
+        Account.all.where('rep LIKE ? OR rep LIKE ?', 'SG', 'SGW').each do |a|
           @results << a.rep
+          @results << a.company
         end
        	# dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
 
