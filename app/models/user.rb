@@ -9,13 +9,15 @@ class User < ActiveRecord::Base
   has_many :orders,  dependent: :destroy 
   
   after_create :assign_default_role
+
   after_update :send_change_email
+
   def assign_default_role
   		add_role(:user)
   end
 
   def send_change_email
-    AdminMailer.account_change_request('web@roccloudy.com', User.find_by(params[:id]).account).deliver_now
+    AdminMailer.account_change_request('web@roccloudy.com', User.find_by(:id).account).deliver_now
   end
 
   def checksort(user)
