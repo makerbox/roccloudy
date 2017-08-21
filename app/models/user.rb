@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def send_change_email
-    AdminMailer.account_change_request('web@roccloudy.com', User.find_by(id).account).deliver_now
+    AdminMailer.account_change_request('web@roccloudy.com', id).deliver_now
   end
 
   def checksort(user)
