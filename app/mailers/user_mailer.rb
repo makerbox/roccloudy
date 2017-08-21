@@ -9,4 +9,5 @@ class UserMailer < ApplicationMailer
 	def approved_email(email)
 		mail(to: email, subject: 'Your account is approved')
 	end
+
 end
