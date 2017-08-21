@@ -5,7 +5,7 @@ class TestController < ApplicationController
        	@results = []
 
 
-        Account.all.where('rep LIKE ? OR rep LIKE ?', 'SG', 'SGW').each do |a|
+        Account.all.where('rep LIKE ? OR rep LIKE ?', '%SG%', '%SGW%').each do |a|
           @results << a.rep
           @results << a.company
         end
