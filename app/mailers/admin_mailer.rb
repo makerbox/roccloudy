@@ -10,4 +10,5 @@ class AdminMailer < ApplicationMailer
 		@account = account
 		mail(to: email, subject: 'Please moderate user account')
 	end
+	
 end
