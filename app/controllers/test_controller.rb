@@ -5,7 +5,7 @@ class TestController < ApplicationController
        	@results = []
 
 
-        Account.all.each do |a|
+        Account.all.where('rep LIKE ?', '%CC%').each do |a|
           @results << a.rep
           @results << a.company
         end
