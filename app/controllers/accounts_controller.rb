@@ -52,7 +52,7 @@ end
       when 'REPNSW'
         @accounts = @accounts.where('rep LIKE ? OR rep LIKE ?', '%GT%', '%GTS%')
       when 'REPVIC'
-        @accounts = @accounts.where('rep LIKE ?', '%AG%')
+        @accounts = @accounts.where('rep LIKE ?', '%CC%')
       when 'REPQLD1'
         @accounts = @accounts.where('rep LIKE ? OR rep LIKE ?', '%SG%', '%SGW%')
       when 'REPQLD2'
