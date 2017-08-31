@@ -3,7 +3,7 @@
 <% @order.total = 0 %>
   <% if @order.quantities.any? %>
   <% @order.quantities.each do |po| %>
-  <% if @order.quantities.where(code: po.code).count > 1 %>
+  <% if @order.quantities.where(code: po.code) %>
   item already in order
   <% end %>
   <div class="po">
