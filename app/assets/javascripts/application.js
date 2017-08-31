@@ -18,6 +18,10 @@
 
 function searchme(){
 var searchterm = $('#searchfield').val();
-console.log(searchterm);
 window.location.href = "?searchterm="+searchterm;
+}
+
+function searchprod(){
+var searchterm = $('#searchfield').val();
+window.location.href = window.location.href+"&searchterm="+searchterm;
 }
