@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-
+  <%= @quantity.product.code %>
   <% if @quantity.product.code == "7585X" %>
   	<%= f.input :qty, step: 12 %>
   <% else %>
