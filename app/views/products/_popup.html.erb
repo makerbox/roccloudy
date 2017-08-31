@@ -48,7 +48,7 @@
 				  	<%= simple_form_for(@quantity) do |f| %>
 				  		<!-- f.hidden_field :qty, value: 1 -->
 				  		<% if @thisproduct.code == "7585X" %>
-  	<%= f.input :qty, input_html: {value: f.object.qty || '1'}, step: 12 %>
+  	<%= f.input :qty, input_html: {value: f.object.qty || '12', step: 12} %>
   						<% else %>
     <%= f.input :qty, input_html: {value: f.object.qty || '1'} %>
   						<% end %>
