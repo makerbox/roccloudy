@@ -3,7 +3,11 @@
 
   <div class="form-inputs">
 
+  <% if @quantity.product.code == "7585X" %>
+  	<%= f.input :qty, step: 12 %>
+  <% else %>
     <%= f.input :qty %>
+  <% end %>
 
   </div>
 
