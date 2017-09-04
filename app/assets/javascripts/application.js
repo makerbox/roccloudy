@@ -25,7 +25,7 @@ function searchprod(){
 var searchterm = $('#searchfield').val();
 window.location.href = window.location.href+"&searchterm="+searchterm;
 }
-jQuery('#7585X .btn-success').click(function(e){
+jQuery("#7585X input[type='success']").click(function(){
 	alert('hi');
 	// var dozen = jQuery('#7585X #quantity_qty').val();
 	// console.log(dozen);
