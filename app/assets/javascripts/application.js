@@ -25,12 +25,3 @@ function searchprod(){
 var searchterm = $('#searchfield').val();
 window.location.href = window.location.href+"&searchterm="+searchterm;
 }
-jQuery("#7585X input[type='success']").click(function(){
-	alert('hi');
-	// var dozen = jQuery('#7585X #quantity_qty').val();
-	// console.log(dozen);
-	// if((dozen / 12) !== 0){
-	// 		e.preventDefault();
-	// 		alert('please order this product in increments of 12');
-	// };
-});
