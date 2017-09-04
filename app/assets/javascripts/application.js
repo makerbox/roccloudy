@@ -25,12 +25,10 @@ function searchprod(){
 var searchterm = $('#searchfield').val();
 window.location.href = window.location.href+"&searchterm="+searchterm;
 }
-jQuery('#7585X .btn-success').click(function(){
+jQuery('#7585X .btn-success').click(function(e){
 	var dozen = jQuery('#7585X #quantity_qty').val();
 	if((dozen / 12) !== 0){
-		// function(e){
-		// 	e.preventDefault();
-		// 	alert('please order this product in increments of 12');
-		// };
+			e.preventDefault();
+			alert('please order this product in increments of 12');
 	};
 });
