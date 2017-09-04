@@ -27,10 +27,10 @@ window.location.href = window.location.href+"&searchterm="+searchterm;
 }
 jQuery('#7585X .btn-success').click(function(){
 	var dozen = jQuery('#7585X #quantity_qty').val();
-	// if((dozen / 12) !== 0){
-	// 	function(e){
-	// 		e.preventDefault();
-	// 		alert('please order this product in increments of 12');
-	// 	};
-	// };
+	if((dozen / 12) !== 0){
+		// function(e){
+		// 	e.preventDefault();
+		// 	alert('please order this product in increments of 12');
+		// };
+	};
 });
