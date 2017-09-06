@@ -2,7 +2,7 @@
 <% if @order %>
 <% @order.total = 0 %>
   <% if @order.quantities.any? %>
-  <% @sidecart = @order.quantities.order('product.group ASC') %>
+  <% @sidecart = @order.quantities.order('product.group desc') %>
   <% @sidecart.each do |po| %>
   <% if @order.quantities.where(product: po.product).count > 1 %>
   <div class="po warning">
