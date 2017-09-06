@@ -64,7 +64,6 @@ end
         @showbuttons = 'noshow'
       end
     end
-    @order = @order.order('group ASC')
   end
 
   # GET /orders/new
