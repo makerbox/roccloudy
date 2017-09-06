@@ -64,6 +64,7 @@ end
         @showbuttons = 'noshow'
       end
     end
+    @order = @order.order('quantity.product.group desc')
   end
 
   # GET /orders/new
