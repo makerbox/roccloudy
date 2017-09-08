@@ -2,7 +2,6 @@
 <% if @order %>
 <% @order.total = 0 %>
   <% if @order.quantities.any? %>
-  <% orderqtyasc = @order.quantities.order(product: 'ASC') %>
   <% @order.quantities.each do |po| %>
   <% if @order.quantities.where(product: po.product).count > 1 %>
   <div class="po warning">
