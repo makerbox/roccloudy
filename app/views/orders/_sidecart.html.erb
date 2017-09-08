@@ -2,6 +2,9 @@
 <% if @order %>
 <% @order.total = 0 %>
   <% if @order.quantities.any? %>
+
+  <!-- GIVE EACH NEW QUANTITY A BRAND NAME ON CREATION, THEN YOU CAN DO .order(brand...etc -->
+  
   <% @order.quantities.each do |po| %>
   <% if @order.quantities.where(product: po.product).count > 1 %>
   <div class="po warning">
