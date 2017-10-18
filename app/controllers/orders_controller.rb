@@ -1,16 +1,13 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :sendorder, :buildkfi]
 
-  def buildkfi
-  end
-
   def sendorder
   @order.quantities.each do |q| # change stock levels and calc order total
     oldqty = q.product.qty
     newqty = oldqty - q.qty
     q.product.update(qty: newqty)
   end
-  orderno = 'w' + (Order.count + 1).to_s
+  orderno = 'W' + (Order.count + 1).to_s
   sent = DateTime.now
   @order.update(active: false, sent: sent, total: params[:total], order_number: orderno) # move order to pending and give it a total
   
@@ -21,9 +18,13 @@ class OrdersController < ApplicationController
     current_user.mimic.destroy
   end
 
-  redirect_to home_confirm_path
+  redirect_to "http://218.214.73.21:3200/orders/#{@order.id}/kfime"
 end
 
+def kfime
+  Order.all.last.kfi
+  redirect_to "http://roccloudy.com/home/confirm"
+end
 # def cart #if there aren't any active orders, then create one
 #   product = Product.find_by(id: params[:product])
 #   order = Order.create(user: current_user, active: true)

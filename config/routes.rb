@@ -44,7 +44,7 @@ end
       get 'sendorder'
       get 'cart'
       get 'addto'
-      get 'buildkfi'
+      get 'kfime'
     end
   end
   
