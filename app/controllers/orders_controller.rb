@@ -19,12 +19,12 @@ class OrdersController < ApplicationController
   end
 
   # redirect_to "http://218.214.73.21:3200/orders/#{@order.id}/kfime"
-  redirect_to "http://roccloudy.com/home/confirm"
+  redirect_to "http://wholesale.roccloudy.com/home/confirm"
 end
 
 def kfime
   Order.all.last.kfi
-  redirect_to "http://roccloudy.com/home/confirm"
+  redirect_to "http://wholesale.roccloudy.com/home/confirm"
 end
 # def cart #if there aren't any active orders, then create one
 #   product = Product.find_by(id: params[:product])
