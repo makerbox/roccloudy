@@ -13,7 +13,7 @@ class OrderMailer < ApplicationMailer
 			@thisperson = user
 		end
 		subject = 'Roc Cloudy order ' + order.user.account.code.strip
-		mail(to: 'wholesaleorder@roccloudy.com', subject: subject)
+		mail(to: 'wholesaleorder@roccloudy.com, web@roccloudy.com', subject: subject)
 	end
 	def receipt(order)
 		@thisorder = order
