@@ -3,7 +3,7 @@ class TestController < ApplicationController
 	
 	def index
       
-dbh = RDBI.connect :ODBC, :db => "wholesaleportalnz"
+dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
 		@products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
 
 		@results = []
