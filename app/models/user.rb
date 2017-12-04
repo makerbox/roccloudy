@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   # def send_change_email
     # AdminMailer.account_change_request('office@roccloudy.com', User.all.find_by(id: id).account).deliver_now
-  # en
+  # end
 
   def checksort(user)
     if (user.has_role? :admin) || (user.has_role? :rep)
