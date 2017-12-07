@@ -26,7 +26,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
               end
               group = p.ProductGroup.to_s.strip
               pricecat = p.PriceCat.to_s.strip
-              puts pricecat
+              # puts pricecat
               @results << code
               # # needs category
               if Product.all.where(code: code).exists?
