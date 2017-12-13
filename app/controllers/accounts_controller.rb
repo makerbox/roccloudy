@@ -98,7 +98,7 @@ end
     @account = Account.new(account_params)
     @account.user = current_user
     @account.code = @account.company.upcase[0..5]
-    if Acccount.where('code LIKE ?', "%#{@account.code}%")
+    if Account.where('code LIKE ?', "%#{@account.code}%")
       redirect_to :back
     end
     
