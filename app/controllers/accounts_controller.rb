@@ -109,13 +109,16 @@ end
     end 
 
     respond_to do |format|
-      if @account.save
+      if (!Acccount.where('code LIKE ?', "%#{@account.code}%")) && (@account.save)
         EmailJob.perform_async('cheryl@roccloudy.com', @account) #email admin with notification
         UserEmailJob.perform_async(@account.user.email) #email the user with a receipt
 
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
+        if Acccount.where('code LIKE ?', "%#{@account.code}%")
+          @account.errors = 'ACCOUNT ALREADY EXISTS'
+        end
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
