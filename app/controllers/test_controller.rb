@@ -6,7 +6,7 @@ class TestController < ApplicationController
 		counter = 0
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
-      @results << 'count from Attache = ' + @customers.count
+      @results << 'count from Attache = ' + @customers_ext.count
       @customers_ext.each do |ce|
         counter += 1
         code = ce.Code.strip
