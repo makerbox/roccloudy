@@ -5,7 +5,7 @@ class TestController < ApplicationController
       @results = []
 
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      @results = dbh.execute("INSERT INTO customer_master (code, name, contact) VALUES ('test', 'test', 'test')")
+      @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
       
 
       dbh.disconnect 
