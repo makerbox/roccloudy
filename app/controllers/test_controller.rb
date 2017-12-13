@@ -4,12 +4,12 @@ class TestController < ApplicationController
 	def index
       @results = []
 
-      Account.each do |a|
+      Account.all.each do |a|
       	if existing = Account.where('code LIKE ?', '%#{a.code}%')
       		@results << 'found duplicates for ' + a.code
-      		
+      		existing.each do |e|
       			@results << existing.code
-      		
+      		end
       	end
       end
 
