@@ -7,7 +7,7 @@ class TestController < ApplicationController
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
       # @results = dbh.execute("DELETE FROM customer_master WHERE Code = 'test'")
-      @results = 
+      
 
       dbh.disconnect 
       # redirect_to 'http://roccloudy.com'
