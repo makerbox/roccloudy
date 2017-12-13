@@ -98,7 +98,8 @@ end
     @account = Account.new(account_params)
     @account.user = current_user
     @account.code = @account.company.upcase[0..5]
-    if Account.where('code LIKE ?', "%#{@account.code}%")
+    if existing = Account.where('code LIKE ?', "%#{@account.code}%").first.user.email
+      flash[:notice] = 'An account for this company already exists under username ' + existing
       redirect_to :back
     end
     
