@@ -14,6 +14,9 @@ class TestController < ApplicationController
           if Account.all.find_by(code: code)
             account = Account.all.find_by(code: code) # if there is an attache inactive account already in the portal, we delete it and its user
             @results << 'inactive in Attache' + account.code
+            user = account.user
+            account.destroy
+            user.destroy
           end
         else
           email = ce.EmailAddr
@@ -54,6 +57,6 @@ class TestController < ApplicationController
         end
       end
       dbh.disconnect 
-      
+
   end
 end
