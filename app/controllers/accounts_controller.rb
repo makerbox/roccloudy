@@ -107,9 +107,13 @@ end
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
-        @account.errors = 'An account for this company already exists under username ' + existing
+        if existing
+          error = 'An account for this company already exists under username ' + existing
+        else
+          error = @account.errors
+        end
         format.html { render :new }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.json { render json: error, status: :unprocessable_entity }
       end
     end
   end
