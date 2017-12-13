@@ -5,7 +5,7 @@ class TestController < ApplicationController
       @results = []
 
       Account.all.each do |a|
-      	if Account.all.where('code LIKE ?', '%#{a.code}%').count >= 2
+      	if Account.all.where('code LIKE ?', '%#{a.code}%').count >= 1
       		existing = Account.all.where('code LIKE ?', '%#{a.code}%')
       		existing.each do |e|
       			@results << e.code
