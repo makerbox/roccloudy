@@ -98,20 +98,16 @@ end
     @account = Account.new(account_params)
     @account.user = current_user
     @account.code = @account.company.upcase[0..5]
-    if existing = Account.where('code LIKE ?', "%#{@account.code}%").first.user.email
-      flash[:notice] = 'An account for this company already exists under username ' + existing
-      redirect_to :back
-    end
-    
 
     respond_to do |format|
-      if @account.save
+      if @account.save && !(existing = Account.where('code LIKE ?', "%#{@account.code}%").first.user.email)
         EmailJob.perform_async('cheryl@roccloudy.com', @account) #email admin with notification
         UserEmailJob.perform_async(@account.user.email) #email the user with a receipt
 
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
+        @account.errors = 'An account for this company already exists under username ' + existing
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
