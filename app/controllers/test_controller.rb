@@ -7,9 +7,9 @@ class TestController < ApplicationController
       Account.each do |a|
       	if existing = Account.where('code LIKE ?', '%#{a.code}%')
       		@results << 'found duplicates for ' + a.code
-      		existing.each do |e|
-      			@results << e.code
-      		end
+      		
+      			@results << existing.code
+      		
       	end
       end
 
