@@ -97,12 +97,9 @@ end
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
-    if Account.where("code LIKE CONCAT('%',?,'%')", @account.code).count >= 2
-        @alert = Account.where("code LIKE CONCAT('%',?,'%')", @account.code).first
-        redirect_to warning_exists_path(@alert)
-    end
     @account.user = current_user
     @account.code = @account.company.upcase[0..5]
+    i = 1
     until !Account.find_by(code: @account.code)
       newcode = @account.code + i.to_s
       if !Account.find_by(code: newcode)
@@ -111,7 +108,10 @@ end
         i += 1
       end
     end 
-
+    if Account.where("code LIKE CONCAT('%',?,'%')", @account.code).count >= 2
+        @alert = Account.where("code LIKE CONCAT('%',?,'%')", @account.code).first
+        redirect_to warning_exists_path(@alert)
+    end
     respond_to do |format|
       if @account.save
         EmailJob.perform_async('cheryl@roccloudy.com', @account) #email admin with notification
