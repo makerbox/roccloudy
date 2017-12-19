@@ -98,7 +98,7 @@ end
   def create
     @account = Account.new(account_params)
     if Account.where("code LIKE CONCAT('%',?,'%')", @account.code).count >= 2
-        @alert = Account.where("code LIKE CONCAT('%',?,'%')", @account.code).not(@account)
+        @alert = Account.where("code LIKE CONCAT('%',?,'%')", @account.code).first
         redirect_to warning_exists_path(@alert)
     end
     @account.user = current_user
