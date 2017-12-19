@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy, :approve, :unapprove]
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :approve, :unapprove, :destroy_user]
   before_action :securitycheck, only: [:index, :approve, :unapprove, :destroy]
 
   def destroy_user
