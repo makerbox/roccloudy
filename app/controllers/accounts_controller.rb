@@ -69,7 +69,7 @@ end
   def show
     if (current_user.has_role? :admin) || (current_user.has_role? :rep)
       account = Account.find(params[:id])
-      @alert = Account.where('code LIKE ?', '%#{account.code}%').count
+      @alert = Account.where('code LIKE ?', '%#{account.code}%').count.to_s + account.code
       @pendingorders = Order.where(user: account.user, active: false, approved: false, complete: false)
       @approvedorders = Order.where(user:account.user, active:false, approved: true, complete: false)
       @sentorders = Order.where(user:account.user, active:false, approved: true, complete: true)
