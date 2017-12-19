@@ -69,6 +69,9 @@ end
   def show
     if (current_user.has_role? :admin) || (current_user.has_role? :rep)
       account = Account.find(params[:id])
+      if Account.find('code LIKE ?', '%#{account.code}%')
+        @alert = 'account exists twice'
+      end
       @pendingorders = Order.where(user: account.user, active: false, approved: false, complete: false)
       @approvedorders = Order.where(user:account.user, active:false, approved: true, complete: false)
       @sentorders = Order.where(user:account.user, active:false, approved: true, complete: true)
