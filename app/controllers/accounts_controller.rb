@@ -3,8 +3,8 @@ class AccountsController < ApplicationController
   before_action :securitycheck, only: [:index, :approve, :unapprove, :destroy]
 
   def destroy_user
-    @account = Account.find(params[:account])
-    @account.user.destroy
+    @user = User.find(params[:user])
+    @user.destroy
     redirect_to accounts_path
   end
 
