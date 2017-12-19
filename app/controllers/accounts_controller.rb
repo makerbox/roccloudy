@@ -69,7 +69,9 @@ end
   def show
     if (current_user.has_role? :admin) || (current_user.has_role? :rep)
       account = Account.find(params[:id])
-      @alert = Account.where("code LIKE CONCAT('%',?,'%')", account.code).count.to_s + account.code
+      if Account.where("code LIKE CONCAT('%',?,'%')", account.code).count >= 2
+        @alert = 'account exists'
+      end
       @pendingorders = Order.where(user: account.user, active: false, approved: false, complete: false)
       @approvedorders = Order.where(user:account.user, active:false, approved: true, complete: false)
       @sentorders = Order.where(user:account.user, active:false, approved: true, complete: true)
