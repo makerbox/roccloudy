@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
     @account.user.destroy
     redirect_to accounts_path
   end
-  
+
 #   check if user is admin - if not send them back home --- set which actions up top in the before_action
   def securitycheck
     if !((current_user.has_role? :admin) || (current_user.has_role? :rep))
@@ -68,6 +68,9 @@ end
     #   @accounts = @accounts.where(rep: current_user.account.code)
     # end
     @accounts = @accounts.paginate(:page => params[:page], :per_page => 20)
+
+    @full_accounts = User.includes(:account).ids
+    @blank_accounts = User.where('id NOT IN (?)', @full_accounts)
   end
 
   # GET /accounts/1
