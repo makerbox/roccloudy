@@ -108,7 +108,7 @@ end
         i += 1
       end
     end 
-    if Account.where("code LIKE CONCAT('%',?,'%')", @account.code).count >= 2
+    if Account.where("code LIKE CONCAT('%',?,'%')", @account.company.upcase[0..5]).count >= 2
         @alert = Account.where("code LIKE CONCAT('%',?,'%')", @account.code).first
         redirect_to warning_exists_path(@alert)
     else
