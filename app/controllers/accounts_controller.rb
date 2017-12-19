@@ -69,9 +69,7 @@ end
   def show
     if (current_user.has_role? :admin) || (current_user.has_role? :rep)
       account = Account.find(params[:id])
-      if Account.where("code LIKE CONCAT('%',?,'%')", account.code).count >= 2
-        @alert = 'account exists'
-      end
+
       @pendingorders = Order.where(user: account.user, active: false, approved: false, complete: false)
       @approvedorders = Order.where(user:account.user, active:false, approved: true, complete: false)
       @sentorders = Order.where(user:account.user, active:false, approved: true, complete: true)
@@ -99,6 +97,10 @@ end
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
+    if Account.where("code LIKE CONCAT('%',?,'%')", @account.code).count >= 2
+        @alert = Account.where("code LIKE CONCAT('%',?,'%')", @account.code).not(@account)
+        redirect_to warning_exists_path(@alert)
+    end
     @account.user = current_user
     @account.code = @account.company.upcase[0..5]
     until !Account.find_by(code: @account.code)
