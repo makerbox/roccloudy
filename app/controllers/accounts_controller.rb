@@ -69,7 +69,7 @@ end
     # end
     @accounts = @accounts.paginate(:page => params[:page], :per_page => 20)
 
-    @blank_accounts = User.where(approved: false)
+    @blank_accounts = User.all.where(approved: false)
   end
 
   # GET /accounts/1
