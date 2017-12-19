@@ -69,8 +69,7 @@ end
     # end
     @accounts = @accounts.paginate(:page => params[:page], :per_page => 20)
 
-    @full_accounts = User.includes(:account).ids
-    @blank_accounts = User.where('id NOT IN (?)', @full_accounts)
+    @blank_accounts = User.where(approved: 'duplicate')
   end
 
   # GET /accounts/1
@@ -119,6 +118,7 @@ end
     end 
     if Account.where("code LIKE CONCAT('%',?,'%')", @account.company.upcase[0..5]).count >= 2
         @alert = Account.where("code LIKE CONCAT('%',?,'%')", @account.code).first
+        current_user.update(approved: 'duplicate')
         redirect_to warning_exists_path
     else
       respond_to do |format|
