@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_one :account,  dependent: :destroy 
   has_one :mimic,  dependent: :destroy 
   has_many :orders,  dependent: :destroy 
+  validates :password, presence: true, on: :create
   validates :password, on: :update, allow_blank: true
   after_create :assign_default_role
 
