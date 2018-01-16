@@ -8,6 +8,9 @@ class TestController < ApplicationController
           else
             @results << 'no params'
           end
+          dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+          @results << dbh.execute("SELECT * FROM purch_order_detail").fetch(5, :Struct)
+          dbh.disconnect
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
