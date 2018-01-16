@@ -280,7 +280,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   odbc-rails
-  pg
+  pg (< 1.0)
   rails (= 4.2.1)
   rails-dev-boost!
   rails_12factor
@@ -304,4 +304,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.12.5
+   1.16.1
