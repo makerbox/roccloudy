@@ -4,9 +4,9 @@ class TestController < ApplicationController
 	def index
     @results = []
           if params[:order]
-            @results = params[:order]
+            @results << params[:order]
           else
-            @results = 'no params'
+            @results << 'no params'
           end
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
