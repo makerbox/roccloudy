@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   has_one :account,  dependent: :destroy 
   has_one :mimic,  dependent: :destroy 
   has_many :orders,  dependent: :destroy 
-  validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
-  validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
   after_create :assign_default_role
 
   # after_update :send_change_email
