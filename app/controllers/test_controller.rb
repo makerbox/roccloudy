@@ -2,16 +2,8 @@ class TestController < ApplicationController
 	skip_before_action :authenticate_user!
 	
 	def index
-      @results = []
+            @results = params[:order]
 
-      Account.all.each do |a|
-      	if Account.all.where('code LIKE ?', '%#{a.code}%').count >= 1
-      		existing = Account.all.where('code LIKE ?', '%#{a.code}%')
-      		existing.each do |e|
-      			@results << e.code
-      		end
-      	end
-      end
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
