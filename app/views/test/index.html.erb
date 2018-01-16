@@ -7,3 +7,4 @@
 <% @results.each do |p| %>
 <%= p %><br>
 <% end %>
+<%= link_to 'test params', test_index_path(order: Order.last) %>
