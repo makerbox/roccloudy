@@ -52,7 +52,7 @@ class QuantitiesController < ApplicationController
         format.html { redirect_to products_path(cat: @quantity.product.group, group: group, :anchor => @quantity.product.code), notice: 'Successfully added to order.' }
         format.json { render :show, status: :created, location: @quantity }
       else
-        format.html { render  products_path(cat: @quantity.product.group, group: group, :anchor => @quantity.product.code)}
+        format.html { redirect_to products_path(cat: @quantity.product.group, group: group, :anchor => @quantity.product.code), notice: 'Please enter a qty of at least 1.'}
         format.json { render json: @quantity.errors, status: :unprocessable_entity }
       end
     end
