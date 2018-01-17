@@ -11,7 +11,7 @@ class TestController < ApplicationController
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
           @prodords << dbh.execute("SELECT * FROM purch_order_detail").fetch(5, :Struct)
           @prodords.each do |p|
-            @results << p
+            @results << p.Code
           end
           dbh.disconnect
 
