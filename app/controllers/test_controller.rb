@@ -13,8 +13,8 @@ class TestController < ApplicationController
           @prodords.each do |p|
             @header = dbh.execute("SELECT * FROM purch_order_header WHERE DocNumPOHdr = '#{p.DocNum}'").fetch(:all, :Struct)
             @header.each do |h|
-              h.TranType
-              h.Name
+              @results << h.TranType
+              @results << h.Name
             end
           end
           dbh.disconnect
