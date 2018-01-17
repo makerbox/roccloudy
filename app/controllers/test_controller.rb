@@ -12,6 +12,10 @@ class TestController < ApplicationController
           @prodords = dbh.execute("SELECT * FROM purch_order_detail").fetch(5, :Struct)
           @prodords.each do |p|
             @results << p.Code
+            @results << p.TranType
+            @results << p.DocNum
+            @results << p.Comment
+            @results << '--------'
           end
           dbh.disconnect
 
