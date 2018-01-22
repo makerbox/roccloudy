@@ -10,7 +10,7 @@ class TestController < ApplicationController
           end
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
           @prodords = dbh.execute("SELECT * FROM invoice_header").fetch(1, :Struct)
-          @results << @prodords
+          @results << @prodords << 'goddam it'
           dbh.disconnect
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
