@@ -9,14 +9,8 @@ class TestController < ApplicationController
             @results << 'no params'
           end
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-          @prodords = dbh.execute("SELECT * FROM purch_order_detail WHERE TranType = 30").fetch(1, :Struct)
-          @prodords.each do |p|
-            @header = dbh.execute("SELECT * FROM purch_order_header WHERE DocNumPOHdr = '#{p.DocNum}'").fetch(:all, :Struct)
-            @header.each do |h|
-              @results << h.TranType
-              @results << h.Name
-            end
-          end
+          @prodords = dbh.execute("SELECT * FROM customer_transactions").fetch(1, :Struct)
+          @results << @prodords
           dbh.disconnect
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
