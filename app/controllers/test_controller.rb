@@ -9,7 +9,7 @@ class TestController < ApplicationController
             @results << 'no params'
           end
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-          @prodords = dbh.execute("SELECT * FROM customer_transactions").fetch(1, :Struct)
+          @prodords = dbh.execute("SELECT * FROM customer_transactions").fetch(:last, :Struct)
           @results << @prodords
           dbh.disconnect
 
