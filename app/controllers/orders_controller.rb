@@ -52,10 +52,10 @@ end
         @orders = Order.all
         @orders = @orders.paginate(:page => params[:page], :per_page => 20)
       else
-        redirect_to :back
+        redirect_to home_index_path
       end
     else
-      redirect_to :back
+      redirect_to home_index_path
     end
   end
 
