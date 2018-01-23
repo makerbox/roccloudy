@@ -1,4 +1,7 @@
 <% @orders.each do |order| %>
 
-	<%= order %><br>
+	<% order.each do |o| %>
+		<%= o %><br>
+	<% end %>
+	<%= will_paginate @orders %>
 <% end %>
