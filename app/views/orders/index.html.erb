@@ -1,7 +1,5 @@
 <% @orders.each do |order| %>
 
-	<% order.each do |o| %>
-		<%= o %><br>
-	<% end %>
-	<%= will_paginate @orders %>
+	<%= order.created_at %> | <%= order.order_number %> | <%= order.user.account.company %><br>
 <% end %>
+<%= will_paginate @orders %>
