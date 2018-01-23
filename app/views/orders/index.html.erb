@@ -5,13 +5,15 @@
 		<th>Company</th>
 	</tr>
 	<% @orders.each do |order| %>
-		<%= link_to order_path(order) do %>
+		
 		<tr>
-			<td><%= order.created_at %></td>
-			<td><%= order.order_number %></td>
-			<td><%= order.user.account.company %></td>
+			<%= link_to order_path(order) do %>
+				<td><%= order.created_at %></td>
+				<td><%= order.order_number %></td>
+				<td><%= order.user.account.company %></td>
+			<% end %>
 		</tr>
-		<% end %>
+		
 	<% end %>
 </table>
 <%= will_paginate @orders %>
