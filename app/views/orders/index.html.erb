@@ -4,14 +4,12 @@
 		<th>Order No.</th>
 		<th>Company</th>
 	</tr>
-	<% @orders.each do |order| %>
-		
+	<% @orders.each do |order| %>	
 		<tr>
-			<%= link_to order_path(order) do %>1
+			<td><%= link_to order_path(order) do %>VIEW ORDER<% end %></td>
 				<td><%= order.created_at %></td>
 				<td><%= order.order_number %></td>
 				<td><%= order.user.account.company %></td>
-			<% end %>
 		</tr>
 		
 	<% end %>
