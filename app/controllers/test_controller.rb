@@ -9,8 +9,11 @@ class TestController < ApplicationController
             @results << 'no params'
           end
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-          @results << dbh.execute("INSERT INTO invoice_header (Code, Name) VALUES ('test', 'test')")
           @results << dbh.execute("SELECT * FROM invoice_header").fetch(:last, :Struct)
+          @results << dbh.execute("SELECT * FROM invoice_hdextn").fetch(:last, :Struct)
+          @results << dbh.execute("SELECT * FROM invoice_hdext2").fetch(:last, :Struct)
+          @results << dbh.execute("SELECT * FROM invoice_detail").fetch(:last, :Struct)
+          
           dbh.disconnect
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
