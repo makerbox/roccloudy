@@ -1,5 +1,15 @@
-<% @orders.each do |order| %>
-
-	<%= order.created_at %> | <%= order.order_number %> | <%= order.user.account.company %><br>
-<% end %>
+<table class="table table-striped">
+	<tr>
+		<th>Date</th>
+		<th>Order No.</th>
+		<th>Company</th>
+	</tr>
+	<% @orders.each do |order| %>
+		<tr>
+			<td><%= order.created_at %></td>
+			<td><%= order.order_number %></td>
+			<td><%= order.user.account.company %></td>
+		</tr>
+	<% end %>
+</table>
 <%= will_paginate @orders %>
