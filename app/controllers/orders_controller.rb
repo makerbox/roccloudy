@@ -45,9 +45,18 @@ end
   # GET /orders
   # GET /orders.json
   def index
-    # being rendered in Account view, so moved to Account controller:
-    @orders = Order.all
-    @orders = @orders.paginate(:page => params[:page], :per_page => 20)
+    # partial is being rendered in Account view, so moved to Account controller
+    # this stuff is for the main index that only admin can see
+    if user_signed_in?
+      if (current_user.has_role? :admin)
+        @orders = Order.all
+        @orders = @orders.paginate(:page => params[:page], :per_page => 20)
+      else
+        redirect_to :back
+      end
+    else
+      redirect_to :back
+    end
   end
 
   # GET /orders/1
