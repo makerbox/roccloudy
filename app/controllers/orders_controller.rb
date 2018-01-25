@@ -92,7 +92,7 @@ end
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.order_number = 'W' + (@order.id).to_s
+    @order.order_number = 'W' + (@order.id.to_s)
     # if (current_user.has_role? :admin) || (current_user.has_role? :rep)
     #   @order.order_number = current_user.account.code + Order.all.count.to_s
     # else
