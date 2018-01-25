@@ -7,9 +7,8 @@ class OrdersController < ApplicationController
     newqty = oldqty - q.qty
     q.product.update(qty: newqty)
   end
-  orderno = 'W' + (@order.id).to_s
   sent = DateTime.now
-  @order.update(active: false, sent: sent, total: params[:total], order_number: orderno) # move order to pending and give it a total
+  @order.update(active: false, sent: sent, total: params[:total]) # move order to pending and give it a total
   
   @account = @order.user.account
   OrderEmailJob.perform_async(@order)
@@ -93,6 +92,7 @@ end
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.order_number = 'W' + (@order.id).to_s
     if (current_user.has_role? :admin) || (current_user.has_role? :rep)
       @order.order_number = current_user.account.code + Order.all.count.to_s
     else
