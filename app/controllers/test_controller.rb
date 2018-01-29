@@ -3,7 +3,7 @@ class TestController < ApplicationController
 	
 	def index
       Order.find(368).quantities.each do |q|
-        newqty = q.order.quantities.where(product: q.product, id: !q).sum(qty)
+        newqty = q.order.quantities.where(product: q.product, id: !q).sum(:qty)
         q.order.quantities.where(product: q.product, id: !q).destroy
         q.update(qty: newqty)
       end
