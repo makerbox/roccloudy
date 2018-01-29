@@ -5,15 +5,13 @@ class TestController < ApplicationController
       @results = []
       thisorder = Order.find(368)
       thisorder.quantities.each do |q|
-        if samsies = thisorder.quantities.where(product: q.product)
-          newqty = samsies.sum(:qty)
-          @results << 'SAMSIES = ' + samsies.count.to_s
-          @results << 'NEWQTY = ' + newqty.to_s
-          q.update(qty: newqty)
-          others = samsies.where.not(id: samsies.first.id)
-          others.destroy_all
-        end
+        samsies = thisorder.quantities.where(product: q.product)
+        newqty = samsies.sum(:qty)
+        q.update(qty: newqty)
+        # others = samsies.where.not(id: samsies.first.id)
+        #   others.destroy_all
       end
+      thisorder.quantities = thisorder.quantities.select(:product).distinct
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
