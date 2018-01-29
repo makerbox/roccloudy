@@ -3,11 +3,9 @@ class TestController < ApplicationController
 	
 	def index
       Order.find(368).quantities.each do |q|
-        q.order.quantities.where(product: q.product).each do |samo|
-          print "SAMO QTY = "
-          puts samo.qty
-          q.update(qty: (samo.qty + q.qty))
-        end
+        newqty = q.order.quantities.where(product: q.product, id: !q).qty.sum
+        q.order.quantities.where(product: q.product, id: !q).destroy
+        q.update(qty: newqty)
       end
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
