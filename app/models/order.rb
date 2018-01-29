@@ -10,11 +10,11 @@ class Order < ActiveRecord::Base
   	self.quantities.each do |q|
   		product = q.product.code.to_s
   		qty = q.qty.to_s
-  		items = items + '"'+product+'","'+qty+'","","","",""/r/n'
+  		items = items + '"'+product+'","'+qty+'","","","",""'
   	end
   	notes = self.notes
   	content = '"'+self.user.account.company+'","","","","","","","'+filename+'","","'+self.order_number.to_s+'","","","",""
-  	\r\n'+items+'<F9><F4><DOWN><DOWN><DOWN><DOWN><ENTER>,"","","'+notes+'","","","","","","","","","","","","",""'
+  	'+items+'<F9><F4><DOWN><DOWN><DOWN><DOWN><ENTER>,"","","'+notes+'","","","","","","","","","","","","",""'
   	File.open(path, "w+") do |f|
   		f.write(content)
   	end
