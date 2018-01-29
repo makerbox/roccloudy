@@ -9,7 +9,7 @@ class TestController < ApplicationController
         newqty = samsies.sum(:qty)
         q.update(qty: newqty)
         mefirst = samsies.first
-        # others = samsies.where.not(mefirst)
+        others = samsies.where.not(mefirst)
         # @results = others.count
         # others.destroy_all
       end
