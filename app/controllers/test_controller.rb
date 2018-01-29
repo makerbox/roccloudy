@@ -2,19 +2,14 @@ class TestController < ApplicationController
 	skip_before_action :authenticate_user!
 	
 	def index
-    @results = []
-          if params[:order]
-            @results << params[:order]
-          else
-            @results << 'no params'
+      Order.find(368).quantities.each do |q|
+        if q.order.quantities.where(product: q.product).count > 1
+          q.order.quantities.where(product: q.product, id: !q.id).each do |samo|
+            q.update(qty: (samo.qty + q.qty))
+            samo.destroy
           end
-          dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-          @results << dbh.execute("SELECT * FROM invoice_header").fetch(:last, :Struct)
-          @results << dbh.execute("SELECT * FROM invoice_hdextn").fetch(:last, :Struct)
-          @results << dbh.execute("SELECT * FROM invoice_hdext2").fetch(:last, :Struct)
-          @results << dbh.execute("SELECT * FROM invoice_detail").fetch(:last, :Struct)
-          
-          dbh.disconnect
+        end
+      end
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
