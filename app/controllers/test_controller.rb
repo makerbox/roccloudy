@@ -3,11 +3,9 @@ class TestController < ApplicationController
 	
 	def index
       Order.find(368).quantities.each do |q|
-        if q.order.quantities.where(product: q.product).count > 1
-          q.order.quantities.where(product: q.product, id: !q.id).each do |samo|
-            q.update(qty: (samo.qty + q.qty))
-            samo.destroy
-          end
+        q.order.quantities.where(product: q.product, id: !q.id).each do |samo|
+          q.update(qty: (samo.qty + q.qty))
+          samo.destroy          
         end
       end
 
