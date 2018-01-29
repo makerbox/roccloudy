@@ -2,6 +2,9 @@ class TestController < ApplicationController
 	skip_before_action :authenticate_user!
 	
 	def index 
+    Order.find(368).quantities.each do |q|
+        q.update(qty: 1)
+      end
       Order.find(368).quantities.each do |q|
         newqty = q.order.quantities.where(product: q.product).sum(:qty)
         # q.order.quantities.where(product: q.product, id: !q).destroy
