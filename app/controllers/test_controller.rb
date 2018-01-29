@@ -2,14 +2,15 @@ class TestController < ApplicationController
 	skip_before_action :authenticate_user!
 	
 	def index 
-    Order.find(368).quantities.each do |q|
-        q.update(qty: 1)
-      end
-      Order.find(368).quantities.each do |q|
-        newqty = q.order.quantities.where(product: q.product).sum(:qty)
+
+      thisorder = Order.find(368)
+      thisorder.quantities.each do |q|
+        samsies = thisorder.quantities.where(product: q.product)
+        newqty = samsies.sum(:qty)
         # q.order.quantities.where(product: q.product, id: !q).destroy
         q.update(qty: newqty)
-        q.order.quantities.where(product: q.product).where.not(q).destroy_all
+        others = samsies.where.not(id: q.id)
+        others.destroy_all
       end
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
