@@ -11,9 +11,9 @@ class TestController < ApplicationController
         mefirst = samsies.first
         others = samsies.where.not(mefirst)
         others.each do |e|
-          @results << others
+          @results << e
+          # e.destroy
         end
-        # others.destroy_all
       end
 
 
