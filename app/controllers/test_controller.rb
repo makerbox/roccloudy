@@ -5,14 +5,13 @@ class TestController < ApplicationController
       @results = []
       thisorder = Order.find(368)
       thisorder.quantities.each do |q|
-        samsies = thisorder.quantities.where(product: q.product)
-        newqty = samsies.sum(:qty)
-        q.update(qty: newqty)
-        mefirst = samsies.first
-        others = samsies.where('id != ?', mefirst.id)
-        others.each do |e|
-          @results << e.product.code
-          e.destroy
+        if samsies = thisorder.quantities.where(product: q.product)
+          newqty = samsies.sum(:qty)
+          q.update(qty: newqty)
+          mefirst = samsies.first
+          if q.id != mefirst.id
+            q.destroy
+          end
         end
       end
 
