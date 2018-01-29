@@ -12,7 +12,7 @@ class TestController < ApplicationController
         others = samsies.where('id != ?', mefirst.id)
         others.each do |e|
           @results << e.product.code
-          # e.destroy
+          e.destroy
         end
       end
 
