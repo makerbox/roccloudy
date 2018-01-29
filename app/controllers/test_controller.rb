@@ -9,7 +9,7 @@ class TestController < ApplicationController
         newqty = q.order.quantities.where(product: q.product).sum(:qty)
         # q.order.quantities.where(product: q.product, id: !q).destroy
         q.update(qty: newqty)
-        # q.order.quantities.where(product: q.product).destroy_all
+        q.order.quantities.where(product: q.product, !(id: q.id).destroy_all
       end
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
