@@ -10,7 +10,9 @@ class TestController < ApplicationController
         q.update(qty: newqty)
         mefirst = samsies.first
         others = samsies.where.not(mefirst)
-        @results << others
+        others.each do |e|
+          @results << others
+        end
         # others.destroy_all
       end
 
