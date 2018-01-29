@@ -3,6 +3,7 @@
 		<th>Date</th>
 		<th>Order No.</th>
 		<th>Company</th>
+		<th>Status</th>
 		<th></th>
 	</tr>
 	<% @orders.each do |order| %>	
@@ -10,6 +11,7 @@
 			<td><%= order.created_at %></td>
 			<td><%= order.order_number %></td>
 			<td><%= order.user.account.company %></td>
+			<td><%= order.sent %><%= order.active %><%= order.approved %><%= order.complete %></td>
 			<td><%= link_to order_path(order) do %>VIEW ORDER<% end %></td>
 		</tr>
 		

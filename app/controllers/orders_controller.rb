@@ -2,24 +2,27 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :sendorder, :buildkfi]
   skip_before_action :authenticate_user!, only: [:kfime]
   def sendorder
-  @order.quantities.each do |q| # change stock levels and calc order total
-    oldqty = q.product.qty
-    newqty = oldqty - q.qty
-    q.product.update(qty: newqty)
-  end
-  sent = DateTime.now
-  @order.update(active: false, sent: sent, total: params[:total]) # move order to pending and give it a total
-  
-  @account = @order.user.account
-  OrderEmailJob.perform_async(@order)
+    @order.quantities.each do |q| # change stock levels and calc order total
+      if @order.quantities.where(product: q.product).count > 1
+        
+      end
+      oldqty = q.product.qty
+      newqty = oldqty - q.qty
+      q.product.update(qty: newqty)
+    end
+    sent = DateTime.now
+    @order.update(active: false, sent: sent, total: params[:total]) # move order to pending and give it a total
+    
+    @account = @order.user.account
+    OrderEmailJob.perform_async(@order)
 
-  if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
-    current_user.mimic.destroy
-  end
+    if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
+      current_user.mimic.destroy
+    end
 
-  # redirect_to "http://218.214.73.21:3200/orders/#{@order.id}/kfime"
-  redirect_to "http://wholesale.roccloudy.com/home/confirm"
-end
+    # redirect_to "http://218.214.73.21:3200/orders/#{@order.id}/kfime"
+    redirect_to "http://wholesale.roccloudy.com/home/confirm"
+  end
 
 def kfime
   Order.all.last.kfi
@@ -92,7 +95,7 @@ end
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    
+
     # if (current_user.has_role? :admin) || (current_user.has_role? :rep)
     #   @order.order_number = current_user.account.code + Order.all.count.to_s
     # else
