@@ -9,7 +9,7 @@ class TestController < ApplicationController
         newqty = samsies.sum(:qty)
         # q.order.quantities.where(product: q.product, id: !q).destroy
         q.update(qty: newqty)
-        others = samsies.where.not(id: q.id)
+        others = samsies.where.not(id: samsies.first.id)
         others.destroy_all
       end
 
