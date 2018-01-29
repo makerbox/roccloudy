@@ -11,9 +11,7 @@ class TestController < ApplicationController
         # others = samsies.where.not(id: samsies.first.id)
         #   others.destroy_all
       end
-      single_products = thisorder.quantities.uniq_by(:product)
-      kill_us = thisorder.quantities.where.not(single_products)
-      
+
 
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
