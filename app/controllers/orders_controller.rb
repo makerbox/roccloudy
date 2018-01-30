@@ -3,9 +3,6 @@ class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:kfime]
   def sendorder
     @order.quantities.each do |q| # change stock levels and calc order total
-      if @order.quantities.where(product: q.product).count > 1
-        
-      end
       oldqty = q.product.qty
       newqty = oldqty - q.qty
       q.product.update(qty: newqty)
