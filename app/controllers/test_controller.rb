@@ -11,9 +11,9 @@ class TestController < ApplicationController
         all_of_this = thisorder.products.where(code: q.code)
         qty = 0
         all_of_this.each do |c|
-          qty = qty + c.quantity.qty 
+          # qty = qty + c.quantity.qty 
         end
-        @results << qty
+        # @results << qty
       end
 
 
