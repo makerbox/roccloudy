@@ -4,15 +4,8 @@ class TestController < ApplicationController
 	def index 
       @results = []
       thisorder = Order.find(368)
-      thisorder.quantities.each do |q|
-        if samsies = thisorder.quantities.where(product: q.product)
-          newqty = samsies.sum(:qty)
-          q.update(qty: newqty)
-          mefirst = samsies.first
-          if q.id != mefirst.id
-            q.destroy
-          end
-        end
+      thisorder.products.each do |q|
+        @results << q.code
       end
 
 
