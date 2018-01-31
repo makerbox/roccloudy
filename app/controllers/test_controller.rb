@@ -8,6 +8,7 @@ class TestController < ApplicationController
       unique_products.each do |q|
         newqty = thisorder.quantities.where(product_id: q.id).sum(:qty)
         original = thisorder.quantities.where(product_id: q.id).first
+        @results << original
         original.update(qty: newqty)
         thisorder.quantities.all.where.not(id: original.id).destroy_all
       end
