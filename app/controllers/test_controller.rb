@@ -4,7 +4,8 @@ class TestController < ApplicationController
 	def index 
       @results = []
       thisorder = Order.find(368)
-      thisorder.products.each do |q|
+      unique_products = thisorder.products.uniq
+      unique_products.each do |q|
         @results << q.code
       end
 
