@@ -9,8 +9,7 @@ class TestController < ApplicationController
         newqty = thisorder.quantities.where(product: q).sum(:qty)
         original = thisorder.quantities.where(product: q).first
         original.update(qty: newqty)
-        thisorder.quantities.where.not(original).all.each do |d|
-        end
+        thisorder.quantities.where.not(original).destroy_all
       end
 
 
