@@ -7,7 +7,9 @@ class TestController < ApplicationController
       unique_products = thisorder.products.uniq
       unique_products.each do |q|
         newqty = thisorder.quantities.where(product: q).sum(:qty)
-        thisorder.quantities.where(product: q).update(qty: newqty)
+        original = thisorder.quantities.where(product: q).first
+        original.update(qty: newqty)
+        @results << thisorder.quantities.where.not(original)
       end
 
 
