@@ -11,7 +11,7 @@ class TestController < ApplicationController
         original = .first
         @results << original
         original.update(qty: newqty)
-        these_quantities.where.not(id: original.id).destroy_all
+        thisorder.quantities.all.where.not(id: original.id).destroy_all
       end
 
 
