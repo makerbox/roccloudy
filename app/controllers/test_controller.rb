@@ -7,6 +7,7 @@ class TestController < ApplicationController
       unique_products = thisorder.products.uniq
       unique_products.each do |q|
         @results << q.code
+        @results << q.id
       end
 
 
