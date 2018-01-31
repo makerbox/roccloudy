@@ -8,7 +8,11 @@ class TestController < ApplicationController
       unique_products.each do |q|
         @results << q.code
         @results << q.id
-        qty = thisorder.products.where(code: q.code).sum(:qty)
+        all_of_this = thisorder.products.where(code: q.code)
+        qty = 0
+        all_of_this.each do |c|
+          qty = qty + c.quantity.qty 
+        end
         @results << qty
       end
 
