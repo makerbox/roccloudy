@@ -6,12 +6,12 @@ class TestController < ApplicationController
       thisorder = Order.find(368)
       unique_products = thisorder.products.uniq
       unique_products.each do |q|
-        these_quantities = thisorder.quantities.where(product_id: q.id)
-        newqty = these_quantities.sum(:qty)
-        original = .first
-        @results << original
-        original.update(qty: newqty)
-        thisorder.quantities.all.where.not(id: original.id).destroy_all
+        # these_quantities = thisorder.quantities.where(product_id: q.id)
+        # newqty = these_quantities.sum(:qty)
+        # original = .first
+        # @results << original
+        # original.update(qty: newqty)
+        # these_quantities.all.where.not(id: original.id).destroy_all
       end
 
 
