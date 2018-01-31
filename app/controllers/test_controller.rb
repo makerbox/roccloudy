@@ -6,9 +6,8 @@ class TestController < ApplicationController
       thisorder = Order.find(368)
       unique_products = thisorder.products.uniq
       unique_products.each do |q|
-        @results << q.code
-        @results << q.id
-        @results << thisorder.quantities.where(product: q).sum(:qty)
+        qty = thisorder.quantities.where(product: q).sum(:qty)
+        thisorder.quantities.where(product: q).update(qty: qty)
       end
 
 
