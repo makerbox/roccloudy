@@ -2,6 +2,16 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :sendorder, :buildkfi]
   skip_before_action :authenticate_user!, only: [:kfime]
   def sendorder
+    # collate duplicate products
+    unique_products = @order.products.uniq
+    unique_products.each do |q|
+      these_quantities = @order.quantities.where(product_id: q.id)
+      newqty = these_quantities.sum(:qty)
+      original = these_quantities.first
+      original.update(qty: newqty)
+      these_quantities.all.where.not(id: original.id).destroy_all
+    end
+
     @order.quantities.each do |q| # change stock levels and calc order total
       oldqty = q.product.qty
       newqty = oldqty - q.qty

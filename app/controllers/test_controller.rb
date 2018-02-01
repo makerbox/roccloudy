@@ -9,7 +9,6 @@ class TestController < ApplicationController
         these_quantities = thisorder.quantities.where(product_id: q.id)
         newqty = these_quantities.sum(:qty)
         original = these_quantities.first
-        @results << original
         original.update(qty: newqty)
         these_quantities.all.where.not(id: original.id).destroy_all
       end
