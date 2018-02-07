@@ -89,7 +89,7 @@ end
             redirect_to home_index_path
           end
         elsif group == 'unity'
-          if (current_user.account.sort.include? 'U') || ((current_user.has_role? :admin) || (current_user.has_role? :rep))
+          if (current_user.account.sort.include? 'U' || 'u') || ((current_user.has_role? :admin) || (current_user.has_role? :rep))
             @products = Product.where(group: ['E', 'R', 'D', 'A', 'Z'])
             if params[:cat]
               @products = @products.where(group: params[:cat])
