@@ -140,7 +140,7 @@ end
   # PATCH/PUT /accounts/1.json
   def update
     respond_to do |format|
-      if @account.update(account_params)
+      if @account.update(account_params, sort: @account.sort.upcase)
         AdminMailer.account_change_request('office@roccloudy.com', @account).deliver_now
         format.html { redirect_to accounts_path, notice: 'Account was successfully updated.' }
         format.json { render :show, status: :ok, location: @account }
