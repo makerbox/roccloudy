@@ -220,7 +220,7 @@ h1{
         <th style="font-size:10px; font-family: 'Verdana', sans-serif; width:50px; text-align:right;" width="50" align="right">Subtotal</th>
       </tr>
       <% @order.quantities.order(brand: 'ASC').each do |q| %>
-      <% case @level %>
+      <% case @order.account.seller_level %>
       <% when 1 %>
       <% oldprice = q.product.price1 %>
       <% when 2 %>
@@ -234,7 +234,7 @@ h1{
       <% when 6 %>
       <% oldprice = q.product.rrp %>
       <% end %>
-      <% case @level %>
+      <% case @order.account.seller_level %>
       <% when 1 %>
       <% prodprice = q.product.calc_discount(@thisperson, q.product.price1, q.product.group, q.product.code, q.product.pricecat, q.qty) %>
       <% when 2 %>
