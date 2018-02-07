@@ -1,5 +1,5 @@
 <span id="notice"><%= notice %></span>
-<%= link_to_function "Print this page", "javascript:print()" %> 
+<a script="window.print();">Print this page</a>
 <% if @order %>
 <% if @showbuttons == 'noshow' %>
   <% @order.total = 0 %>
