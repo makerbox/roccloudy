@@ -107,6 +107,7 @@ end
     @account = Account.new(account_params)
     @account.user = current_user
     @account.code = @account.company.upcase[0..5]
+    @account.sort = @account.sort.upcase
     i = 1
     until !Account.find_by(code: @account.code)
       newcode = @account.code + i.to_s
