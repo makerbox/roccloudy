@@ -6,17 +6,24 @@ class Order < ActiveRecord::Base
   def kfi
   	filename = self.id.to_s + self.user.account.company
   	path = "E:\\Attache\\Attache\\Roc\\KFIDATA\\Orders\\" + filename + ".kfi"
-  	items = ''
+  	items = []
   	self.quantities.each do |q|
   		product = q.product.code.to_s
   		qty = q.qty.to_s
-  		items = items + '"'+product+'","'+qty+'","","","",""'
+  		items << '"'+product+'","'+qty+'","","","",""'
   	end
-  	notes = self.notes
-  	content = '"'+self.user.account.company+'","","","","","","","'+filename+'","","'+self.order_number.to_s+'","","","",""
-  	'+items+'<F9><F4><DOWN><DOWN><DOWN><DOWN><ENTER>,"","","'+notes+'","","","","","","","","","","","","",""'
+  	notes1 = self.notes[0,60]
+    len = self.notes.length
+    notes2 = self.notes[60,len]
+  	firstline = '"'+self.user.account.company+'","","","","","","","'+filename+'","","'+self.order_number.to_s+'","","","",""
+  	'
+    lastline = '<F9><F4><DOWN><DOWN><DOWN><DOWN><ENTER>,"","","'+notes1+'","","'+notes2+'","","","","","","","","","","",""'
   	File.open(path, "w+") do |f|
-  		f.write(content)
+  		f.puts(firstline)
+      items.each do |i|
+        f.puts(i)
+      end
+      f.puts(lastline)
   	end
   end
 
