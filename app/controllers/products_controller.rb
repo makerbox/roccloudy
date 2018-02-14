@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products.json
 
 def hide
-  product = Product.all.find_by(id: params[:id])
+  product = Product.all_cached.find_by(id: params[:id])
   if product.hidden
     product.update_attributes(hidden: false)
   else
@@ -103,13 +103,13 @@ end
         else
           if user_signed_in?
             if current_user.has_role? :admin
-              @products = Product.all
+              @products = Product.all_cached
             else
-              @products = Product.all
+              @products = Product.all_cached
               redirect_to home_index_url
             end
           else
-            @products = Product.all
+            @products = Product.all_cached
             redirect_to home_index_url
           end
         end
