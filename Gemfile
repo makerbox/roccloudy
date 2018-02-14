@@ -5,6 +5,10 @@ gem 'wdm', group: :development
 # fixes up foreign key error
 # gem 'immigrant'
 
+# cache for offline
+gem 'dalli'
+gem 'memcachier'
+
 #image hosting
 gem 'cloudinary'
 gem 'carrierwave'

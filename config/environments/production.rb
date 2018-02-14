@@ -88,4 +88,6 @@ config.action_mailer.smtp_settings = {
   password: ENV["MAIL_PASS"],
   tls: true
 }
+
+config.cache_store = :dalli_store
 end
