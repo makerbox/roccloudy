@@ -4,7 +4,7 @@ desc "Create html5 manifest.appcache"
 task :html5_manifest => :environment do
   puts 'Creating appcache manifest file...'
 
-  File.open("../public/manifest.appcache", "w") do |f|
+  File.open("#{Rails.root.to_s}/public/manifest.appcache", "w") do |f|
     f.write("CACHE MANIFEST\n")
     f.write("# Version #{Time.now.to_i}\n\n")
     f.write("CACHE:\n")
