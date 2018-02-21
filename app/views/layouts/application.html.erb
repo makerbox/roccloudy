@@ -35,7 +35,7 @@
           <img src="http://res.cloudinary.com/roc-cloudy/image/upload/v1479963402/RocCloudy_axxjva.jpg">
         <% end %>
         <% if user_signed_in? && current_user.orders.any? && current_user.orders.last.active == true %>
-            <%= link_to 'View Cart', order_path(current_user.orders.where(active: true).last, showcart: 'show'), class: 'mobile-cart-btn' %>
+            <%= link_to 'View Cart', order_path(id: current_user.orders.where(active: true).last.id, showcart: 'show'), class: 'mobile-cart-btn' %>
             <% end %> 
 
       </div>
