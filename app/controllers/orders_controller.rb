@@ -79,13 +79,10 @@ end
         @order = current_user.orders.where(active: true).last #for sidecart
       end #for sidecart
     end
-    if params[:id]
-      @order = Order.find(params[:id])
-      if params[:showcart] == 'show'
+    if params[:showcart] == 'show'
         @showbuttons = 'show'
       else
         @showbuttons = 'noshow'
-      end
     end
   end
 

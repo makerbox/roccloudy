@@ -130,7 +130,7 @@
             <% end %>
             <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
             <% if current_user.orders.any? && current_user.orders.last.active == true %>
-            <li><%= link_to 'View Cart', order_path(id: current_user.orders.where(active: true).last.id, showcart: 'show') %></li>
+            <li><a href="#cart">View Cart</a></li>
             <% end %> 
 
 
