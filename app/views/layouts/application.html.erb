@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" manifest="/manifest.appcache">
+<html>
 <head>
   <title>Roc Cloudy | Wholesale</title>
   <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
@@ -35,7 +35,7 @@
           <img src="http://res.cloudinary.com/roc-cloudy/image/upload/v1479963402/RocCloudy_axxjva.jpg">
         <% end %>
         <% if user_signed_in? && current_user.orders.any? && current_user.orders.last.active == true %>
-            <!--a href="#cart" class='mobile-cart-btn'>View Cart</a-->
+            <%= link_to 'View Cart', order_path(current_user.orders.where(active: true).last, showcart: 'show'), class: 'mobile-cart-btn' %>
             <% end %> 
 
       </div>
@@ -130,7 +130,7 @@
             <% end %>
             <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
             <% if current_user.orders.any? && current_user.orders.last.active == true %>
-            <!--li><-a href="#cart">View Cart</a></li-->
+            <li><%= link_to 'View Cart', order_path(current_user.orders.where(active: true).last, showcart: 'show') %></li>
             <% end %> 
 
 
