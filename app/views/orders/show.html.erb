@@ -163,3 +163,15 @@ h1{
 </tr>
 </tbody>
 </table>
+
+<% if @showbuttons == 'show' %>
+<div class="col-md-3 cart" id="cart">
+        <p>
+          <i class="fa fa-shopping-cart fa-2x"></i>
+        </p>
+        <hr>
+        <p>
+          <%= render 'orders/sidecart' %>
+        </p>
+      </div>
+      <% end %>
