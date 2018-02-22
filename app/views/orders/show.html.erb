@@ -131,7 +131,7 @@ h1{
           <b style="font-size:12px; font-family: 'Verdana', sans-serif;">SUBTOTAL :</b>
         </td>
         <td style="text-align:right;" align="right">
-          <b style="font-size:12px; font-family: 'Verdana', sans-serif;">$<%= (@order.total).round(2) %></b>
+          <b style="font-size:12px; font-family: 'Verdana', sans-serif;">$<% if @order.total %><%= (@order.total).round(2) %><% end %></b>
         </td>
       </tr>
       <tr align="left" style="text-align:left;">
