@@ -125,13 +125,16 @@ h1{
             <b style="font-size:12px; font-family: 'Verdana', sans-serif;"><%= @order.quantities.all.sum(:qty) %></b>
           </td>
         </tr>
+      <% if @order.total %>
       <tr align="left" style="text-align:left;">
         <td></td><td></td><td></td>
         <td style="text-align:right;" align="right">
           <b style="font-size:12px; font-family: 'Verdana', sans-serif;">SUBTOTAL :</b>
         </td>
         <td style="text-align:right;" align="right">
-          <b style="font-size:12px; font-family: 'Verdana', sans-serif;">$<% if @order.total %><%= (@order.total).round(2) %><% end %></b>
+          <b style="font-size:12px; font-family: 'Verdana', sans-serif;">
+            $<%= (@order.total).round(2) %>
+          </b>
         </td>
       </tr>
       <tr align="left" style="text-align:left;">
@@ -153,6 +156,7 @@ h1{
           <b style="font-size:12px; font-family: 'Verdana', sans-serif;">$<%= (@order.total + (@order.total * 0.1).round(2)) %></b>
         </td>
       </tr>
+      <% end %>
     </tbody>
   </table>
 </td>
