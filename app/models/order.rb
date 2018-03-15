@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
   	end
     notes = self.notes.to_s
   	notes1 = notes[0,60]
-    len = self.notes.length
+    len = notes.length
     notes2 = notes[60,len]
   	firstline = '"'+self.user.account.company.strip+'","","","","","","","'+filename+'","","'+Date.today.strftime('%d%m%Y').to_s+'","","","",""'
     lastline = '<F9><F4><DOWN><DOWN><DOWN><DOWN><ENTER>,"","","'+notes1+'","","'+notes2+'","","","","","","","","","","",""'
