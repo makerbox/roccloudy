@@ -12,8 +12,9 @@ class Order < ActiveRecord::Base
   		qty = q.qty.to_s
   		items << '"'+product+'","'+qty+'","","","",""'
   	end
-  	notes = self.notes[0..60]
-    len = self.notes.length
+    notes = self.notes
+  	# notes = self.notes[0..60]
+   #  len = self.notes.length
     # notes2 = self.notes[60..len]
   	firstline = '"'+self.user.account.company.strip+'","","","","","","","'+filename+'","","'+Date.today.strftime('%d%m%Y').to_s+'","","","",""'
     lastline = '<F9><F4><DOWN><DOWN><DOWN><DOWN><ENTER>,"","","'+notes1+'","","'+notes2+'","","","","","","","","","","",""'
