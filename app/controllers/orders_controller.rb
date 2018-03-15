@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :sendorder, :buildkfi]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :sendorder, :kfime]
   skip_before_action :authenticate_user!, only: [:kfime]
   def sendorder
     # collate duplicate products
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
 def kfime
-  Order.all.last.kfi
+  @order.kfi
   redirect_to "http://wholesale.roccloudy.com/home/confirm"
 end
 # def cart #if there aren't any active orders, then create one
