@@ -13,9 +13,8 @@ class Order < ActiveRecord::Base
   		items << '"'+product+'","'+qty+'","","","",""'
   	end
     notes = self.notes.to_s
-  	notes_first = notes[0,60]
-    len = notes.length
-    notes_second = notes[60,len]
+  	notes_first = notes[0..60]
+    notes_second = notes[60..-1]
   	firstline = '"'+self.user.account.company.strip+'","","","","","","","'+filename+'","","'+Date.today.strftime('%d%m%Y').to_s+'","","","",""'
     lastline = '<F9><F4><DOWN><DOWN><DOWN><DOWN><ENTER>,"","","'+notes_first+'","","'+notes_second+'","","","","","","","","","","",""'
   	File.open(path, "w+") do |f|
