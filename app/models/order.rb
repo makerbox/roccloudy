@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   		qty = q.qty.to_s
   		items << '"'+product+'","'+qty+'","","","",""'
   	end
-    puts self.notes.to_s
+    debug self.notes.to_s
   	notes1 = self.notes[0..60].to_s
     len = self.notes.length
     notes2 = self.notes[60..len].to_s
