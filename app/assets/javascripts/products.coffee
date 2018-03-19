@@ -5,3 +5,5 @@
 $ ->
   $("a[data-remote]").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
+  $("input[type=submit]").on "ajax:send", (e, data, status, xhr) ->
+    $alert('adding product to cart...');
