@@ -6,4 +6,4 @@ $ ->
   $("a[data-remote]").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
   $(".new_quantity").on "ajax:success", (e, data, status, xhr) ->
-  	console.log(data)
+  	console.log data
