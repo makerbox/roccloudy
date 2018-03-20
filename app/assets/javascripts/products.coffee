@@ -8,3 +8,4 @@ $ ->
     newqty = $(this).data('newqty')
     $(".remove-btn").each ->
     	$(this).attr('data-newqty', newqty)
+    	console.log newqty
