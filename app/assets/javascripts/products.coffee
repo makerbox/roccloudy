@@ -3,6 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
+  $("a[data-remote]").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
-
