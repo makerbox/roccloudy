@@ -5,5 +5,4 @@
 $ ->
   $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
-    newqty = $(this).data('newqty')
-    $(".remove-btn").attr('data-newqty', newqty)
+    $(".remove-btn").data('newqty', $(this).data('newqty'))
