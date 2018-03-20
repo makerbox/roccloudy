@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $(".remove-btn").on "ajax:success", (e, data, status, xhr) ->
+  $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
     console.log($(this).data('newqty'))
