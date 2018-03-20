@@ -5,4 +5,3 @@
 $ ->
   $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
-    console.log data
