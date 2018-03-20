@@ -7,5 +7,5 @@ $ ->
     $(this).parent().css('display','none')
     newqty = $(this).data('newqty')
     $(".remove-btn").each ->
-    	$(this).attr('data-newqty', newqty)
+    	$(this).attr('data-newqty', 8)
     	console.log newqty
