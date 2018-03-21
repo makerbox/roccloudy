@@ -57,7 +57,7 @@
 				  			<%= f.hidden_field :thisgroup, value: @thisproduct.group %>
 				  		<% end %>
 				  		<%= f.hidden_field :product_id, value: @thisproduct.id %>
-				  		<%= f.submit "ADD TO CART", class: 'btn btn-success' %>
+				  		<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success' %>
 				  	<% end %>
 			  <% end %>
 		  <% end %>
