@@ -5,7 +5,10 @@
 $ ->
   $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
-    newqty = $(this).data('newqty')
-    $(".remove-btn").each ->
-    	$(this).attr('data-newqty', 8)
-    	console.log newqty
+    qty = $(this).data('qty')
+    price = $(this).data('price')
+    totalqty = $(this).data('totalqty')
+    totalprice = $(this).data('totalprice')
+    newqty = totalqty - qty
+    newprice = totalprice - price
+    $()

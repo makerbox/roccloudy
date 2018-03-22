@@ -58,12 +58,12 @@
   	<div class="qty"> x <%= po.qty %> <%= link_to '', edit_quantity_path(po), class: 'fa fa-pencil-alt' %></div> ------- $<%= number_with_precision(subtotal, precision: 2) %>
   	<% @order.total = @order.total + subtotal %>
 
-  <%= link_to 'remove', remove_product_path(id: po.id), remote:true, data: {"newqty": (@order.quantities.all.sum(:qty) - po.qty), "disable-with": "removing..."}, class: 'btn btn-warning remove-btn' %></div>
+  <%= link_to 'remove', remove_product_path(id: po.id), remote:true, data: {"qty": po.qty, "totalqty": @order.quantities.all.sum(:qty), "price": prodprice, "totalprice": @order.total, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn' %></div>
   <% end %>
   <% end %>
   <hr>
-  TOTAL QTY = <%= @order.quantities.all.sum(:qty) %><br>
-  TOTAL (excl. freight & GST) = $<%= number_with_precision(@order.total, precision: 2) %>
+  TOTAL QTY = <div id="totalqty" class="totals"><%= @order.quantities.all.sum(:qty) %></div><br>
+  TOTAL (excl. freight & GST) = $<div id="totalprice" class="totals"><%= number_with_precision(@order.total, precision: 2) %></div>
   <% if (current_user.account.company.blank? || current_user.account.phone.blank?) && !((current_user.has_role? :admin) || (current_user.has_role? :rep)) %>
   <%= link_to 'please fill in your account details before placing an order', account_path(current_user.account), class: 'btn btn-info' %> <hr>
   <% else %>
