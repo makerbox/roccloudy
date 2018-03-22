@@ -6,7 +6,7 @@ $ ->
   $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
     qty = $(this).data('qty')
-    price = $(this).data('price')
+    price = $(this).data('price') * qty
     totalqty = parseInt($('#totalqty').html(), 10)
     totalprice = parseFloat($('#totalprice').html(), 10).toFixed(2)
     newqty = totalqty - qty
