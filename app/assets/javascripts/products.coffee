@@ -13,5 +13,6 @@ $ ->
     console.log price
     newqty = totalqty - qty
     newprice = totalprice - price
+    console.log newprice
     $('#totalqty').html(newqty)
     $('#totalprice').html(newprice)
