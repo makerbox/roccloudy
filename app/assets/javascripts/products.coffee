@@ -7,8 +7,8 @@ $ ->
     $(this).parent().css('display','none')
     qty = $(this).data('qty')
     price = $(this).data('price')
-    totalqty = $(this).data('totalqty')
-    totalprice = $(this).data('totalprice')
+    totalqty = parseInt($('#totalqty').html(), 10)
+    totalprice = parseInt($('#totalprice').html(), 10)
     newqty = totalqty - qty
     newprice = totalprice - price
     $('#totalqty').html(newqty)
