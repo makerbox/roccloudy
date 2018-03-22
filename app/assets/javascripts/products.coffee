@@ -11,4 +11,5 @@ $ ->
     totalprice = $(this).data('totalprice')
     newqty = totalqty - qty
     newprice = totalprice - price
-    $()
+    $('#totalqty').html(newqty)
+    $('#totalprice').html(newprice)
