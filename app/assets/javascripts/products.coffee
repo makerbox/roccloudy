@@ -8,7 +8,7 @@ $ ->
     qty = $(this).data('qty')
     price = $(this).data('price') * qty
     totalqty = parseInt($('#totalqty').html(), 10)
-    totalprice = parseFloat($('#totalprice').html(), 10).toFixed(2)
+    totalprice = parseFloat($('#totalprice').html()).toFixed(2)
     newqty = totalqty - qty
     newprice = totalprice - price
     $('#totalqty').html(newqty)
