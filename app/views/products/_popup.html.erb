@@ -70,6 +70,9 @@
 							      order_id: '<%= @order.id %>' },
 							      success: function(data) {
 							        console.log(data.result);
+							        },
+							        error: function(xhr, textStatus, error){
+							        	console.log(xhr.statusText+""+textStatus+""+error);
 							        }
 							      });
 							});
