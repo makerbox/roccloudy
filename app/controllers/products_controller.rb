@@ -228,6 +228,10 @@ end
     redirect_to :back
   end
 
+  #add product to cart (used for popup ajax)
+  def add_product_to_cart
+  end
+
   # GET /products/new
   def new
     @product = Product.new

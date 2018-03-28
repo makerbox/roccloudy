@@ -57,9 +57,28 @@
 				  			<%= f.hidden_field :thisgroup, value: @thisproduct.group %>
 				  		<% end %>
 				  		<%= f.hidden_field :product_id, value: @thisproduct.id %>
-				  		<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success' %>
+				  		<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success add-to-cart' %>
+					  		<script>
+							$('.add-to-cart').click(function() {
+							  var route = "/quantities";
+							   $.ajax({
+							      url: route ,
+							      dataType: "json",
+							      type: "POST",
+							      data: { qty: $(this).siblings(".qty").children("form_control").val(), 
+							      product_id: '<%= @thisproduct.id %>',
+							      order_id: '<%= @order.id %>' },
+							      success: function(data) {
+							        //$("#price-display").html(data.result.toFixed(2)); 
+							        console.log(data.result);
+							        //console.log('<%= @product.group %>.<%= @product.code %>'); }
+							      });
+							});
+							</script>
 				  	<% end %>
 			  <% end %>
 		  <% end %>
 	  <% end %>
   <% end %>
+
+  
