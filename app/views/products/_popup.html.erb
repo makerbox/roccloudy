@@ -61,12 +61,12 @@
 					  		<script>
 							$('.add-to-cart').click(function() {
 							  var route = "/quantities/new";
-							   $.ajax({
+							   $(this).ajax({
 							      url: route ,
 							      dataType: "json",
 							      type: "GET",
 							      data: { qty: 1, 
-							      product_id: '<%= @thisproduct.id %>',
+							      product_id: '1665',
 							      order_id: '<%= @order.id %>' },
 							      success: function(data) {
 							        console.log(data.result);
