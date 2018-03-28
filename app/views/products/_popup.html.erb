@@ -65,7 +65,7 @@
 							      url: route ,
 							      dataType: "json",
 							      type: "GET",
-							      data: { qty: $(this).siblings(".qty").children("form_control").val(), 
+							      data: { qty: 1, 
 							      product_id: '<%= @thisproduct.id %>',
 							      order_id: '<%= @order.id %>' },
 							      success: function(data) {
