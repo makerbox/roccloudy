@@ -60,11 +60,11 @@
 				  		<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success add-to-cart' %>
 					  		<script>
 							$('.add-to-cart').click(function() {
-							  var route = "/quantities";
+							  var route = "/quantities/new";
 							   $.ajax({
 							      url: route ,
 							      dataType: "json",
-							      type: "POST",
+							      type: "GET",
 							      data: { qty: $(this).siblings(".qty").children("form_control").val(), 
 							      product_id: '<%= @thisproduct.id %>',
 							      order_id: '<%= @order.id %>' },
