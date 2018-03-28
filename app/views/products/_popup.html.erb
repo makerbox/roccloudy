@@ -62,12 +62,12 @@
 							$('#<%= @thisproduct.code %> .add-to-cart').click(function() {
 							  var route = "/quantities";
 							   $.ajax({
-							      url: route ,
+							      url: route,
 							      dataType: "json",
 							      type: "POST",
-							      data: { qty: $('#<%= @thisproduct.code %> .qty .form-control').val(), 
+							      data: JSON.stringify({ qty: $('#<%= @thisproduct.code %> .qty .form-control').val(), 
 							      product_id: '<%= @thisproduct.id %>',
-							      order_id: '<%= @order.id %>' },
+							      order_id: '<%= @order.id %>' }),
 							      success: function(data) {
 							        console.log(data.result);
 							        },
