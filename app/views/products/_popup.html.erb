@@ -76,7 +76,8 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log(data.result);
-						var newhtml = $(data.result).parseHTML();
+						var newhtml = String(data.result);
+						newhtml = $.parseHTML(newhtml);
 						$('#cart p')[1].after(newhtml);
 					}
 				});
