@@ -280,33 +280,31 @@ end
     thisperson = current_user
   end
   case level
-    when 1
-      oldprice = thisproduct.price1
-    when 2
-      oldprice = thisproduct.price2
-    when 3
-      oldprice = thisproduct.price3
-    when 4
-      oldprice = thisproduct.price4
-    when 5
-      oldprice = thisproduct.price5
-    when 6
-      oldprice = thisproduct.rrp
+  when 1
+    oldprice = thisproduct.price1
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+
+  when 2
+    oldprice = thisproduct.price2
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price2, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+
+  when 3
+    oldprice = thisproduct.price3
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price3, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+
+  when 4
+    oldprice = thisproduct.price4
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price4, thisproduct.group, thisproduct.code, thisproduct.pricecat), qty
+
+  when 5
+    oldprice = thisproduct.price5
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price5, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+
+  when 6
+    oldprice = thisproduct.rrp
+    prodprice = thisproduct.rrp
   end
-  # case level
-  # when 1
-  #   prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-  # when 2
-  #   prodprice = thisproduct.calc_discount(thisperson, thisproduct.price2, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-  # when 3
-  #   prodprice = thisproduct.calc_discount(thisperson, thisproduct.price3, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-  # when 4
-  #   prodprice = thisproduct.calc_discount(thisperson, thisproduct.price4, thisproduct.group, thisproduct.code, thisproduct.pricecat), po.qty
-  # when 5
-  #   prodprice = thisproduct.calc_discount(thisperson, thisproduct.price5, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-  # when 6
-  #   prodprice = thisproduct.rrp
-  # end
+
     # htmlstring << '$'+number_with_precision(prodprice, precision: 2)
     # subtotal = (qty * prodprice).round(2)
     
