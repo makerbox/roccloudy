@@ -263,7 +263,7 @@ end
       htmlstring = ''
       thisproduct = Product.find(product_id)
       #get quantity data (price etc)
-      if @order.quantities.where(product: thisproduct).count > 1
+      if @newquantity.order.quantities.where(product: thisproduct).count > 1
         htmlstring += '<div class="po warning">Item already in cart<br>'
       else
        htmlstring += '<div class="po">'
