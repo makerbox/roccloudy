@@ -55,7 +55,7 @@
   <script>
     function removeMe(){
       console.log('hi');
-        $(this).parent().css('display','none');
+        $("#cart").load(location.href + " #cart");
         // qty = $(this).data('qty');
         // price = $(this).data('price') * qty;
         // totalqty = parseInt($('#totalqty').html(), 10);
