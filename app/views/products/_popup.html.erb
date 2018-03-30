@@ -72,7 +72,7 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log(data.result);
-						$('#cart p')[1].after(data.result);
+						$('#cart p')[1].after($.parseHTML( data.result ));
 					}
 				});
 			});
