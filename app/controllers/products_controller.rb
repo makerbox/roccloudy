@@ -313,7 +313,7 @@ end
     htmlstring += '</div>'
 
     respond_to do |format|
-      format.json { render json: {result: htmlstring} }
+      format.json { render json: {result: htmlstring.html_safe} }
     end
     else
 
