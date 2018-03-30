@@ -272,50 +272,50 @@ end
    htmlstring << '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
    htmlstring << '</div>'+thisproduct.code.to_s
    htmlstring << '</a>'
-if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?)
-                      level = current_user.mimic.account.seller_level.to_i
-                      thisperson = current_user.mimic.account.user
-                    else
-                      level = current_user.account.seller_level.to_i
-                      thisperson = current_user
-                    end
-                    case level
-                      when 1
-                        oldprice = thisproduct.price1
-                      when 2
-                        oldprice = thisproduct.price2
-                      when 3
-                        oldprice = thisproduct.price3
-                      when 4
-                        oldprice = thisproduct.price4
-                      when 5
-                        oldprice = thisproduct.price5
-                      when 6
-                        oldprice = thisproduct.rrp
-                    end
-                    case level
-                      when 1
-                        prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-                      when 2
-                        prodprice = thisproduct.calc_discount(thisperson, thisproduct.price2, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-                      when 3
-                        prodprice = thisproduct.calc_discount(thisperson, thisproduct.price3, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-                      when 4
-                        prodprice = thisproduct.calc_discount(thisperson, thisproduct.price4, thisproduct.group, thisproduct.code, thisproduct.pricecat), po.qty
-                      when 5
-                        prodprice = thisproduct.calc_discount(thisperson, thisproduct.price5, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
-                      when 6
-                        prodprice = thisproduct.rrp
-                    end
-    htmlstring << '$'+number_with_precision(prodprice, precision: 2)
-    subtotal = (qty * prodprice).round(2)
+   if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?)
+    level = current_user.mimic.account.seller_level.to_i
+    thisperson = current_user.mimic.account.user
+  else
+    level = current_user.account.seller_level.to_i
+    thisperson = current_user
+  end
+  case level
+  when 1
+    oldprice = thisproduct.price1
+  when 2
+    oldprice = thisproduct.price2
+  when 3
+    oldprice = thisproduct.price3
+  when 4
+    oldprice = thisproduct.price4
+  when 5
+    oldprice = thisproduct.price5
+  when 6
+    oldprice = thisproduct.rrp
+  end
+  case level
+  when 1
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
+  when 2
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price2, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
+  when 3
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price3, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
+  when 4
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price4, thisproduct.group, thisproduct.code, thisproduct.pricecat), po.qty
+  when 5
+    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price5, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)
+  when 6
+    prodprice = thisproduct.rrp
+  end
+    # htmlstring << '$'+number_with_precision(prodprice, precision: 2)
+    # subtotal = (qty * prodprice).round(2)
     
 
 
-   respond_to do |format|
-    format.json { render json: {result: htmlstring} }
+    respond_to do |format|
+      format.json { render json: {result: htmlstring} }
+    end
   end
-end
 
   # GET /products/new
   def new
