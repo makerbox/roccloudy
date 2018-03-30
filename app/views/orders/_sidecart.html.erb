@@ -1,6 +1,15 @@
   <script>
     function removeMe(me){
         console.log($(me));
+        $(me).parent().css('display','none');
+        // qty = $(this).data('qty');
+        // price = $(this).data('price') * qty;
+        // totalqty = parseInt($('#totalqty').html(), 10);
+        // totalprice = parseFloat($('#totalprice').html()).toFixed(2);
+        // newqty = totalqty - qty;
+        // newprice = (totalprice - price).toFixed(2);
+        // $('#totalqty').html(newqty);
+        // $('#totalprice').html(newprice);
       };
   </script>
   <span id="notice"><%= notice %></span>
