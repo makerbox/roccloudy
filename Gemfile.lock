@@ -118,8 +118,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    lazyload-rails (0.3.1)
-      nokogiri (~> 1.5)
     libv8 (3.16.14.15)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -284,7 +282,6 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
-  lazyload-rails
   memcachier
   odbc-rails
   pg (< 1.0)

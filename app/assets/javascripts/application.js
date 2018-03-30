@@ -15,14 +15,16 @@
 //= require turbolinks
 //= require_tree .
 
-
-function searchme(){
+$(document).ready(function(){
+	function searchme(){
 var searchterm = $('#searchfield').val();
 window.location.href = "?searchterm="+searchterm;
-}
+};
 
 function searchprod(){
 var searchterm = $('#searchfield').val();
 window.location.href = window.location.href+"&searchterm="+searchterm;
-}
+};
+});
+
 
