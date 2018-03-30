@@ -282,32 +282,32 @@ end
   case level
   when 1
     oldprice = thisproduct.price1
-    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+    @prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
 
   when 2
     oldprice = thisproduct.price2
-    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price2, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+    @prodprice = thisproduct.calc_discount(thisperson, thisproduct.price2, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
 
   when 3
     oldprice = thisproduct.price3
-    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price3, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+    @prodprice = thisproduct.calc_discount(thisperson, thisproduct.price3, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
 
   when 4
     oldprice = thisproduct.price4
-    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price4, thisproduct.group, thisproduct.code, thisproduct.pricecat), qty
+    @prodprice = thisproduct.calc_discount(thisperson, thisproduct.price4, thisproduct.group, thisproduct.code, thisproduct.pricecat), qty
 
   when 5
     oldprice = thisproduct.price5
-    prodprice = thisproduct.calc_discount(thisperson, thisproduct.price5, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
+    @prodprice = thisproduct.calc_discount(thisperson, thisproduct.price5, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
 
   when 6
     oldprice = thisproduct.rrp
-    prodprice = thisproduct.rrp
+    @prodprice = thisproduct.rrp
   end
 
   htmlstring << '$'
   # htmlstring << number_with_precision(prodprice, precision: 2)
-  subtotal = (qty * prodprice).round(2)
+  subtotal = (qty * @prodprice).round(2)
     
   htmlstring << '<div class="qty"> x '
   # htmlstring << qty.to_s
