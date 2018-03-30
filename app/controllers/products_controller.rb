@@ -307,8 +307,7 @@ end
       
     htmlstring += '<div class="qty"> x '
     htmlstring += qty
-    qtyid = @newquantity.id
-    # htmlstring += '<a href="' + edit_quantity_path(id: @newquantity.id) + '" class="fa fa-pencil-alt"></a>'
+    htmlstring += '<a href="' + edit_quantity_path(@newquantity.id) + '" class="fa fa-pencil-alt"></a>'
     htmlstring += '</div> ------- $'+subtotal.to_s
     # htmlstring += '<a href="''remove', remove_product_path(id: @newquantity.id), remote:true, data: {"qty": qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn'
     htmlstring += '</div>'
