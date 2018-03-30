@@ -1,7 +1,7 @@
 <span id="notice"><%= notice %></span>
   <script>
     function removeMe(){
-        $("#cart").load(location.href + " #cart");
+        $(document).load(location.href + " #cart");
       };
   </script>
 <% if @order %>
