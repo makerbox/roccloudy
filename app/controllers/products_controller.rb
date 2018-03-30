@@ -4,43 +4,43 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
 
-def hide
-  product = Product.all_cached.find_by(id: params[:id])
-  if product.hidden
-    product.update_attributes(hidden: false)
-  else
-    product.update_attributes(hidden: true)
-  end
-  redirect_to :back
-end
-
-def calc_qty_disc
-  price = (params[:price]).to_f
-  prod_group = params[:group]
-  prod_code = params[:code]
-  price_cat = params[:pricecat]
-  qty = params[:qty]
-  
-  if current_user.mimic
-    u = current_user.mimic
-  else
-    u = current_user
-  end
-  
-  if discos = Discount.all.where('(product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?))', price_cat, 'cat_fixed', 'cat_percent' , prod_code , 'code_fixed', 'code_percent', prod_group, 'group_fixed', 'group_percent').where('customer = ? OR customer = ?', u.account.code, u.account.discount)
-    disco = discos.all.where('maxqty >= ?', qty).first
-    if disco.disctype == 'fixedtype'
-      result = disco.discount
+  def hide
+    product = Product.all_cached.find_by(id: params[:id])
+    if product.hidden
+      product.update_attributes(hidden: false)
     else
-      result = price - ((price / 100) * disco.discount)
+      product.update_attributes(hidden: true)
     end
-  else
-    result = price
+    redirect_to :back
   end
-  respond_to do |format|
-    format.json { render json: {result: result} }
+
+  def calc_qty_disc
+    price = (params[:price]).to_f
+    prod_group = params[:group]
+    prod_code = params[:code]
+    price_cat = params[:pricecat]
+    qty = params[:qty]
+
+    if current_user.mimic
+      u = current_user.mimic
+    else
+      u = current_user
+    end
+
+    if discos = Discount.all.where('(product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?))', price_cat, 'cat_fixed', 'cat_percent' , prod_code , 'code_fixed', 'code_percent', prod_group, 'group_fixed', 'group_percent').where('customer = ? OR customer = ?', u.account.code, u.account.discount)
+      disco = discos.all.where('maxqty >= ?', qty).first
+      if disco.disctype == 'fixedtype'
+        result = disco.discount
+      else
+        result = price - ((price / 100) * disco.discount)
+      end
+    else
+      result = price
+    end
+    respond_to do |format|
+      format.json { render json: {result: result} }
+    end
   end
-end
 
   def index
     availgroups = [] #create empty array to store the groups available to the current user
@@ -118,8 +118,8 @@ end
       end
     else #if the user is not logged in, show everything (with no prices)
       if group == 'roc'
-            @products = Product.where(group: ['C','J'])
-            @categories = []
+        @products = Product.where(group: ['C','J'])
+        @categories = []
             @products.each do |p| # get a list of categories
               @categories << p.category
             end
@@ -129,7 +129,7 @@ end
             if (params[:filter]) && (params[:filter] != 'new')
               @products = @products.where(category: params[:filter])
             end
-      elsif group == 'polasports'
+          elsif group == 'polasports'
             @products = Product.where(group: ['L'])
             if params[:cat]
               @products = @products.where(group: params[:cat])
@@ -137,7 +137,7 @@ end
             if (params[:filter]) && (params[:filter] != 'new')
               @products = @products.where(category: params[:filter])
             end
-        elsif group == 'locello'
+          elsif group == 'locello'
             @products = Product.where(group: ['LC'])
             if params[:cat]
               @products = @products.where(group: params[:cat])
@@ -145,7 +145,7 @@ end
             if (params[:filter]) && (params[:filter] != 'new')
               @products = @products.where(category: params[:filter])
             end
-        elsif group == 'unity'
+          elsif group == 'unity'
             @products = Product.where(group: ['E', 'R', 'D', 'A', 'Z'])
             if params[:cat]
               @products = @products.where(group: params[:cat])
@@ -153,13 +153,13 @@ end
             if (params[:filter]) && (params[:filter] != 'new')
               @products = @products.where(category: params[:filter])
             end
+          end
         end
-    end
 
-  if @products
-    if params[:filter] == 'new'
-      @products = @products.where("new_date >= ?", Date.today - 30.days)
-    end
+        if @products
+          if params[:filter] == 'new'
+            @products = @products.where("new_date >= ?", Date.today - 30.days)
+          end
     if group == 'unity' #qty must be over 20 for unity
       @products = @products.where("qty > ?", 20)
     else #qty must be over 5 for other brands
@@ -183,12 +183,12 @@ end
     end
   end
   if user_signed_in?
-      if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
-        @order = current_user.mimic.account.user.orders.where(active:true).last
-      else
-        @order = current_user.orders.where(active: true).last
-      end
-      @quantity = Quantity.new
+    if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
+      @order = current_user.mimic.account.user.orders.where(active:true).last
+    else
+      @order = current_user.orders.where(active: true).last
+    end
+    @quantity = Quantity.new
   end
   if params[:searchterm]
     searchterm = params[:searchterm]
@@ -230,32 +230,32 @@ end
 
   #add product to cart (used for popup ajax)
   def add_product_to_cart
-    # @quantity = Quantity.new(qty: params[:qty], product_id: Product.find(code: params[:code]), order_id: params[:order_id])
-    # @quantity.brand = @quantity.product.group
-    # if @quantity.order == nil
-    # #if there is not active order to add this to, we will just make one
-    # if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
-    #   @order = Order.create(user: current_user.mimic.account.user, active: true, approved: false, complete: false)
-    # else
-    #   @order = Order.create(user: current_user, active: true, approved: false, complete: false)
-    # end
-    #   #update the order to have an order number based on it's ID
-    #   order_num = 'W' + @order.id.to_s
-    #   @order.update(order_number: order_num)
-    #   #and then add it to the new order
-    #   @quantity.order = @order
-    # end
+    @newquantity = Quantity.new(qty: params[:qty], product_id: Product.find(code: params[:code]), order_id: params[:order_id])
+    @newquantity.brand = @newquantity.product.group
+    if @newquantity.order == nil
+    #if there is not active order to add this to, we will just make one
+    if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
+      @order = Order.create(user: current_user.mimic.account.user, active: true, approved: false, complete: false)
+    else
+      @order = Order.create(user: current_user, active: true, approved: false, complete: false)
+    end
+      #update the order to have an order number based on it's ID
+      order_num = 'W' + @order.id.to_s
+      @order.update(order_number: order_num)
+      #and then add it to the new order
+      @newquantity.order = @order
+    end
 
-    # case @quantity.product.group
-    #   when 'C' , 'J'
-    #     group = 'roc'
-    #   when 'L'
-    #     group = 'polasports'
-    #   when 'LC'
-    #     group = 'locello'
-    #   when 'E' , 'R' , 'D' , 'A'
-    #     group = 'unity'
-    # end
+    case @newquantity.product.group
+    when 'C' , 'J'
+      group = 'roc'
+    when 'L'
+      group = 'polasports'
+    when 'LC'
+      group = 'locello'
+    when 'E' , 'R' , 'D' , 'A'
+      group = 'unity'
+    end
     respond_to do |format|
       format.json { render json: {result: 'hi'} }
     end

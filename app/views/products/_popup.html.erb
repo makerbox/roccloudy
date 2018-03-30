@@ -66,7 +66,7 @@
 				$.ajax({
 					url: route,
 					dataType: "json",
-					type: "POST",
+					type: "GET",
 					data: { qty: $("#<%= @thisproduct.code %> .quantity_qty .form-control").val(),
 					code: '<%= @thisproduct.code %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
