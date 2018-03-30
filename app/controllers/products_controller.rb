@@ -308,10 +308,11 @@ end
   htmlstring << '$'+number_with_precision(prodprice, precision: 2)
   subtotal = (qty * prodprice).round(2)
     
-  htmlstring << '<div class="qty"> x '+qty.to_s
+  htmlstring << '<div class="qty"> x '
+  htmlstring << qty.to_s
   # htmlstring << link_to '', edit_quantity_path(@newquantity), class: 'fa fa-pencil-alt'
   # htmlstring << '</div> ------- $'+number_with_precision(subtotal, precision: 2)
-  @order.total = @order.total + subtotal
+  # @order.total = @order.total + subtotal
   # htmlstring << link_to 'remove', remove_product_path(id: po.id), remote:true, data: {"qty": qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn'
   htmlstring << '</div>'
 
