@@ -30,7 +30,7 @@ resources :products do
     get 'add'
     get 'remove'
     get 'calc_qty_disc'
-    get 'add_product_to_cart'
+    post 'add_product_to_cart'
   end
 end
 
