@@ -305,7 +305,7 @@ end
     prodprice = thisproduct.rrp
   end
 
-  # htmlstring << '$'+number_with_precision(prodprice, precision: 2)
+  htmlstring << '$'+number_with_precision(prodprice, precision: 2).to_s
   # subtotal = (qty * prodprice).round(2)
     
   htmlstring << '<div class="qty"> x '
