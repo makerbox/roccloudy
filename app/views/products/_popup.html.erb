@@ -58,15 +58,14 @@
 				  		<% end %>
 				  		<%= f.hidden_field :product_id, value: @thisproduct.id %>
 				  		<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success add-to-cart' %>
-					  		<!--script>
+					  		<script>
 							$('#<%= @thisproduct.code %> .add-to-cart').click(
-								function(event) {
-									event.preventDefault();
-							  var route = "/quantities/new";
+								function() {
+								var route = "/add_product_to_cart";
 							   $.ajax({
 							      url: route,
 							      dataType: "json",
-							      type: "GET",
+							      type: "POST",
 							      success: function(data) {
 							        console.log(data.result);
 							        },
@@ -75,7 +74,7 @@
 							        }
 							      });
 							});
-							</script-->
+							</script>
 				  	<% end %>
 			  <% end %>
 		  <% end %>

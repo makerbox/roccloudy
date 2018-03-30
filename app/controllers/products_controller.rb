@@ -230,6 +230,41 @@ end
 
   #add product to cart (used for popup ajax)
   def add_product_to_cart
+    @quantity = Quantity.new(params.require(:quantity).permit(:qty, :product_id, :order_id))
+    @quantity.brand = @quantity.product.group
+    if @quantity.order == nil
+    #if there is not active order to add this to, we will just make one
+    if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
+      @order = Order.create(user: current_user.mimic.account.user, active: true, approved: false, complete: false)
+    else
+      @order = Order.create(user: current_user, active: true, approved: false, complete: false)
+    end
+      #update the order to have an order number based on it's ID
+      order_num = 'W' + @order.id.to_s
+      @order.update(order_number: order_num)
+      #and then add it to the new order
+      @quantity.order = @order
+    end
+
+    case @quantity.product.group
+      when 'C' , 'J'
+        group = 'roc'
+      when 'L'
+        group = 'polasports'
+      when 'LC'
+        group = 'locello'
+      when 'E' , 'R' , 'D' , 'A'
+        group = 'unity'
+    end
+    respond_to do |format|
+      if @quantity.save
+        format.html { redirect_to products_path(cat: @quantity.product.group, group: group, :anchor => @quantity.product.code), notice: 'Successfully added to order.' }
+        format.json { render :show, status: :created, location: @quantity }
+      else
+        format.html { redirect_to products_path(cat: @quantity.product.group, group: group, :anchor => @quantity.product.code), notice: 'Please enter a qty of at least 1.'}
+        format.json { render json: @quantity.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /products/new
