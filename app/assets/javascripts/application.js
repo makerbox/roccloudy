@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require lazyload.js
 //= require_tree .
+//= require lazyload.js
 
 
 function searchme(){
