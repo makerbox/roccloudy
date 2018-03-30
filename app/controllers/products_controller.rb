@@ -272,13 +272,13 @@ end
    htmlstring << '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
    htmlstring << '</div>'+thisproduct.code.to_s
    htmlstring << '</a>'
-  #  if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?)
-  #   level = current_user.mimic.account.seller_level.to_i
-  #   thisperson = current_user.mimic.account.user
-  # else
-  #   level = current_user.account.seller_level.to_i
-  #   thisperson = current_user
-  # end
+   if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?)
+    level = current_user.mimic.account.seller_level.to_i
+    thisperson = current_user.mimic.account.user
+  else
+    level = current_user.account.seller_level.to_i
+    thisperson = current_user
+  end
   # case level
   # when 1
   #   oldprice = thisproduct.price1
