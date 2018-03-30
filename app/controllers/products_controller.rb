@@ -257,8 +257,7 @@ end
     #   group = 'unity'
     # end
     qty = params[:qty]
-    product = params[:code]
-    product_id = Product.all.find_by(code: product)
+    product_id = Product.find(params[:id]).id
     order_id = params[:order_id]
     respond_to do |format|
       format.json { render json: {result: qty+' '+product_id} }
