@@ -263,11 +263,11 @@ end
       htmlstring = ''
       thisproduct = Product.find(product_id)
       #get quantity data (price etc)
-     #  if @order.quantities.where(product_id: product_id).count > 1
-     #    htmlstring << '<div class="po warning">Item already in cart<br>'
-     #  else
-     #   htmlstring << '<div class="po">'
-     # end
+      if @order.quantities.where(product: thisproduct).count > 1
+        htmlstring += '<div class="po warning">Item already in cart<br>'
+      else
+       htmlstring += '<div class="po">'
+     end
      htmlstring += '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
      htmlstring += '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
      htmlstring += '</div>'+thisproduct.code.to_s
