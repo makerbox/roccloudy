@@ -259,7 +259,61 @@ end
     when 'E' , 'R' , 'D' , 'A'
       group = 'unity'
     end
-    
+    html_string = "
+  #{ if @order.quantities.where(product: po.product).count > 1 }
+  <div class='po warning'>
+  Item already in cart<br>
+  #{ else }
+  <div class='po'>
+  #{ end }
+    #{ link_to product_path(Product.find_by(code: po.product.code)) do }
+    <div class='product-thumbnail'>
+    #{ cl_image_tag(po.product.code.strip + '.jpg') }
+    </div>
+  #{ po.product.code }
+    #{ end }
+      #{ if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?) }
+                      #{ level = current_user.mimic.account.seller_level.to_i }
+                      #{ thisperson = current_user.mimic.account.user }
+                    #{ else }
+                      #{ level = current_user.account.seller_level.to_i }
+                      #{ thisperson = current_user }
+                    #{ end }
+                    #{ case level }
+                      #{ when 1 }
+                        #{ oldprice = po.product.price1 }
+                      #{ when 2 }
+                        #{ oldprice = po.product.price2 }
+                      #{ when 3 }
+                        #{ oldprice = po.product.price3 }
+                      #{ when 4 }
+                        #{ oldprice = po.product.price4 }
+                      #{ when 5 }
+                        #{ oldprice = po.product.price5 }
+                      #{ when 6 }
+                        #{ oldprice = po.product.rrp }
+                    #{ end }
+                    #{ case level }
+                      #{ when 1 }
+                        #{ prodprice = po.product.calc_discount(thisperson, po.product.price1, po.product.group, po.product.code, po.product.pricecat, po.qty) }
+                      #{ when 2 }
+                        #{ prodprice = po.product.calc_discount(thisperson, po.product.price2, po.product.group, po.product.code, po.product.pricecat, po.qty) }
+                      #{ when 3 }
+                        #{ prodprice = po.product.calc_discount(thisperson, po.product.price3, po.product.group, po.product.code, po.product.pricecat, po.qty) }
+                      #{ when 4 }
+                        #{ prodprice = po.product.calc_discount(thisperson, po.product.price4, po.product.group, po.product.code, po.product.pricecat), po.qty }
+                      #{ when 5 }
+                        #{ prodprice = po.product.calc_discount(thisperson, po.product.price5, po.product.group, po.product.code, po.product.pricecat, po.qty) }
+                      #{ when 6 }
+                        #{ prodprice = po.product.rrp }
+                    #{ end }
+    $#{ number_with_precision(prodprice, precision: 2)}
+    #{ subtotal = (po.qty * prodprice).round(2) }
+    <div class='qty'> x #{ po.qty } #{ link_to '', edit_quantity_path(po), class: 'fa fa-pencil-alt' }</div> ------- $#{ number_with_precision(subtotal, precision: 2) }
+    #{ @order.total = @order.total + subtotal }
+
+  #{ link_to 'remove', remove_product_path(id: po.id), remote:true, data: {'qty': po.qty, 'price': prodprice, 'disable-with': 'removing...'}, class: 'btn btn-warning remove-btn' }</div>
+  #{ end }"
     respond_to do |format|
       format.json { render json: {result: qty+' '+order_id+' '+product_id} }
     end
