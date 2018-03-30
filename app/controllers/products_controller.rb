@@ -301,7 +301,7 @@ end
   end
 
   htmlstring += '$'
-  htmlstring += prodprice
+  htmlstring += prodprice.to_s
   # htmlstring += number_with_precision(prodprice, precision: 2)
   subtotal = qty.to_i * prodprice
     
