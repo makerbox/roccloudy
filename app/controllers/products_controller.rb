@@ -306,8 +306,8 @@ end
   end
 
   htmlstring << '$'
-  htmlstring << number_with_precision(prodprice, precision: 2)
-  # subtotal = (qty * prodprice).round(2)
+  # htmlstring << number_with_precision(prodprice, precision: 2)
+  subtotal = (qty * prodprice).round(2)
     
   htmlstring << '<div class="qty"> x '
   # htmlstring << qty.to_s
