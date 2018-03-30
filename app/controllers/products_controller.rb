@@ -306,7 +306,7 @@ end
   subtotal = qty * prodprice
     
   htmlstring << '<div class="qty"> x '
-  # htmlstring << qty.to_s
+  htmlstring << qty
   # htmlstring << link_to '', edit_quantity_path(@newquantity), class: 'fa fa-pencil-alt'
   # htmlstring << '</div> ------- $'+number_with_precision(subtotal, precision: 2)
   # @order.total = @order.total + subtotal
