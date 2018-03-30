@@ -260,7 +260,7 @@ end
       group = 'unity'
     end
 
-    htmlstring = []
+    htmlstring = ''
     thisproduct = Product.find(product_id)
     #get quantity data (price etc)
    #  if @order.quantities.where(product_id: product_id).count > 1
@@ -268,10 +268,10 @@ end
    #  else
    #   htmlstring << '<div class="po">'
    # end
-   htmlstring << '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
-   htmlstring << '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
-   htmlstring << '</div>'+thisproduct.code.to_s
-   htmlstring << '</a>'
+   htmlstring += '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
+   htmlstring += '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
+   htmlstring += '</div>'+thisproduct.code.to_s
+   htmlstring += '</a>'
    if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?)
     level = current_user.mimic.account.seller_level.to_i
     thisperson = current_user.mimic.account.user
@@ -300,17 +300,17 @@ end
     prodprice = thisproduct.rrp
   end
 
-  htmlstring << '$'
-  htmlstring << prodprice
-  # htmlstring << number_with_precision(prodprice, precision: 2)
+  htmlstring += '$'
+  htmlstring += prodprice
+  # htmlstring += number_with_precision(prodprice, precision: 2)
   subtotal = qty.to_i * prodprice
     
-  htmlstring << '<div class="qty"> x '
-  htmlstring << qty
-  # htmlstring << (link_to '', edit_quantity_path(@newquantity), class: 'fa fa-pencil-alt')
-  htmlstring << '</div> ------- $'+subtotal.to_s
-  # htmlstring << link_to 'remove', remove_product_path(id: @newquantity.id), remote:true, data: {"qty": qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn'
-  htmlstring << '</div>'
+  htmlstring += '<div class="qty"> x '
+  htmlstring += qty
+  # htmlstring += (link_to '', edit_quantity_path(@newquantity), class: 'fa fa-pencil-alt')
+  htmlstring += '</div> ------- $'+subtotal.to_s
+  # htmlstring += link_to 'remove', remove_product_path(id: @newquantity.id), remote:true, data: {"qty": qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn'
+  htmlstring += '</div>'
 
     respond_to do |format|
       format.json { render json: {result: htmlstring} }
