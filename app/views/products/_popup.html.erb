@@ -59,6 +59,10 @@
 	<%= f.hidden_field :product_id, value: @thisproduct.id %>
 	<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success add-to-cart' %>
 	<script>
+		$('.add-to-cart').css('display','none');
+		$(document).ready(function(){
+			$('.add-to-cart').css('display','inline-block');
+		}); //this keeps the user from adding items until the cart is loaded
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
@@ -72,7 +76,7 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log(data.result);
-						$('#cart p')[1].after($.parseHTML( data.result ));
+						$('#cart p')[1].after(data.result);
 					}
 				});
 			});
