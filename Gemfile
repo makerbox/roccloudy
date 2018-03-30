@@ -5,6 +5,8 @@ gem 'wdm', group: :development
 # fixes up foreign key error
 # gem 'immigrant'
 
+gem 'lazyload-rails'
+
 # cache for offline
 gem 'dalli'
 gem 'memcachier'

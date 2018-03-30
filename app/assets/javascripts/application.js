@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require lazyload.js
 //= require_tree .
 
 
@@ -25,3 +26,4 @@ function searchprod(){
 var searchterm = $('#searchfield').val();
 window.location.href = window.location.href+"&searchterm="+searchterm;
 }
+

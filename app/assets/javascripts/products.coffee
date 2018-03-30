@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
+    $('img').lazyload
+    $(".remove-btn").on "ajax:send", (e, data, status, xhr) ->
     $(this).parent().css('display','none')
     qty = $(this).data('qty')
     price = $(this).data('price') * qty
