@@ -71,9 +71,6 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log(data.result);
-					},
-					error: function(xhr, textStatus, error){
-						console.log(xhr.statusText+""+textStatus+""+error);
 					}
 				});
 			});
