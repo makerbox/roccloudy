@@ -311,6 +311,7 @@ end
   htmlstring << '</div> ------- $'+subtotal.to_s
   # htmlstring << link_to 'remove', remove_product_path(id: @newquantity.id), remote:true, data: {"qty": qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn'
   htmlstring << '</div>'
+  htmlstring << qty << prodprice << subtotal
 
     respond_to do |format|
       format.json { render json: {result: htmlstring} }
