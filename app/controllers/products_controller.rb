@@ -309,7 +309,7 @@ end
     htmlstring += qty
     htmlstring += '<a href="' + edit_quantity_path(@newquantity.id) + '" class="fa fa-pencil-alt"></a>'
     htmlstring += '</div> ------- $'+subtotal.to_s
-    htmlstring += '<a href ="' + remove_product_path(id: @newquantity.id) + '" class: "btn btn-warning remove-btn" data-qty="'+qty+'" data-price="'+prodprice+'" data-disable-with="removing..." data-remote="true">remove</a>' 
+    htmlstring += '<a href ="' + remove_product_path(@newquantity.id) + '" class: "btn btn-warning remove-btn" data-qty="'+qty+'" data-price="'+prodprice.to_s+'" data-disable-with="removing..." data-remote="true">remove</a>' 
     htmlstring += '</div>'
 
     respond_to do |format|
