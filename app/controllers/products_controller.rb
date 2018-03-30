@@ -230,7 +230,7 @@ end
 
   #add product to cart (used for popup ajax)
   def add_product_to_cart
-    @quantity = Quantity.new(params.require(:quantity).permit(:qty, :product_id, :order_id))
+    @quantity = Quantity.new(qty: params[:qty], product_id: Product.find(code: params[:code]), order_id: params[:order_id])
     @quantity.brand = @quantity.product.group
     if @quantity.order == nil
     #if there is not active order to add this to, we will just make one
