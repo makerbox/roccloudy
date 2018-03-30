@@ -61,7 +61,7 @@
 					  		<script>
 							$('#<%= @thisproduct.code %> .add-to-cart').click(
 								function() {
-								var route = "/add_product_to_cart";
+								var route = "/products/<%= @thisproduct.code %>/add_product_to_cart";
 							   $.ajax({
 							      url: route,
 							      dataType: "json",
