@@ -279,20 +279,20 @@ end
     level = current_user.account.seller_level.to_i
     thisperson = current_user
   end
-  # case level
-  # when 1
-  #   oldprice = thisproduct.price1
-  # when 2
-  #   oldprice = thisproduct.price2
-  # when 3
-  #   oldprice = thisproduct.price3
-  # when 4
-  #   oldprice = thisproduct.price4
-  # when 5
-  #   oldprice = thisproduct.price5
-  # when 6
-  #   oldprice = thisproduct.rrp
-  # end
+  case level
+    when 1
+      oldprice = thisproduct.price1
+    when 2
+      oldprice = thisproduct.price2
+    when 3
+      oldprice = thisproduct.price3
+    when 4
+      oldprice = thisproduct.price4
+    when 5
+      oldprice = thisproduct.price5
+    when 6
+      oldprice = thisproduct.rrp
+  end
   # case level
   # when 1
   #   prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, po.qty)

@@ -28,31 +28,24 @@
                     <% case level %>
                       <% when 1 %>
                         <% oldprice = po.product.price1 %>
-                      <% when 2 %>
-                        <% oldprice = po.product.price2 %>
-                      <% when 3 %>
-                        <% oldprice = po.product.price3 %>
-                      <% when 4 %>
-                        <% oldprice = po.product.price4 %>
-                      <% when 5 %>
-                        <% oldprice = po.product.price5 %>
-                      <% when 6 %>
-                        <% oldprice = po.product.rrp %>
-                    <% end %>
-                    <% case level %>
-                      <% when 1 %>
                         <% prodprice = po.product.calc_discount(thisperson, po.product.price1, po.product.group, po.product.code, po.product.pricecat, po.qty) %>
                       <% when 2 %>
+                        <% oldprice = po.product.price2 %>
                         <% prodprice = po.product.calc_discount(thisperson, po.product.price2, po.product.group, po.product.code, po.product.pricecat, po.qty) %>
                       <% when 3 %>
+                        <% oldprice = po.product.price3 %>
                         <% prodprice = po.product.calc_discount(thisperson, po.product.price3, po.product.group, po.product.code, po.product.pricecat, po.qty) %>
                       <% when 4 %>
+                        <% oldprice = po.product.price4 %>
                         <% prodprice = po.product.calc_discount(thisperson, po.product.price4, po.product.group, po.product.code, po.product.pricecat), po.qty %>
                       <% when 5 %>
+                        <% oldprice = po.product.price5 %>
                         <% prodprice = po.product.calc_discount(thisperson, po.product.price5, po.product.group, po.product.code, po.product.pricecat, po.qty) %>
                       <% when 6 %>
+                        <% oldprice = po.product.rrp %>
                         <% prodprice = po.product.rrp %>
                     <% end %>
+                    
   	$<%= number_with_precision(prodprice, precision: 2)%>
   	<% subtotal = (po.qty * prodprice).round(2) %>
   	<div class="qty"> x <%= po.qty %> <%= link_to '', edit_quantity_path(po), class: 'fa fa-pencil-alt' %></div> ------- $<%= number_with_precision(subtotal, precision: 2) %>
