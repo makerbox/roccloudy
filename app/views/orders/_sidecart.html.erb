@@ -1,9 +1,9 @@
-<span id="notice"><%= notice %></span>
   <script>
     function removeMe(){
-        $(document).load(location.href + " #cart");
+        $("#cart").load();
       };
   </script>
+  <span id="notice"><%= notice %></span>
 <% if @order %>
 <% @order.total = 0 %>
   <% if @order.quantities.any? %>
