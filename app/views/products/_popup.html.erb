@@ -60,7 +60,8 @@
 	<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success add-to-cart' %>
 	<script>
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
-			function() {
+			function(e) {
+				e.preventDefault();
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
 				$.ajax({
 					url: route,
