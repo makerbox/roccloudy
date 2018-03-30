@@ -306,7 +306,7 @@ end
   end
 
   htmlstring << '$'
-  htmlstring << qty
+  htmlstring << prodprice
   # htmlstring << number_with_precision(prodprice, precision: 2)
   # subtotal = (qty * prodprice).round(2)
     
