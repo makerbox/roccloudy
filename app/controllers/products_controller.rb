@@ -269,7 +269,7 @@ end
    #   htmlstring << '<div class="po">'
    # end
    htmlstring << '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
-   htmlstring << '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+product+'.jpg">'
+   htmlstring << '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+Product.find(product_id).code.to_s+'.jpg">'
    htmlstring << '</div>'
    htmlstring << '</a>'
 
