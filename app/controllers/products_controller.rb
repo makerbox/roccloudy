@@ -258,8 +258,10 @@ end
     # end
     qty = params[:qty]
     product = params[:code]
+    product_id = Product.all.find(code: product)
+    order_id = params[:order_id]
     respond_to do |format|
-      format.json { render json: {result: qty+' '+product} }
+      format.json { render json: {result: qty+' '+product_id} }
     end
   end
 
