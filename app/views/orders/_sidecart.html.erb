@@ -51,9 +51,9 @@
   	<div class="qty"> x <%= po.qty %> <%= link_to '', edit_quantity_path(po), class: 'fa fa-pencil-alt' %></div> ------- $<%= number_with_precision(subtotal, precision: 2) %>
   	<% @order.total = @order.total + subtotal %>
 
-  <%= link_to 'remove', remove_product_path(id: po.id), remote:true, data: {"qty": po.qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn' %></div>
+  <%= link_to 'remove', remove_product_path(id: po.id), remote:true, data: {"qty": po.qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn', :onclick => 'removeMe();'  %></div>
   <script>
-    $(".remove-btn").click(function() {
+    function removeMe(){
         $(this).parent().css('display','none');
         qty = $(this).data('qty');
         price = $(this).data('price') * qty;
@@ -63,7 +63,7 @@
         newprice = (totalprice - price).toFixed(2);
         $('#totalqty').html(newqty);
         $('#totalprice').html(newprice);
-      });
+      };
   </script>
   <% end %>
   <% end %>
