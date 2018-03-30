@@ -269,7 +269,7 @@ end
    #   htmlstring << '<div class="po">'
    # end
    htmlstring << '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
-   htmlstring << cl_image_tag(@quantity.product.code.strip + ".jpg")11
+   htmlstring << cl_image_tag(@quantity.product.code.strip + ".jpg")
    htmlstring << '</div>'
    htmlstring << '</a>'
 
