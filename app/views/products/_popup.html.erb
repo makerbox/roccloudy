@@ -62,11 +62,11 @@
 							$('#<%= @thisproduct.code %> .add-to-cart').click(
 								function(event) {
 									event.preventDefault();
-							  var route = "/quantities";
+							  var route = "/quantities/new";
 							   $.ajax({
 							      url: route,
 							      dataType: "json",
-							      type: "POST",
+							      type: "GET",
 							      success: function(data) {
 							        console.log(data.result);
 							        },
