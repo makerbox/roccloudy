@@ -309,7 +309,7 @@ def add_product_to_cart
   htmlstring += qty
   htmlstring += '<a href="' + edit_quantity_path(@newquantity.id) + '" class="fa fa-pencil-alt"></a>'
   htmlstring += '</div> ------- $'+subtotal.to_s
-  htmlstring += '<a data-qty="'+qty+'" data-price="'+prodprice.to_s+'" data-disable-with="removing..." class="btn btn-warning remove-btn" data-remote="true" href="/products/' + @newquantity.id.to_s + '/remove" onclick="removeMe()">remove</a>' 
+  htmlstring += '<a data-qty="'+qty+'" data-price="'+prodprice.to_s+'" data-disable-with="removing..." class="btn btn-warning remove-btn" data-remote="true" href="/products/' + @newquantity.id.to_s + '/remove" onclick="removeMe();">remove</a>' 
   htmlstring += '</div>'
 
   respond_to do |format|

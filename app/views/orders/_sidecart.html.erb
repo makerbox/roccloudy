@@ -53,7 +53,7 @@
 
   <%= link_to 'remove', remove_product_path(id: po.id), remote:true, data: {"qty": po.qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn', :onclick => 'removeMe()'  %></div>
   <script>
-    function removeMe(){
+    function removeMe(this){
         $(this).parent().css('display','none');
         qty = $(this).data('qty');
         price = $(this).data('price') * qty;
