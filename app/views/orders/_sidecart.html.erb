@@ -1,6 +1,6 @@
   <script>
     function removeMe(){
-        $("#cart").load();
+        $("#cart").parent().load(location.href + " #cart");
       };
   </script>
   <span id="notice"><%= notice %></span>
