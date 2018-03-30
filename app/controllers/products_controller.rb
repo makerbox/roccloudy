@@ -303,7 +303,7 @@ end
   htmlstring << '$'
   htmlstring << prodprice
   # htmlstring << number_with_precision(prodprice, precision: 2)
-  subtotal = qty * prodprice
+  subtotal = qty.to_i * prodprice
     
   htmlstring << '<div class="qty"> x '
   htmlstring << qty
@@ -311,7 +311,6 @@ end
   htmlstring << '</div> ------- $'+subtotal.to_s
   # htmlstring << link_to 'remove', remove_product_path(id: @newquantity.id), remote:true, data: {"qty": qty, "price": prodprice, "disable-with": "removing..."}, class: 'btn btn-warning remove-btn'
   htmlstring << '</div>'
-  htmlstring << qty << prodprice << subtotal
 
     respond_to do |format|
       format.json { render json: {result: htmlstring} }
