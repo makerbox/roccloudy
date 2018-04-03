@@ -66,7 +66,10 @@
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
-				$(this).css('display','none');
+				$(this).css({
+							'display':'none',
+							'opacity':0
+						});
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
 				$.ajax({
 					url: route,
@@ -76,7 +79,10 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
-						$(this).css('display','inline-block');
+						$(this).css({
+							'display':'inline-block',
+							'opacity':1
+						});
 						if ($("#cart p").length){
 							$('#cart p:nth-of-type(2)').after(data.result);
 							$('#totalqty').load(location.href + ' #totalqty');
