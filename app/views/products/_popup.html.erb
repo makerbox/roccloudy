@@ -78,8 +78,8 @@
 						console.log(data.result);
 						if ($("#cart p").length){
 							$('#cart p:nth-of-type(2)').after(data.result);
-							var locationString = location.href + ' #totalqty';
-							$('#totalqty').load(locationString);
+							$('#totalqty').load(location.href + ' #totalqty');
+							$('#totalprice').load(location.href + ' #totalprice');
 						}else{
 							var locationString = location.href + ' #cart-container';
 							console.log(locationString);
