@@ -65,6 +65,7 @@
 		}); //this keeps the user from adding items until the cart is loaded
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
+				$(this).innerHTML('<img src="https://media2.giphy.com/media/3oEjl6SIIHBdRxXI40/giphy.gif">');
 				e.preventDefault();
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
 				$.ajax({
@@ -75,17 +76,15 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
-						console.log(data.result);
 						if ($("#cart p").length){
 							$('#cart p:nth-of-type(2)').after(data.result);
 							$('#totalqty').load(location.href + ' #totalqty');
 							$('#totalprice').load(location.href + ' #totalprice');
 						}else{
 							var locationString = location.href + ' #cart-container';
-							console.log(locationString);
 							$('#cart').load(locationString);
 						};
-						
+						$(this).innerHTML('ADD TO CART');
 					}
 				});
 			});
