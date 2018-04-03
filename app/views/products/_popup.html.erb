@@ -79,7 +79,7 @@
 						if ($("#cart")){
 							$('#cart p:nth-of-type(2)').after(data.result);
 						}else{
-							$('#cart').load();
+							$('#cart').load(location.href + '#cart');
 						};
 						
 					}
