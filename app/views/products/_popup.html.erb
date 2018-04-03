@@ -65,7 +65,6 @@
 		}); //this keeps the user from adding items until the cart is loaded
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
-				$(this).innerHTML('<img src="https://media2.giphy.com/media/3oEjl6SIIHBdRxXI40/giphy.gif">');
 				e.preventDefault();
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
 				$.ajax({
@@ -84,7 +83,7 @@
 							var locationString = location.href + ' #cart-container';
 							$('#cart').load(locationString);
 						};
-						$(this).innerHTML('ADD TO CART');
+						
 					}
 				});
 			});
