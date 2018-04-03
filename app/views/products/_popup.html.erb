@@ -79,7 +79,7 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log('done');
-						$(this).css({
+						$('#<%= @thisproduct.code %> .add-to-cart').css({
 							'opacity':1
 						});
 						if ($("#cart p").length){
