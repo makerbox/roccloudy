@@ -67,7 +67,6 @@
 			function(e) {
 				e.preventDefault();
 				$(this).css({
-							'display':'none',
 							'opacity':0
 						});
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
@@ -81,7 +80,6 @@
 					success: function(data) {
 						console.log('done');
 						$(this).css({
-							'display':'inline-block',
 							'opacity':1
 						});
 						if ($("#cart p").length){
