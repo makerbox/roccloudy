@@ -16,26 +16,26 @@
 //= require_tree .
 
 function searchme(){
-var searchterm = $('#searchfield').val();
-window.location.href = "?searchterm="+searchterm;
+	var searchterm = $('#searchfield').val();
+	window.location.href = "?searchterm="+searchterm;
 };
 
 function searchprod(){
-var searchterm = $('#searchfield').val();
-window.location.href = window.location.href+"&searchterm="+searchterm;
+	var searchterm = $('#searchfield').val();
+	window.location.href = window.location.href+"&searchterm="+searchterm;
 };
 
 
 
-    function removeMe(me){
-        $(me).parent().css('display','none');
-        qty = $(me).data('qty');
-        price = $(me).data('price') * qty;
-        console.log(qty + '' + price)
-        totalqty = parseInt($('#totalqty').html(), 10);
-        totalprice = parseFloat($('#totalprice').html()).toFixed(2);
-        newqty = totalqty - qty;
-        newprice = (totalprice - price).toFixed(2);
-        $('#totalqty').html(newqty);
-        $('#totalprice').html(newprice);
-      };
+function removeMe(me){
+	$(me).parent().css('display','none');
+	qty = $(me).data('qty');
+	price = $(me).data('price') * qty;
+	console.log(qty + '' + price)
+	totalqty = parseInt($('#totalqty').html(), 10);
+	totalprice = parseFloat($('#totalprice').html()).toFixed(2);
+	newqty = totalqty - qty;
+	newprice = (totalprice - price).toFixed(2);
+	$('#totalqty').html(newqty);
+	$('#totalprice').html(newprice);
+};
