@@ -31,7 +31,7 @@ function removeMe(me){
 	$(me).parent().css('display','none');
 	qty = $(me).data('qty');
 	price = $(me).data('price') * qty;
-	console.log(qty + '' + price)
+	console.log(qty + ' x ' + price)
 	totalqty = parseInt($('#totalqty').html(), 10);
 	totalprice = parseFloat($('#totalprice').html()).toFixed(2);
 	newqty = totalqty - qty;
