@@ -17,7 +17,7 @@ Search: <input id="searchfield" type="text"><span class="btn btn-info" onclick="
           <%= link_to (product) do %>
           
           <%= cl_image_tag(product.code.strip + ".jpg", :quality=>"auto", :fetch_format=>:auto) %>
-          
+
           <div class="product-index-text">
             <%= product.code %> | <%= product.description %>
           </div>
@@ -100,9 +100,10 @@ Search: <input id="searchfield" type="text"><span class="btn btn-info" onclick="
     </div>
   </div>
   <div class="col-md-3 cart" id="cart">
+    <div id="cart-container">
     <% if user_signed_in? %>
     <% if (current_user.orders.any?) && (current_user.orders.where(active: true).any?) %>
-    
+
     <p>
       <i class="fa fa-shopping-cart fa-2x"></i>
     </p>
@@ -112,7 +113,7 @@ Search: <input id="searchfield" type="text"><span class="btn btn-info" onclick="
     </p>
 
     <% elsif ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && current_user.mimic && ((current_user.mimic.account.user.orders.any?) && (current_user.mimic.account.user.orders.where(active: true).any?)) %>
-    
+
     <p>
       <i class="fa fa-shopping-cart fa-2x"></i>
     </p>
@@ -123,6 +124,7 @@ Search: <input id="searchfield" type="text"><span class="btn btn-info" onclick="
 
     <% end %>
     <% end %>
+  </div>
   </div>
 </div>
 
