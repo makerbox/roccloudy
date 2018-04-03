@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function(){
+$(window).ready(function(){
 	function searchme(){
 var searchterm = $('#searchfield').val();
 window.location.href = "?searchterm="+searchterm;
