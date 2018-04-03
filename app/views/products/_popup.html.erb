@@ -79,6 +79,7 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
+						console.log('done');
 						$(this).css({
 							'display':'inline-block',
 							'opacity':1
