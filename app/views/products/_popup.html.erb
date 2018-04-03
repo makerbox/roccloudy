@@ -66,7 +66,7 @@
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
-				$(this).text('adding...');
+				console.log($(this));
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
 				$.ajax({
 					url: route,
@@ -84,7 +84,6 @@
 							var locationString = location.href + ' #cart-container';
 							$('#cart').load(locationString);
 						};
-						$(this).text('ADD TO CART');
 					}
 				});
 			});
