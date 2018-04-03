@@ -80,6 +80,7 @@
 							$('#cart p:nth-of-type(2)').after(data.result);
 						}else{
 							var locationString = location.href + '#cart';
+							console.log(locationString);
 							$('#cart').load(locationString);
 						};
 						
