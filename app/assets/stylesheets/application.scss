@@ -293,6 +293,7 @@ max-width:100%;
     position:fixed;
     height:80vh;
     overflow-y:scroll;
+    -webkit-overflow-scrolling: touch;
     right:0;
     padding-right:2em;
     z-index:999;
