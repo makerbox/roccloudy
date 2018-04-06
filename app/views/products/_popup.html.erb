@@ -86,7 +86,7 @@
 						});
 						if ($("#cart p").length){
 							$('#cart p:nth-of-type(2)').after(data.result);
-							$('#totalqty, #totalprice').text('updating...');
+							$('#totalqty, #totalprice').text('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 							$('#totalqty').load(location.href + ' #totalqty');
 							$('#totalprice').load(location.href + ' #totalprice');
 						}else{
