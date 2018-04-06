@@ -281,6 +281,9 @@ max-height:5em;
 max-width:100%;	
 }
 
+.fa-shopping-cart{
+	margin:1em;
+}
 .cart {
     background: #FFF;
     box-shadow: none;
@@ -295,8 +298,11 @@ max-width:100%;
     overflow-y:scroll;
     -webkit-overflow-scrolling: touch;
     right:0;
-    padding-right:2em;
+    padding:0;
     z-index:999;
+}
+.cart p, .cart hr{
+	margin:0;
 }
 .cart>p>i{
 	margin-right:6em;
