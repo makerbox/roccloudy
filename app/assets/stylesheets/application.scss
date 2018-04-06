@@ -305,11 +305,11 @@ max-width:100%;
   display: inline-block;
   position: relative;
   width: 64px;
-  height: 64px;
+  height: 1em;
 }
 .lds-ellipsis div {
   position: absolute;
-  top: 90%;
+  top: 50%;
   width: 8px;
   height: 8px;
   border-radius: 50%;
