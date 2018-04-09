@@ -140,6 +140,14 @@ end
     end
   end
 
+  def cancel_order
+    @order.quantities.destroy_all
+    respond_to do |format|
+      format.html { redirect_to home_index_path, notice: '' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
