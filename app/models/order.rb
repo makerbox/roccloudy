@@ -28,4 +28,8 @@ class Order < ActiveRecord::Base
   	end
   end
 
+  def cancel_me
+    self.quantities.destroy_all
+  end
+
 end
