@@ -141,11 +141,8 @@ end
   end
 
   def cancel_order
-    @order.quantities.destroy_all
-    respond_to do |format|
-      format.html { redirect_to home_index_path, notice: '' }
-      format.json { head :no_content }
-    end
+    Order.find(params[:id]).quantities.all.destroy_all
+    redirect_to home_index_path
   end
 
   private
