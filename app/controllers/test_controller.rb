@@ -5,7 +5,7 @@ class TestController < ApplicationController
       @results = []
       
 
-      @results << Discount.all
+      @results = Discount.all
       # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
       # # @results = dbh.execute("DELETE FROM customer_master WHERE Code = 'test'")
