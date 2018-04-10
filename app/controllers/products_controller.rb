@@ -37,8 +37,9 @@ def calc_qty_disc
   else
     result = price
   end
+  result = number_with_precision(result, precision: 2)
   respond_to do |format|
-    format.json { render json: {result: result.round(2)} }
+    format.json { render json: {result: result} }
   end
 end
 
