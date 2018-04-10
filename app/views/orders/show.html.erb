@@ -106,8 +106,22 @@ h1{
       <% when 6 %>
       <% prodprice = q.product.rrp %>
       <% end %>
+      <% case @order.user.account.seller_level.to_i %>
+      <% when 1 %>
+      <%= q.product.calc_discount(@order.user, q.product.price1, q.product.group, q.product.code, q.product.pricecat, q.qty) %>
+      <% when 2 %>
+      <%= q.product.calc_discount(@order.user, q.product.price2, q.product.group, q.product.code, q.product.pricecat, q.qty) %>
+      <% when 3 %>
+      <%= q.product.calc_discount(@order.user, q.product.price3, q.product.group, q.product.code, q.product.pricecat, q.qty) %>
+      <% when 4 %>
+      <%= q.product.calc_discount(@order.user, q.product.price4, q.product.group, q.product.code, q.product.pricecat), q.qty %>
+      <% when 5 %>
+      <%= q.product.calc_discount(@order.user, q.product.price5, q.product.group, q.product.code, q.product.pricecat, q.qty) %>
+      <% when 6 %>
+      <%= q.product.rrp %>
+      <% end %>
 
-      <% subtotal = (q.qty * prodprice).round(2) %>{<%= @discount %>}
+      <% subtotal = (q.qty * prodprice).round(2) %>
       <tr>
         <td align="left" style="text-align:left; font-size:10px; font-family: 'Verdana', sans-serif; width:40px;" width="40"><%= q.product.code %></td>
         <td style="font-size:10px; font-family: 'Verdana', sans-serif; width:30px;" width="30"><%= q.qty %></td>
