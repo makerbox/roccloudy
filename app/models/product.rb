@@ -26,7 +26,7 @@ def calc_discount(u, price, prod_group, prod_code, price_cat, qty)
 		result = price
 	end
 
-	return result
+	return number_with_precision(result, precision: 2)
 end
 
 
