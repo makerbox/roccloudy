@@ -38,7 +38,7 @@ def calc_qty_disc
     result = price
   end
   respond_to do |format|
-    format.json { render json: {result: result} }
+    format.json { render json: {result: result.round(2)} }
   end
 end
 
