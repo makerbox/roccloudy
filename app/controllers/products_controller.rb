@@ -15,7 +15,7 @@ def hide
 end
 
 def calc_qty_disc
-  price = (params[:price])
+  price = params[:price]
   prod_group = params[:group]
   prod_code = params[:code]
   price_cat = params[:pricecat]
