@@ -4,16 +4,20 @@ class TestController < ApplicationController
 	def index 
       @results = []
       
-      product = Product.find_by(code: '7462E')
-      prod_code = product.code
-      prod_group = product.group
-      price_cat = product.pricecat
-      @results = Discount.all.where('(product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?))', price_cat, 'cat_fixed', 'cat_percent' , prod_code , 'code_fixed', 'code_percent', prod_group, 'group_fixed', 'group_percent')
-      # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      @customers = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
+      @customers.each do |c|
+        code = c.Code.strip
+        if Account.all.find_by(code: code)
+          account = Account.all.find_by(code: code)
+          @results << c.InDispute
+        end
+      end
+
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
       # # @results = dbh.execute("DELETE FROM customer_master WHERE Code = 'test'")
 
-      # dbh.disconnect 
+      dbh.disconnect 
       # # redirect_to 'http://roccloudy.com'
   	end
 end
