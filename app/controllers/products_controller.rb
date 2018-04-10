@@ -30,6 +30,7 @@ def calc_qty_disc
   if discos = Discount.all.where('(product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?))', price_cat, 'cat_fixed', 'cat_percent' , prod_code , 'code_fixed', 'code_percent', prod_group, 'group_fixed', 'group_percent').where('customer = ? OR customer = ?', u.account.code, u.account.discount)
     disco = discos.all.where('maxqty >= ?', qty).first
     decimal_discount = Decimal(disco.discount)
+    @discount = decimal_discount
     if disco.disctype == 'fixedtype'
       result = decimal_discount
     else
