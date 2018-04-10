@@ -106,7 +106,7 @@ h1{
       <% when 6 %>
       <% prodprice = q.product.rrp %>
       <% end %>
-      <% prodprice = number_with_precision(prodprice, precision: 2) %>
+
       <% subtotal = (q.qty * prodprice) %>
       <tr>
         <td align="left" style="text-align:left; font-size:10px; font-family: 'Verdana', sans-serif; width:40px;" width="40"><%= q.product.code %></td>
