@@ -15,7 +15,7 @@ def hide
 end
 
 def calc_qty_disc
-  price = (params[:price]).to_f
+  price = (params[:price])
   prod_group = params[:group]
   prod_code = params[:code]
   price_cat = params[:pricecat]
@@ -30,9 +30,9 @@ def calc_qty_disc
   if discos = Discount.all.where('(product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?)) OR (product = ? AND (producttype = ? OR producttype = ?))', price_cat, 'cat_fixed', 'cat_percent' , prod_code , 'code_fixed', 'code_percent', prod_group, 'group_fixed', 'group_percent').where('customer = ? OR customer = ?', u.account.code, u.account.discount)
     disco = discos.all.where('maxqty >= ?', qty).first
     if disco.disctype == 'fixedtype'
-      result = disco.discount
+      result = disco.discount.to_d
     else
-      result = price - ((price / 100) * disco.discount)
+      result = price - ((price / 100) * disco.discount.to_d)
     end
   else
     result = price
