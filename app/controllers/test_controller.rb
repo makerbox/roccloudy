@@ -5,12 +5,12 @@ class TestController < ApplicationController
       @results = []
       
 
-      @results << Account.last
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      @results << Discount.all
+      # dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # # @results = dbh.execute("INSERT INTO customer_master (Code, Name, Contact) VALUES ('test', 'test', 'test')")
       # # @results = dbh.execute("DELETE FROM customer_master WHERE Code = 'test'")
 
-      dbh.disconnect 
+      # dbh.disconnect 
       # # redirect_to 'http://roccloudy.com'
   	end
 end
