@@ -483,3 +483,9 @@ max-width:100%;
 	display:inline-block;
 	font-weight:bold;
 }
+
+@media screen and (min-device-width:1024px) and (min-width:1024px){
+	.scrollable{
+	display:none;
+	}
+}
