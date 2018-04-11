@@ -484,18 +484,3 @@ max-width:100%;
 	font-weight:bold;
 }
 
-@media screen and (min-device-width:1025px) and (min-width:1025px){
-	.scrollable{
-	display:none;
-	}
-}
-.scrollable{
-	position:absolute;
-	right:0;
-}
-.scrollable.fa-angle-up{
-	top:0;
-}
-.scrollable:last-of-type{
-	bottom:10vh;
-}
