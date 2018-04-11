@@ -489,3 +489,13 @@ max-width:100%;
 	display:none;
 	}
 }
+.scrollable{
+	position:absolute;
+	right:0;
+}
+.scrollable:first-of-type{
+	top:0;
+}
+.scrollable:last-of-type{
+	bottom:10vh;
+}
