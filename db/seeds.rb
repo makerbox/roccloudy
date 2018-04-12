@@ -225,17 +225,17 @@
         else
           payterms = ce.PaymentTerms
           case payterms
-          when 1
+          when '1'
             payterms = 'COD'
-          when 2
+          when '2'
             payterms = 'Set Day of Month'
-          when 3
+          when '3'
             payterms = 'Set Day of Next Month'
-          when 4
+          when '4'
             payterms = 'Day of Month after Next'
-          when 5
+          when '5'
             payterms = 'Number of Days'
-          when 6
+          when '6'
             payterms = 'Days after Month end'
           end
           email = ce.EmailAddr
