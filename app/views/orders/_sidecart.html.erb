@@ -6,7 +6,7 @@
 
   <!-- GIVE EACH NEW QUANTITY A BRAND NAME ON CREATION, THEN YOU CAN DO .order(brand...etc -->
   
-  <% @order.quantities.order(brand: 'ASC', created_at: 'DESC').each do |po| %>
+  <% @order.quantities.order(brand: 'ASC').each do |po| %>
   <% if @order.quantities.where(product: po.product).count > 1 %>
   <div class="po warning">
   Item already in cart<br>
