@@ -390,7 +390,7 @@ max-width:100%;
 	background: transparent;
 	color: #000;
 }
-@media screen and (min-device-width:800px){
+@media screen and (min-device-width:1024px){
 .mycontainer{
 	padding-left:1em;
 	margin-bottom:4em;
@@ -428,7 +428,7 @@ max-width:100%;
 	display:none;
 }
 }
-@media screen and (max-device-width:800px){
+@media screen and (max-device-width:1024px){
 
 .cart{
 	position:absolute;
