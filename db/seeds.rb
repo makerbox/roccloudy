@@ -223,6 +223,21 @@
             user.destroy
           end
         else
+          payterms = ce.PaymentTerms
+          case payterms
+          when 1
+            payterms = 'COD'
+          when 2
+            payterms = 'Set Day of Month'
+          when 3
+            payterms = 'Set Day of Next Month'
+          when 4
+            payterms = 'Day of Month after Next'
+          when 5
+            payterms = 'Number of Days'
+          when 6
+            payterms = 'Days after Month end'
+          end
           email = ce.EmailAddr
           if !Account.all.find_by(code: code)
             if email.blank?
@@ -232,7 +247,7 @@
               newuser = User.new(email: email, password: "roccloudyportal", password_confirmation: "roccloudyportal") #create the user
               if newuser.save(validate: false) #false to skip validation
                 newuser.add_role :user
-                newaccount = Account.new(code: code, user: newuser) #create the account and associate with user
+                newaccount = Account.new(payterms: payterms, code: code, user: newuser) #create the account and associate with user
                 newaccount.save
               end
             end
