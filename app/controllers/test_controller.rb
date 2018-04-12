@@ -9,6 +9,7 @@ class TestController < ApplicationController
       code = ce.Code.strip
       payterms = ce.PaymentTerms
       @results << payterms
+      @results << code
       case payterms
       when 1
         payterms = 'COD'
