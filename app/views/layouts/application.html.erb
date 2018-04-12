@@ -52,7 +52,7 @@
           <% if !current_user.mimic.account.nil? %>
             ORDERING FOR: 
             <%= current_user.mimic.account.company %>
-            <% account = current_user.account %>
+            <% account = current_user.account %>*
             <% if account.dispute %>
             <b>Credit on hold</b>
             <% end %>
