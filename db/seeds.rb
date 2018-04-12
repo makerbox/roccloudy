@@ -247,12 +247,10 @@
       @customers.each do |c|
         code = c.Code.strip
         if Account.all.find_by(code: code)
-          if c.InDispute == 1
-            dispute = true
-          else
-            dispute = false
-          end
           account = Account.all.find_by(code: code)
+          if c.InDispute == 1
+            account.update(dispute: true)
+          end
           compname = c.Name
           street = c.Street
           suburb = c.Suburb 
@@ -263,7 +261,7 @@
           discount = c.SpecialPriceCat 
           seller_level = c.PriceCat
           rep = c.SalesRep
-          account.update_attributes(dispute: dispute, approved: 'approved', phone: phone, street: street, state: state, suburb: suburb, postcode: postcode, sort: sort, company: compname, rep: rep, seller_level: seller_level, discount: discount)
+          account.update_attributes(approved: 'approved', phone: phone, street: street, state: state, suburb: suburb, postcode: postcode, sort: sort, company: compname, rep: rep, seller_level: seller_level, discount: discount)
         end
       end
       dbh.disconnect 
