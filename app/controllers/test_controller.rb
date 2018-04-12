@@ -7,7 +7,7 @@ class TestController < ApplicationController
     @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
     @customers_ext.each do |ce|
       code = ce.Code.strip
-      payterms = ce.PaymentTerms
+      payterms = ce.PaymentTerms.to_s
       @results << payterms
       @results << code
       case payterms
