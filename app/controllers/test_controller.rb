@@ -8,6 +8,7 @@ class TestController < ApplicationController
     @customers_ext.each do |ce|
       code = ce.Code.strip
       payterms = ce.PaymentTerms
+      @results << payterms
       case payterms
       when 1
         payterms = 'COD'
