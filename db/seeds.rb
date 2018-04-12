@@ -251,6 +251,8 @@
                 newaccount.save
               end
             end
+          else
+            Account.all.find_by(code: code).update(payterms: payterms)
           end
         end
       end
