@@ -34,6 +34,9 @@ Search: <input id="searchfield" type="text"><span class="btn btn-info" onclick="
         <% end %>
         <td>
           <%= link_to account_path(account) do %>
+            <% if account.dispute %>
+            <b>Credit on hold</b>
+            <% end %>
             <i class='fa fa-eye'></i>
           <% end %>
         </td>
