@@ -223,7 +223,7 @@
             user.destroy
           end
         else
-          payterms = ce.PaymentTerms
+          payterms = ce.PaymentTerms.to_s
           case payterms
           when '1'
             payterms = 'COD'
@@ -354,7 +354,8 @@
 
 
 
-
+# ---------------destroy all old quantities ---------------
+Quantity.all.where('created_at >= ?', (Date.today - 30.days)).destroy
       # ------------------------META DATA--------------------------------------------------------------
 
    
