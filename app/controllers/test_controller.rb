@@ -8,7 +8,6 @@ class TestController < ApplicationController
     @customers_ext.each do |ce|
       code = ce.Code.strip
       payterms = ce.PaymentTerms.to_s
-      @results << payterms
       @results << code
       case payterms
       when '1'
@@ -24,7 +23,7 @@ class TestController < ApplicationController
       when '6'
         payterms = 'Days after Month end'
       end
-      email = ce.EmailAddr
+      @results << payterms
       if account = Account.all.find_by(code: code)
         account.update(payterms: payterms)
       end
