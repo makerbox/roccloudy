@@ -99,7 +99,7 @@ Search: <input id="searchfield" type="text"><span class="btn btn-info" onclick="
       <% end %>
     </div>
   </div>
-  <div class="col-md-3 cart" id="cart">
+  <div class="col-md-3 cart" id="cart"><div class="scrollarrow fa fa-arrow-up"></div>
     <div id="cart-container">
     <% if user_signed_in? %>
     <% if (current_user.orders.any?) && (current_user.orders.where(active: true).any?) %>
