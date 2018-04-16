@@ -70,7 +70,7 @@
 							}
 							var posY = cartHeight / 2;
 							$('.fa-arrow-up').css('transform','translateY('+ posY +'px)');
-							$('.fa-arrow-up').css('transform','translateY('+ (posY * -1) +'px)');
+							$('.fa-arrow-down').css('transform','translateY('+ (posY * -1) +'px)');
 			$('.add-to-cart').css('display','inline-block');
 		}); //this keeps the user from adding items until the cart is loaded
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
@@ -105,7 +105,7 @@
 							}
 							var posY = cartHeight / 2;
 							$('.fa-arrow-up').css('transform','translateY('+ posY +'px)');
-							$('.fa-arrow-up').css('transform','translateY('+ (posY * -1) +'px)');
+							$('.fa-arrow-down').css('transform','translateY('+ (posY * -1) +'px)');
 						});
 					}
 				});
