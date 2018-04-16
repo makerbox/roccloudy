@@ -79,14 +79,18 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
-						console.log('done');
-						$('#<%= @thisproduct.code %> .add-to-cart, #sendorder').css({
-							'opacity':1,
-							'pointer-events':'auto'
-						});
-$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
-							var locationString = location.href + ' #cart';
+						$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
+						var locationString = location.href + ' #cart';
+						var loadfunc = function(){
 							$('#cart').load(locationString);
+						};
+						var donefunc = function(){
+							$('#<%= @thisproduct.code %> .add-to-cart, #sendorder').css({
+								'opacity':1,
+								'pointer-events':'auto'
+							});
+						};
+						loadfunc().done(donefunc());
 					}
 				});
 			});
