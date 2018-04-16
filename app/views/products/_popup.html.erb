@@ -66,8 +66,8 @@
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
-				$(this).css({
-							'opacity':0,
+				$(this).text('ADDING..').css({
+							'opacity':.5,
 							'pointer-events':'none'
 						});
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
@@ -82,7 +82,7 @@
 						$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 						var locationString = location.href + ' #cart';
 							$('#cart').load(locationString, function(){
-							$('#<%= @thisproduct.code %> .add-to-cart').css({
+							$('#<%= @thisproduct.code %> .add-to-cart').text('ADD TO CART').css({
 								'opacity':1,
 								'pointer-events':'auto'
 							});
