@@ -66,7 +66,7 @@
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
-				$(this, '#sendorder').css({
+				$(this).css({
 							'opacity':0,
 							'pointer-events':'none'
 						});
@@ -85,12 +85,12 @@
 							$('#cart').load(locationString);
 						};
 						var donefunc = function(){
-							$('#<%= @thisproduct.code %> .add-to-cart, #sendorder').css({
+							$('#<%= @thisproduct.code %> .add-to-cart').css({
 								'opacity':1,
 								'pointer-events':'auto'
 							});
 						};
-						loadfunc().done(donefunc());
+						$.when(loadfunc()).done(donefunc());
 					}
 				});
 			});
