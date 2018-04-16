@@ -66,7 +66,7 @@
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
-				$('.add-to-cart').css({
+				$('.add-to-cart, .fa-paper-plane').css({
 							'opacity':0,
 							'pointer-events':'none'
 						});
@@ -80,7 +80,7 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log('done');
-						$('#<%= @thisproduct.code %> .add-to-cart').css({
+						$('.add-to-cart, .fa-paper-plane').css({
 							'opacity':1,
 							'pointer-events':'auto'
 						});
