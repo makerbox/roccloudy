@@ -302,7 +302,14 @@ max-width:100%;
     padding:0;
     z-index:999;
 }
-
+.scrollarrow{
+	position:absolute;
+	right:0;
+	top:50%;
+}
+.scrollarrow.fa-arrow-up{
+	padding-bottom:1em;
+}
 ::-webkit-scrollbar{
 	-webkit-appearance:none;
 	width:1em;
