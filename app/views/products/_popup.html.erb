@@ -85,7 +85,8 @@
 								'pointer-events':'auto'
 							});
 						};
-						function startAdd(callback){
+						function startAdd(){
+							var r = $.Deferred();
 							if ($("#cart p").length){
 								$('#cart p:nth-of-type(2)').after(data.result);
 								$('#totalqty, #totalprice, #sendorder').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
@@ -97,11 +98,9 @@
 								$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 								$('#cart').load(locationString);
 							};
-							callback();
+							return r;
 						};
-						startAdd(function(){
-							doneAdd();
-						});
+						startAdd().done(doneAdd());
 						
 					}
 				});
