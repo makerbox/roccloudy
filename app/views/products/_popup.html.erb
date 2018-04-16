@@ -66,7 +66,7 @@
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
-				$(this).css({
+				$('.add-to-cart').css({
 							'opacity':0,
 							'pointer-events':'none'
 						});
@@ -80,13 +80,13 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log('done');
-						$('#<%= @thisproduct.code %> .add-to-cart').css({
+						$('.add-to-cart').css({
 							'opacity':1,
 							'pointer-events':'auto'
 						});
 						if ($("#cart p").length){
 							$('#cart p:nth-of-type(2)').after(data.result);
-							$('#totalqty, #totalprice').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
+							$('#totalqty, #totalprice, #sendorder').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 							$('#totalqty').load(location.href + ' #totalqty');
 							$('#totalprice').load(location.href + ' #totalprice');
 							$('#sendorder').load(location.href + ' #sendorder');
