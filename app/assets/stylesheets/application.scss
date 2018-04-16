@@ -296,6 +296,7 @@ max-width:100%;
     position:fixed;
     height:80vh;
     overflow-y:scroll;
+    -webkit-overflow-scrolling: touch;
     right:0;
     bottom:1em;
     padding:0;
