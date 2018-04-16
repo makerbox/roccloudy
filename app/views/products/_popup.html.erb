@@ -81,16 +81,13 @@
 					success: function(data) {
 						$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 						var locationString = location.href + ' #cart';
-						var loadfunc = function(){
-							$('#cart').load(locationString);
-						};
-						var donefunc = function(){
+							$('#cart').load(locationString, function(){
 							$('#<%= @thisproduct.code %> .add-to-cart').css({
 								'opacity':1,
 								'pointer-events':'auto'
 							});
 						};
-						loadfunc().donefunc();
+						);
 					}
 				});
 			});
