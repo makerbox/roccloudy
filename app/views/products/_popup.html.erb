@@ -86,6 +86,9 @@
 								'opacity':1,
 								'pointer-events':'auto'
 							});
+							var posY = $('#cart').height() / 2;
+							$('.fa-arrow-up').css('transform','translateY('+ posY +'px)');
+							$('.fa-arrow-up').css('transform','translateY('+ (posY * -1) +'px)');
 						});
 					}
 				});
