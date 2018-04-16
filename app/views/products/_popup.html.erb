@@ -79,24 +79,29 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
-						console.log('done');
 						function doneAdd(){
 							$('.add-to-cart').css({
 							'opacity':1,
 							'pointer-events':'auto'
 						});
 						};
-						if ($("#cart p").length){
-							$('#cart p:nth-of-type(2)').after(data.result);
-							$('#totalqty, #totalprice, #sendorder').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
-							$('#totalqty').load(location.href + ' #totalqty');
-							$('#totalprice').load(location.href + ' #totalprice');
-							$('#sendorder').load(location.href + ' #sendorder', doneAdd());
-						}else{
-							var locationString = location.href + ' #cart-container';
-							$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
-							$('#cart').load(locationString, doneAdd());
+						function startAdd(callback){
+							if ($("#cart p").length){
+								$('#cart p:nth-of-type(2)').after(data.result);
+								$('#totalqty, #totalprice, #sendorder').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
+								$('#totalqty').load(location.href + ' #totalqty');
+								$('#totalprice').load(location.href + ' #totalprice');
+								$('#sendorder').load(location.href + ' #sendorder');
+							}else{
+								var locationString = location.href + ' #cart-container';
+								$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
+								$('#cart').load(locationString);
+							};
 						};
+						startAdd(function(){
+							doneAdd();
+						});
+						
 					}
 				});
 			});
