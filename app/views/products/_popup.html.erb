@@ -80,17 +80,12 @@
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
 						console.log('done');
-						$('.add-to-cart').css({
-							'opacity':1,
-							'pointer-events':'auto'
-						});
-						if ($("#cart p").length){
-							$('#cart p:nth-of-type(2)').after(data.result);
-							$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
-							$('#cart').load(location.href + ' #cart');
-						}else{
-							var locationString = location.href + ' #cart';
-							$('#cart').load(locationString);
+						$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
+						$('#cart').load(location.href + ' #cart').function(){
+							$('.add-to-cart').css({
+								'opacity':1,
+								'pointer-events':'auto'
+							});
 						};
 					}
 				});
