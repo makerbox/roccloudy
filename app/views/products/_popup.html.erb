@@ -92,7 +92,7 @@
 							$('#sendorder').load(location.href + ' #sendorder');
 						}else{
 							var locationString = location.href + ' #cart-container';
-							$('#cart').load(locationString);
+							$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>').load(locationString);
 						};
 					}
 				});
