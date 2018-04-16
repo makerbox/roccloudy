@@ -306,6 +306,9 @@ max-width:100%;
 	position:absolute;
 	right:0;
 	top:50%;
+	z-index:1000;
+	transition:all 1s;
+	-webkit-transition:all 1s;
 }
 .scrollarrow.fa-arrow-up{
 	padding-bottom:1em;
