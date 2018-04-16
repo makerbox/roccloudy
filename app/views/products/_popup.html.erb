@@ -79,19 +79,23 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
-						console.log('done');
-						$('.add-to-cart, .fa-paper-plane').css({
-							'opacity':1,
-							'pointer-events':'auto'
-						});
+						console.log('done');						
 						if ($("#cart p").length){
 							$('#cart p:nth-of-type(2)').after(data.result);
 							$('#totalqty, #totalprice').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 							$('#totalqty').load(location.href + ' #totalqty');
 							$('#totalprice').load(location.href + ' #totalprice');
+							$('.add-to-cart, .fa-paper-plane').css({
+							'opacity':1,
+							'pointer-events':'auto'
+						});
 						}else{
 							var locationString = location.href + ' #cart-container';
 							$('#cart').load(locationString);
+							$('.add-to-cart, .fa-paper-plane').css({
+							'opacity':1,
+							'pointer-events':'auto'
+						});
 						};
 					}
 				});
