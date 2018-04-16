@@ -66,7 +66,7 @@
 		$('#<%= @thisproduct.code %> .add-to-cart').click(
 			function(e) {
 				e.preventDefault();
-				$('.add-to-cart, .fa-paper-plane').css({
+				$(this).css({
 							'opacity':0,
 							'pointer-events':'none'
 						});
@@ -79,23 +79,19 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
 					success: function(data) {
-						console.log('done');						
+						console.log('done');
+						$('#<%= @thisproduct.code %> .add-to-cart').css({
+							'opacity':1,
+							'pointer-events':'auto'
+						});
 						if ($("#cart p").length){
 							$('#cart p:nth-of-type(2)').after(data.result);
 							$('#totalqty, #totalprice').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 							$('#totalqty').load(location.href + ' #totalqty');
 							$('#totalprice').load(location.href + ' #totalprice');
-							$('.add-to-cart, .fa-paper-plane').css({
-							'opacity':1,
-							'pointer-events':'auto'
-						});
 						}else{
-							var locationString = location.href + ' #cart-container';
+							var locationString = location.href + ' #cart';
 							$('#cart').load(locationString);
-							$('.add-to-cart, .fa-paper-plane').css({
-							'opacity':1,
-							'pointer-events':'auto'
-						});
 						};
 					}
 				});
