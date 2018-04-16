@@ -306,6 +306,10 @@ max-width:100%;
 	position:fixed;
 	right:0;
 	bottom:1em;
+	display:flex;
+	flex-direction:column;
+	width:1em;
+	justify-content:space-between;
 }
 .scrollarrow{
 display:none;
