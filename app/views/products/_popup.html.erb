@@ -84,7 +84,6 @@
 								'opacity':1,
 								'pointer-events':'auto'
 							});
-							return true
 						};
 						function startAdd(callback){
 							if ($("#cart p").length){
@@ -99,7 +98,7 @@
 								$('#cart').load(locationString);
 							};
 							callback();
-							return true
+							return true;
 						};
 						startAdd(function(){
 							doneAdd();
