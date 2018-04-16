@@ -70,9 +70,10 @@
 							'opacity':0,
 							'pointer-events':'none'
 						});
-				$('#totalqty, #totalprice').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
-							$('#totalqty').load(location.href + ' #totalqty');
+				$('#totalqty, #totalprice, #sendorder').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
+							$('#totalqty').load(location.href + ' #totalqty', function(){console.log('done qty');});
 							$('#totalprice').load(location.href + ' #totalprice');
+							$('#sendorder').load(location.href + ' #sendorder');
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
 				$.ajax({
 					url: route,
