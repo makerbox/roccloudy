@@ -84,7 +84,6 @@
 							'opacity':1,
 							'pointer-events':'auto'
 						});
-							return true;
 						};
 						function startAdd(callback){
 							if ($("#cart p").length){
@@ -98,6 +97,7 @@
 								$('#cart').html('<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 								$('#cart').load(locationString);
 							};
+							callback();
 						};
 						startAdd(function(){
 							doneAdd();
