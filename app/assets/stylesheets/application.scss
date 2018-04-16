@@ -302,11 +302,13 @@ max-width:100%;
     padding:0;
     z-index:999;
 }
-.scrollarrow{
-display:none;
+.scrollcontainer{
 	position:fixed;
 	right:0;
-	top:50vh;
+	bottom:1em;
+}
+.scrollarrow{
+display:none;
 	z-index:1000;
 	transition:all 1s;
 	-webkit-transition:all 1s;
