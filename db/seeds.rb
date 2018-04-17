@@ -1,31 +1,31 @@
 # Contact.create(code:'clock', email:'start')
 # Contact.create(code:'running', email:'running')
 
-      puts 'RUNNING SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED'
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+puts 'RUNNING SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED'
+dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
 
       # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
-          @products.each do |p|
-            if p.Inactive == 0
-              code = p.Code.strip
-              description = p.Description.to_s.strip
-              price1 = p.SalesPrice1
-              price2 = p.SalesPrice2
-              price3 = p.SalesPrice3
-              price4 = p.SalesPrice4
-              price5 = p.SalesPrice5
-              rrp = p.SalesPrice6
-              qty = p.QtyInStock
-              qty = qty - p.QtyReserve
-              if p.AllowDisc == 1
-                allow_disc = true
-              else
-                allow_disc = false
-              end
-              group = p.ProductGroup.to_s.strip
-              pricecat = p.PriceCat.to_s.strip
-              puts pricecat
+      @products.each do |p|
+        if p.Inactive == 0
+          code = p.Code.strip
+          description = p.Description.to_s.strip
+          price1 = p.SalesPrice1
+          price2 = p.SalesPrice2
+          price3 = p.SalesPrice3
+          price4 = p.SalesPrice4
+          price5 = p.SalesPrice5
+          rrp = p.SalesPrice6
+          qty = p.QtyInStock
+          qty = qty - p.QtyReserve
+          if p.AllowDisc == 1
+            allow_disc = true
+          else
+            allow_disc = false
+          end
+          group = p.ProductGroup.to_s.strip
+          pricecat = p.PriceCat.to_s.strip
+          puts pricecat
               # # needs category
               if Product.all.where(code: code).exists?
                 Product.all.find_by(code: code).update_attributes(allow_disc: allow_disc, pricecat: pricecat, group: group, code: code, description: description, price1: price1, price2: price2, price3: price3, price4: price4, price5: price5, rrp: rrp, qty: qty)
@@ -104,10 +104,10 @@
 
       # ------------------------DISCOUNTS---------------------------------------------------------
        Discount.destroy_all #wipe existing discounts in case of some deletions in Attache
-          dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-          discounts = dbh.execute("SELECT * FROM product_special_prices").fetch(:all, :Struct)
+       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+       discounts = dbh.execute("SELECT * FROM product_special_prices").fetch(:all, :Struct)
 
-          def disco(percentage, fixed, fixedprice, level, maxqty, ctype, ptype, cust, prod)
+       def disco(percentage, fixed, fixedprice, level, maxqty, ctype, ptype, cust, prod)
             if fixedprice == 9 #if the discount is a fixed price
               disctype = 'fixedtype'
               discount = fixed
@@ -228,15 +228,15 @@
           when '1'
             payterms = 'COD'
           when '2'
-            payterms = 'Set Day of Month'
+            payterms = 'Set Day of Month (' + ce.TermsDays.to_s + ')'
           when '3'
-            payterms = 'Set Day of Next Month'
+            payterms = 'Set Day of Next Month (' + ce.TermsDays.to_s + ')'
           when '4'
-            payterms = 'Day of Month after Next'
+            payterms = 'Day of Month after Next (' + ce.TermsDays.to_s + ')'
           when '5'
-            payterms = 'Number of Days'
+            payterms = ce.TermsDays.to_s + ' Days'
           when '6'
-            payterms = 'Days after Month end'
+            payterms =  ce.TermsDays.to_s + 'Days after Month end'
           end
           email = ce.EmailAddr
           if !Account.all.find_by(code: code)
@@ -358,4 +358,4 @@
 Quantity.all.where('created_at >= ?', (Date.today - 30.days)).destroy
       # ------------------------META DATA--------------------------------------------------------------
 
-   
+      
