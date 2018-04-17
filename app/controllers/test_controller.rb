@@ -11,15 +11,15 @@ class TestController < ApplicationController
       when '1'
         payterms = 'COD'
       when '2'
-        payterms = 'Set Day of Month'
+        payterms = 'Set Day of Month (' + ce.TermsDays.to_s + ')'
       when '3'
-        payterms = 'Set Day of Next Month'
+        payterms = 'Set Day of Next Month (' + ce.TermsDays.to_s + ')'
       when '4'
-        payterms = 'Day of Month after Next'
+        payterms = 'Day of Month after Next (' + ce.TermsDays.to_s + ')'
       when '5'
-        payterms = 'Number of Days'
+        payterms = ce.TermsDays.to_s + ' Days'
       when '6'
-        payterms = 'Days after Month end'
+        payterms =  ce.TermsDays.to_s + 'Days after Month end'
       end
       @results << ce.Code.strip
       @results << payterms
