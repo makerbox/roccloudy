@@ -72,13 +72,13 @@ end
   # GET /orders/1.json
   def show
     @sellerlevel = @order.user.account.seller_level
-    # if user_signed_in?
-    #   if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic) #for sidecart
-    #     @order = current_user.mimic.account.user.orders.where(active: true).last #for sidecart
-    #   else #for sidecart
-    #     @order = current_user.orders.where(active: true).last #for sidecart
-    #   end #for sidecart
-    # end
+    if user_signed_in?
+      if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic) #for sidecart
+        @order = current_user.mimic.account.user.orders.where(active: true).last #for sidecart
+      else #for sidecart
+        @order = current_user.orders.where(active: true).last #for sidecart
+      end #for sidecart
+    end
     if params[:showcart] == 'show'
         @showbuttons = 'show'
       else
