@@ -6,7 +6,6 @@ class TestController < ApplicationController
     dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
       @customers_ext.each do |ce|
-        counter += 1
         code = ce.Code.strip
         if ce.InactiveCust == 1
           if Account.all.find_by(code: code)
@@ -34,17 +33,14 @@ class TestController < ApplicationController
           email = ce.EmailAddr
           if !(myAcct = Account.all.find_by(code: code))
             @results << 'no account'
-            if email.blank?
-              email = counter
-            end
             if !User.all.find_by(email: email)
               @results << 'creating new user and account'
-              newuser = User.new(email: email, password: "roccloudyportal", password_confirmation: "roccloudyportal") #create the user
-              if newuser.save(validate: false) #false to skip validation
-                newuser.add_role :user
-                newaccount = Account.new(payterms: payterms, code: code, user: newuser) #create the account and associate with user
-                newaccount.save
-              end
+              # newuser = User.new(email: email, password: "roccloudyportal", password_confirmation: "roccloudyportal") #create the user
+              # if newuser.save(validate: false) #false to skip validation
+                # newuser.add_role :user
+                # newaccount = Account.new(payterms: payterms, code: code, user: newuser) #create the account and associate with user
+                # newaccount.save
+              # end
             end
           else
             myAcct.update(payterms: payterms)
