@@ -4,29 +4,18 @@ class TestController < ApplicationController
 	def index 
     @results = []
     dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-    @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
-    @customers_ext.each do |ce|
-      payterms = ce.PaymentTerms.to_s
-      case payterms
-      when '1'
-        payterms = 'COD'
-      when '2'
-        payterms = 'Set Day of Month (' + ce.TermsDays.to_s + ')'
-      when '3'
-        payterms = 'Set Day of Next Month (' + ce.TermsDays.to_s + ')'
-      when '4'
-        payterms = 'Day of Month after Next (' + ce.TermsDays.to_s + ')'
-      when '5'
-        payterms = ce.TermsDays.to_s + ' Days'
-      when '6'
-        payterms =  ce.TermsDays.to_s + 'Days after Month end'
+      contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
+      contacts.each do |contact|
+        if contact.Active == 1
+          if account = Account.all.find_by(code: contact.Code.strip)
+            # if !User.all.find_by(email: contact.EmailAddress)
+              email = contact.EmailAddress
+              @results << email
+            # end
+          end
+        end
       end
-      @results << ce.Code.strip
-      @results << payterms
-      @results << ce.TermsDays.to_s
-      @results << '------------'
-    end
-    dbh.disconnect 
+      dbh.disconnect 
 
   end
 end
