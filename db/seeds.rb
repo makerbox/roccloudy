@@ -253,6 +253,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
             end
           else
             Account.all.find_by(code: code).update(payterms: payterms)
+            Account.all.find_by(code: code).user.update(email: email)
           end
         end
       end
