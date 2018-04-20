@@ -11,11 +11,14 @@ class TestController < ApplicationController
         if contact.Active == 1
           if account = Account.all.find_by(code: contact.Code.strip)
             if !User.all.find_by(email: contact.EmailAddress)
-              email = contact.EmailAddress
-              thisuser = account.user
-              thisuser.email = email
-              # thisuser.save(validate: false)
-              @results << email
+              if email = contact.EmailAddress
+                thisuser = account.user
+                thisuser.email = email
+                thisuser.save(validate: false)
+                @results << email
+              else
+                @results << 'empty attache email'
+              end
             end
           end
         end
