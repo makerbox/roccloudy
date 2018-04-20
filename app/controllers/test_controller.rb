@@ -3,25 +3,18 @@ class TestController < ApplicationController
 	
 	def index 
     @results = []
-    dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
-      @customers_ext.each do |ce|
-        code = ce.Code.strip
-        if ce.InactiveCust == 1
-          if Account.all.find_by(code: code)
-            account = Account.all.find_by(code: code) # if there is an attache inactive account already in the portal, we delete it and its user
-            user = account.user
-            account.destroy
-            user.destroy
-          end
-        else
-          email = ce.EmailAddr
-          if !(myAcct = Account.all.find_by(code: code))
-            @results << 'no account'
+          dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
+      contacts.each do |contact|
+        if contact.Active == 1
+          if account = Account.all.find_by(code: contact.Code.strip)
+            if !User.all.find_by(email: contact.EmailAddress)
+              email = contact.EmailAddress
+              account.user.update_attributes(email: email)
+              @results << email
+            end
           else
-            myAcct.user.update(email: email)
-            @results << email
-            @results << 'account found'
+            @results << 'no account'
           end
         end
       end
