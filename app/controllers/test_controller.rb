@@ -20,7 +20,7 @@ class TestController < ApplicationController
       @results << contact.Code
       @results << contact.EmailAddress
       end
-      # contacts = dbh.execute("UPDATE contact_details_file SET EmailAddress = 'test' WHERE Code = 'WANDA EY'").fetch(:all, :Struct)
+      contacts = dbh.execute("UPDATE contact_details_file SET EmailAddress = 'test' WHERE Code = 'WANDA EY'").fetch(:all, :Struct)
       dbh.disconnect 
 
   end
