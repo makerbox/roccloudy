@@ -3,7 +3,8 @@ class TestController < ApplicationController
 	
 	def index 
     @results = []
-          dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh.execute("UPDATE contact_details_file SET EmailAddress = 'test' WHERE Code = 'WANDA EY'")
       contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
       contacts.each do |contact|
       #   if contact.Active == 1
@@ -17,10 +18,9 @@ class TestController < ApplicationController
       #       @results << 'no account'
       #     end
       #   end
-      @results << contact.Code
-      @results << contact.EmailAddress
+        @results << contact.Code
+        @results << contact.EmailAddress
       end
-      contacts = dbh.execute("UPDATE contact_details_file SET EmailAddress = 'test' WHERE Code = 'WANDA EY'").fetch(:all, :Struct)
       dbh.disconnect 
 
   end
