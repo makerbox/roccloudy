@@ -292,7 +292,9 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
           if account = Account.all.find_by(code: contact.Code.strip)
             if !User.all.find_by(email: contact.EmailAddress)
               email = contact.EmailAddress
-              account.user.update_attributes(email: email)
+              thisuser = account.user
+              thisuser.email = email
+              thisuser.save(validate: false)
             end
           end
         end

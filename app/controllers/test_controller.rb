@@ -4,24 +4,10 @@ class TestController < ApplicationController
 	def index 
     @results = []
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      # dbh.execute("UPDATE contact_details_file SET EmailAddress = 'test' WHERE Code = 'WANDA EY'")
+      dbh.execute("UPDATE contact_details_file SET EmailAddress = 'none-00' WHERE Code = 'WANDA EY'")
       contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
-      contacts.each do |contact|
-        if contact.Active == 1
-          if account = Account.all.find_by(code: contact.Code.strip)
-            if !User.all.find_by(email: contact.EmailAddress)
-              email = contact.EmailAddress
-              account.user.update_attributes(email: email)
-              @results << 'account'
-              @results << email
-            end
-          else
-            @results << 'no account'
-          end
-        end
-        # @results << contact.Code
-        # @results << contact.EmailAddress
-      end
+@results << 'updated WANDA EY in attache to have email none-00'
+@results << 'now we need to run the seed, see if it worked, then copy to NZ'
       dbh.disconnect 
 
   end
