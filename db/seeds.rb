@@ -291,10 +291,11 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
         if contact.Active == 1
           if account = Account.all.find_by(code: contact.Code.strip)
             if !User.all.find_by(email: contact.EmailAddress)
-              email = contact.EmailAddress
-              thisuser = account.user
-              thisuser.email = email
-              thisuser.save(validate: false)
+              if email = contact.EmailAddress
+                thisuser = account.user
+                thisuser.email = email
+                thisuser.save(validate: false)
+              end
             end
           end
         end
