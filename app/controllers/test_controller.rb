@@ -14,7 +14,7 @@ class TestController < ApplicationController
               email = contact.EmailAddress
               thisuser = account.user
               thisuser.email = email
-              thisuser.save(validate: false)
+              # thisuser.save(validate: false)
               @results << email
             end
           end
