@@ -15,36 +15,12 @@ class TestController < ApplicationController
             user.destroy
           end
         else
-          payterms = ce.PaymentTerms.to_s
-          case payterms
-          when '1'
-            payterms = 'COD'
-          when '2'
-            payterms = 'Set Day of Month (' + ce.TermsDays.to_s + ')'
-          when '3'
-            payterms = 'Set Day of Next Month (' + ce.TermsDays.to_s + ')'
-          when '4'
-            payterms = 'Day of Month after Next (' + ce.TermsDays.to_s + ')'
-          when '5'
-            payterms = ce.TermsDays.to_s + ' Days'
-          when '6'
-            payterms =  ce.TermsDays.to_s + 'Days after Month end'
-          end
           email = ce.EmailAddr
           if !(myAcct = Account.all.find_by(code: code))
             @results << 'no account'
-            if !User.all.find_by(email: email)
-              @results << 'creating new user and account'
-              # newuser = User.new(email: email, password: "roccloudyportal", password_confirmation: "roccloudyportal") #create the user
-              # if newuser.save(validate: false) #false to skip validation
-                # newuser.add_role :user
-                # newaccount = Account.new(payterms: payterms, code: code, user: newuser) #create the account and associate with user
-                # newaccount.save
-              # end
-            end
           else
-            myAcct.update(payterms: payterms)
             myAcct.user.update(email: email)
+            @results << email
             @results << 'account found'
           end
         end
