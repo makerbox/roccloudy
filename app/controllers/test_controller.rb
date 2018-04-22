@@ -6,6 +6,5 @@ class TestController < ApplicationController
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       dbh.execute("UPDATE contact_details_file SET EmailAddress = 'none' WHERE Code = 'WANDA EY'")
       dbh.disconnect
-
   end
 end
