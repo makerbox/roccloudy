@@ -8,7 +8,7 @@ class TestController < ApplicationController
       contacts.each do |contact|
         if contact.Active == 1
           if account = Account.all.find_by(code: contact.Code.strip)
-            if !User.all.find_by(email: contact.EmailAddress)
+            if !User.all.find_by(email: contact.EmailAddress.strip)
               if email = contact.EmailAddress
                 thisuser = account.user
                 thisuser.email = email.strip
