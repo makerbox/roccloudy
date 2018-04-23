@@ -5,9 +5,7 @@ class TestController < ApplicationController
     @results = []
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%WANDA EY%'").fetch(:all, :Struct)
-      transactions.each do |t|
-        @results << t
-      end
+      @results << transactions.count
       dbh.disconnect 
 
   end
