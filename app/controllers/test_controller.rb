@@ -4,8 +4,21 @@ class TestController < ApplicationController
 	def index 
     @results = []
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%WANDA EY%'").fetch(:all, :Struct)
-      @results << transactions.count
+      contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
+      contacts.each do |contact|
+        if contact.Active == 1
+          if account = Account.all.find_by(code: contact.Code.strip)
+            if !User.all.find_by(email: contact.EmailAddress)
+              if email = contact.EmailAddress
+                thisuser = account.user
+                thisuser.email = email.strip
+                @results << email.strip
+                thisuser.save(validate: false)
+              end
+            end
+          end
+        end
+      end
       dbh.disconnect 
 
   end
