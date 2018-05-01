@@ -21,24 +21,24 @@ class TestController < ApplicationController
       #   @results << "-----------------------------------------------"
       # end
       # dbh.disconnect 
-      transactions = dbh.execute("SELECT * FROM invoice_header").fetch(:all, :Struct)
-      transactions.last(15).each do |t|
-        @results << "REFERENCE= " + t.Refer.to_s
-        @results << "-----------------------------------------------"
-      end
-      dbh.disconnect 
-            transactions = dbh.execute("SELECT * FROM customer_transactions").fetch(:all, :Struct)
-      transactions.last(15).each do |t|
-        @results << "REFERENCE= " + t.Refer.to_s
-        @results << "-----------------------------------------------"
-      end
-      dbh.disconnect 
-            transactions = dbh.execute("SELECT * FROM customer_std_charges").fetch(:all, :Struct)
-      transactions.last(15).each do |t|
-        @results << "REFERENCE= " + t.Refer.to_s
-        @results << "-----------------------------------------------"
-      end
-      dbh.disconnect 
+      # transactions = dbh.execute("SELECT * FROM invoice_header").fetch(:all, :Struct)
+      # transactions.last(15).each do |t|
+      #   @results << "REFERENCE= " + t.Refer.to_s
+      #   @results << "-----------------------------------------------"
+      # end
+      # dbh.disconnect 
+      #       transactions = dbh.execute("SELECT * FROM customer_transactions").fetch(:all, :Struct)
+      # transactions.last(15).each do |t|
+      #   @results << "REFERENCE= " + t.Refer.to_s
+      #   @results << "-----------------------------------------------"
+      # end
+      # dbh.disconnect 
+      #       transactions = dbh.execute("SELECT * FROM customer_std_charges").fetch(:all, :Struct)
+      # transactions.last(15).each do |t|
+      #   @results << "REFERENCE= " + t.Refer.to_s
+      #   @results << "-----------------------------------------------"
+      # end
+      # dbh.disconnect 
 
   end
 end
