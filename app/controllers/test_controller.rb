@@ -15,12 +15,12 @@ class TestController < ApplicationController
         @results << "-----------------------------------------------"
       end
       dbh.disconnect 
-            transactions = dbh.execute("SELECT * FROM invdtlext").fetch(:all, :Struct)
-      transactions.last(15).each do |t|
-        @results << "ORIGORDERREF= " + t.OrigOrderRef.to_s
-        @results << "-----------------------------------------------"
-      end
-      dbh.disconnect 
+      # transactions = dbh.execute("SELECT * FROM invdtlext").fetch(:all, :Struct)
+      # transactions.last(15).each do |t|
+      #   @results << "ORIGORDERREF= " + t.OrigOrderRef.to_s
+      #   @results << "-----------------------------------------------"
+      # end
+      # dbh.disconnect 
             transactions = dbh.execute("SELECT * FROM invoice_header").fetch(:all, :Struct)
       transactions.last(15).each do |t|
         @results << "REFERENCE= " + t.Refer.to_s
