@@ -21,7 +21,7 @@ class TestController < ApplicationController
       #   @results << "-----------------------------------------------"
       # end
       # dbh.disconnect 
-      transactions = dbh.execute("SELECT * FROM invoice_hdextn WHERE InternalDocNum LIKE '%99344%'").fetch(:all, :Struct)
+      transactions = dbh.execute("SELECT * FROM invoice_hdextn WHERE InternalDocNum = 99344").fetch(:all, :Struct)
       transactions.last(15).each do |t|
         @results << "Sub reference= " + t.SubRefNum.to_s
         @results << "WebRecNo= " + t.WebRecNo.to_s
