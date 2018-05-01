@@ -21,15 +21,11 @@ class TestController < ApplicationController
       #   @results << "-----------------------------------------------"
       # end
       # dbh.disconnect 
-      transactions = dbh.execute("SELECT * FROM invoice_header WHERE Code LIKE '%A LA MOD%'").fetch(:all, :Struct)
+      transactions = dbh.execute("SELECT * FROM invoice_hdextn WHERE InternalDocNum LIKE '%99344%'").fetch(:all, :Struct)
       transactions.last(15).each do |t|
-        @results << "CODE= " + t.Code.to_s
-        @results << "DATE= " + t.Date.to_s
-        @results << "INV ORDER NUM= " + t.InvOrderNum.to_s
-        @results << "INTERNAL DOC NUM= " + t.InternalDocNum.to_s
-        @results << "DOC NUM= " + t.DocNum.to_s
-        @results << "REFERENCE= " + t.Refer.to_s
-        
+        @results << "Sub reference= " + t.SubRefNum.to_s
+        @results << "WebRecNo= " + t.WebRecNo.to_s
+
         @results << "-----------------------------------------------"
       end
       dbh.disconnect 
