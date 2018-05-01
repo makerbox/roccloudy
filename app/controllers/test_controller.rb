@@ -4,7 +4,7 @@ class TestController < ApplicationController
 	def index 
     @results = []
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      transactions = dbh.execute("SELECT * FROM customer_transactions_file").fetch(:all, :Struct)
+      transactions = dbh.execute("SELECT * FROM customer_transactions").fetch(:all, :Struct)
       transactions.first(5).each do |t|
         @results << t.Code
         @results << t.TranDate
