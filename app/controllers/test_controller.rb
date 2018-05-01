@@ -26,6 +26,10 @@ class TestController < ApplicationController
         @results << "CODE= " + t.Code.to_s
         @results << "DATE= " + t.Date.to_s
         @results << "INV ORDER NUM= " + t.InvOrderNum.to_s
+        @results << "INTERNAL DOC NUM= " + t.InternalDocNum.to_s
+        @results << "DOC NUM= " + t.DocNum.to_s
+        @results << "REFERENCE= " + t.Refer.to_s
+        
         @results << "-----------------------------------------------"
       end
       dbh.disconnect 
