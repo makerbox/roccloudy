@@ -6,13 +6,13 @@ class TestController < ApplicationController
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       transactions = dbh.execute("SELECT * FROM customer_transactions").fetch(:all, :Struct)
       transactions.last(15).each do |t|
-        @results << "CODE= " + t.Code
-        @results << "DATE= " + t.TranDate
-        @results << "INVNUM= " + t.InvNum
-        @results << "DOCNUM= " + t.DocNum
-        @results << "TYPE= " + t.TranType
-        @results << "REFERENCE= " + t.Refer
-        @results << "AMOUNT= " + t.InvAmt
+        @results << "CODE= " + t.Code.to_s
+        @results << "DATE= " + t.TranDate.to_s
+        @results << "INVNUM= " + t.InvNum.to_s
+        @results << "DOCNUM= " + t.DocNum.to_s
+        @results << "TYPE= " + t.TranType.to_s
+        @results << "REFERENCE= " + t.Refer.to_s
+        @results << "AMOUNT= " + t.InvAmt.to_s
       end
       dbh.disconnect 
 
