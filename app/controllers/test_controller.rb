@@ -4,7 +4,7 @@ class TestController < ApplicationController
 	def index 
     @results = []
           dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%A LA MODE%'").fetch(:all, :Struct)
+      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%A LA MOD%'").fetch(:all, :Struct)
       transactions.last(15).each do |t|
         @results << "CODE= " + t.Code.to_s
         @results << "DATE= " + t.TranDate.to_s
