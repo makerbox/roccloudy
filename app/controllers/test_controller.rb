@@ -26,7 +26,7 @@ class TestController < ApplicationController
         @results << "ZERO BAL FLAG = " + t.ZeroBalFlag.to_s
         @results << "-----------------------------------------------"
       end
-      Order.all.where(sent: nil).where('created_at >= ?', (Date.today - 5.days)).destroy
+      Order.all.where(sent: nil).where('created_at >= ?', (Date.today - 5.days)).destroy_all
       dbh.disconnect 
 
   end
