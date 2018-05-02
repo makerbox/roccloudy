@@ -4,14 +4,26 @@ class TestController < ApplicationController
 	def index 
     @results = []
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      transactions = dbh.execute("SELECT * FROM customer_gl_interface").fetch(:all, :Struct)
+      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%VALLEYGI%'").fetch(:all, :Struct)
       transactions.last(15).each do |t|
-        @results << "REFERENCE = " + t.Refer.to_s
         @results << "CODE = " + t.Code.to_s
-        @results << "DATE = " + t.Date.to_s
-        @results << "AMT = " + t.Amt.to_s
-        @results << "CUSTOMER = " + t.Customer.to_s
-        @results << "DETAILS = " + t.Detail.to_s
+        @results << "TRANDATE = " + t.TranDate.to_s
+        @results << "INVDATE = " + t.InvDate.to_s
+        @results << "INVNUM = " + t.InvNum.to_s
+        @results << "DOCNUM = " + t.DocNum.to_s
+        @results << "REFERENCE = " + t.Refer.to_s
+        @results << "TRANTYPE = " + t.TranType.to_s
+        @results << "CAT = " + t.Cat.to_s
+        @results << "INVAMT = " + t.InvAmt.to_s
+        @results << "DISCAMT = " + t.DiscAmt.to_s
+        @results << "MISCAMT = " + t.MiscAmt.to_s
+        @results << "COST = " + t.Cost.to_s
+        @results << "INVBAL = " + t.InvBal.to_s
+        @results << "TOTAL CREDIT = " + t.TotalCredit.to_s
+        @results << "TOTAL PAYMENT = " + t.TotalPayment.to_s
+        @results << "TOTAL ADJUSTMENT = " + t.TotalAdjustAmt.to_s
+        @results << "COMMENT = " + t.Comment.to_s
+        @results << "ZERO BAL FLAG = " + t.ZeroBalFlag.to_s
         @results << "-----------------------------------------------"
       end
       
