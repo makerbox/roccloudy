@@ -26,7 +26,6 @@ class TestController < ApplicationController
         @results << "ZERO BAL FLAG = " + t.ZeroBalFlag.to_s
         @results << "-----------------------------------------------"
       end
-      Order.all.where(sent: nil).destroy_all
       dbh.disconnect 
 
   end
