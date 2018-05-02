@@ -20,7 +20,7 @@ class TestController < ApplicationController
         @results << "COST = " + t.Cost.to_s
         @results << "INVBAL = " + t.InvBal.to_s
         @results << "TOTAL CREDIT = " + t.TotalCredit.to_s
-        @results << "TOTAL PAYMENT = " + t.TotalPayment.to_s
+        @results << "TOTAL PAYMENT = " + t.TotalPayAmt.to_s
         @results << "TOTAL ADJUSTMENT = " + t.TotalAdjustAmt.to_s
         @results << "COMMENT = " + t.Comment.to_s
         @results << "ZERO BAL FLAG = " + t.ZeroBalFlag.to_s
