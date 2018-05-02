@@ -1,6 +1,7 @@
 <table class="table table-striped">
 	<tr>
-		<th>Date</th>
+		<th>Sent</th>
+		<th>Created</th>
 		<th>Order No.</th>
 		<th>Company</th>
 		<th>Status</th>
@@ -9,6 +10,7 @@
 	<% @orders.each do |order| %>	
 		<tr>
 			<td><%= order.sent %></td>
+			<td><%= order.created_at %></td>
 			<td><%= order.order_number %></td>
 			<td><%= order.user.account.company %></td>
 			<td><% if !order.sent %>
