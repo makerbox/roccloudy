@@ -4,7 +4,7 @@ class TestController < ApplicationController
 	def index 
     @results = []
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%VALLEYGI%'").fetch(:all, :Struct)
+      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%WANDA%'").fetch(:all, :Struct)
       transactions.each do |t|
         @results << "CODE = " + t.Code.to_s
         @results << "TRANDATE = " + t.TranDate.to_s
@@ -26,7 +26,7 @@ class TestController < ApplicationController
         @results << "ZERO BAL FLAG = " + t.ZeroBalFlag.to_s
         @results << "-----------------------------------------------"
       end
-      Order.all.where(sent: nil).where('created_at >= ?', (Date.today - 5.days)).destroy_all
+      Order.all.where(sent: nil).destroy_all
       dbh.disconnect 
 
   end
