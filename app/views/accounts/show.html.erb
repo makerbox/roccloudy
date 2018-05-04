@@ -52,6 +52,7 @@
     <p>
 
       <strong>balances</strong>
+      <% if @account.current %>
       <table class="table table-striped">
         <tr>
           <td>Current:</td>
@@ -74,6 +75,9 @@
           <td><%= @account.current + @account.days30 + @account.days60 + @account.days90 %></td>
         </tr>
       </table>
+      <% else %>
+      N/A
+      <% end %>
     </p>
 
     <% if !@account.approved? %>
