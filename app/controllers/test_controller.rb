@@ -11,7 +11,6 @@ class TestController < ApplicationController
       customer = dbh.execute("SELECT * FROM customer_master WHERE Code LIKE '%HAVANA%'").fetch(:all, :Struct)
 
       customer.each do |t|
-        @results << "CODE = " + t.Code.to_s
         @results << "CURRENT = " + t.CurrentBal.to_s
         @results << "30 = " + t.Period1Bal.to_s
         @results << "60 = " + t.Period2Bal.to_s
