@@ -1,35 +1,8 @@
 <div class="row">
   <div class="col-md-6">
     <%= @alert %>
+
     <p>
-
-      <strong>balances</strong>
-      <table>
-        <tr>
-          <td>Current:</td>
-          <td><%= @account.current %></td>
-        </tr>
-        <tr>
-          <td>30 Days:</td>
-          <td><%= @account.days30 %></td>
-        </tr>
-        <tr>
-          <td>60 days:</td>
-          <td><%= @account.days60 %></td>
-        </tr>
-        <tr>
-          <td>90 Days:</td>
-          <td><%= @account.days90 %></td>
-        </tr>
-        <tr>
-          <td>Total Outstanding:</td>
-          <td><%= @account.current + @account.days30 + @account.days60 + @account.days90 %></td>
-        </tr>
-      </table>
-
-
-
-
       <strong>code:</strong>
       <%= @account.code %>
     </p>
@@ -76,6 +49,32 @@
     </p>
 
 
+    <p>
+
+      <strong>balances</strong>
+      <table class="table table-striped">
+        <tr>
+          <td>Current:</td>
+          <td><%= @account.current %></td>
+        </tr>
+        <tr>
+          <td>30 Days:</td>
+          <td><%= @account.days30 %></td>
+        </tr>
+        <tr>
+          <td>60 days:</td>
+          <td><%= @account.days60 %></td>
+        </tr>
+        <tr>
+          <td>90 Days:</td>
+          <td><%= @account.days90 %></td>
+        </tr>
+        <tr>
+          <td>Total Outstanding:</td>
+          <td><%= @account.current + @account.days30 + @account.days60 + @account.days90 %></td>
+        </tr>
+      </table>
+    </p>
 
     <% if !@account.approved? %>
     <p>
