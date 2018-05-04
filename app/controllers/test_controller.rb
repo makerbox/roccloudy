@@ -17,7 +17,7 @@ class TestController < ApplicationController
         @results << "60 = " + t.Period2Bal.to_s
         @results << "90 = " + t.Period3Bal.to_s
         @results << "UNALLOCATED = " + t.UnallocBal.to_s
-        @results << "POST DATED = " + t.PostDatedBal.to_s
+        @results << "POST DATED = " + t.PostDateBal.to_s
         @results << "TOTAL OUTSTANDING = " + (t.CurrentBal + t.Period1Bal + t.Period2Bal + t.Period3Bal).to_s
         @results << "-----------------------------------------------"
       end
