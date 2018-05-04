@@ -10,7 +10,7 @@ class TestController < ApplicationController
       transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%WANDA%'").fetch(:all, :Struct)
 
       @results << transactions.count
-      transactions.sort_by(&:"#{TranDate}")
+      transactions.sort_by(:TranDate)
       transactions.each do |t|
         @results << "CODE = " + t.Code.to_s
         @results << "TRANDATE = " + t.TranDate.to_s
