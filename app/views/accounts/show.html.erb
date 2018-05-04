@@ -23,7 +23,7 @@
         </tr>
         <tr>
           <td>Total Outstanding:</td>
-          <td><%= @account.current + @account.30days + @account.60days + @account.90days %></td>
+          <td><%= (@account.current + @account.30days + @account.60days + @account.90days) %></td>
         </tr>
       </table>
 
