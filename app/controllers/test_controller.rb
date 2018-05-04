@@ -5,6 +5,7 @@ class TestController < ApplicationController
     @results = []
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       transactions = dbh.execute("SELECT * FROM customer_transactions WHERE TranDate >= '#{(Date.today - 30.days).strftime('%Y-%m-%d')}'").fetch(:all, :Struct)
+      @results << transactions.count
       transactions.each do |t|
         @results << "CODE = " + t.Code.to_s
         @results << "TRANDATE = " + t.TranDate.to_s
@@ -27,6 +28,7 @@ class TestController < ApplicationController
         @results << "-----------------------------------------------"
       end
       dbh.disconnect 
+
 
   end
 end
