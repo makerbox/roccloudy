@@ -7,7 +7,7 @@ class TestController < ApplicationController
 
       # transactions = dbh.execute("SELECT * FROM customer_transactions WHERE TranDate >= '#{(Date.today - 30.days).strftime('%Y-%m-%d')}'").fetch(:all, :Struct)
 
-      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Cose LIKE '%WANDA%'").fetch(:all, :Struct)
+      transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%WANDA%'").fetch(:all, :Struct)
 
       @results << transactions.count
       transactions.order_by(TranDate)
