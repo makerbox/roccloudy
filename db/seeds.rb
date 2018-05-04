@@ -357,7 +357,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       createrep('office@roccloudy.com', 'ADMINOFFICE')
 
 # ----------------update credit report for each account -------------
-  dbh = RDBI.connect :ODBC, :db => "wholesaleportalnz"
+  dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
   customer = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
   customer.each do |t|
     if account = Account.find_by(code: t.Code)
