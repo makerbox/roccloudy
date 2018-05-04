@@ -1,78 +1,106 @@
 <div class="row">
-<div class="col-md-6">
-  <%= @alert %>
-<p>
-<strong>code:</strong>
-<%= @account.code %>
-</p>
-<p>
-  <strong>name:</strong>
-  <%= @account.company %>
-</p>
+  <div class="col-md-6">
+    <%= @alert %>
+    <p>
 
-<p>
-  <strong>street:</strong>
-  <%= @account.street %>
-</p>
-
-<p>
-  <strong>Suburb:</strong>
-  <%= @account.suburb %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @account.state %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @account.phone %>
-</p>
-
-<% if !@account.approved? %>
-<p>
-  <strong>Interested in:</strong>
-  <%= @account.brands %>
-</p>
-<% end %>
-
-<p>
-  <strong>Contact name:</strong>
-  <%= @account.contact %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @account.website %>
-</p>
+      <strong>balances</strong>
+      <table>
+        <tr>
+          <td>Current:</td>
+          <td><%= @account.current %></td>
+        </tr>
+        <tr>
+          <td>30 Days:</td>
+          <td><%= @account.30days %></td>
+        </tr>
+        <tr>
+          <td>60 days:</td>
+          <td><%= @account.60days %></td>
+        </tr>
+        <tr>
+          <td>90 Days:</td>
+          <td><%= @account.90days %></td>
+        </tr>
+        <tr>
+          <td>Total Outstanding:</td>
+          <td><%= @account.current + @account.30days + @account.60days + @account.90days %></td>
+        </tr>
+      </table>
 
 
 
-<% if !@account.approved? %>
-<p>
-Account is pending approval.
-</p>
-<% end %>
-<% if current_user.has_role? :admin %>
-  
-<p>
-  <strong>Seller level:</strong>
-  <% if @account.seller_level  && @account.seller_level != '' %>
-    <%= @account.seller_level %>
-  <% else %>
-    <%= link_to 'Please moderate', edit_account_path(@account), class: 'btn btn-warning' %>
-  <% end %>
-</p>
-<% end %>
-<% if (current_user.account) || (current_user.has_role? :admin) %>
-<%= link_to 'Edit account details', edit_account_path(@account), class: 'btn btn-default' %>
-  <% if current_user.has_role? :admin %>
+
+      <strong>code:</strong>
+      <%= @account.code %>
+    </p>
+    <p>
+      <strong>name:</strong>
+      <%= @account.company %>
+    </p>
+
+    <p>
+      <strong>street:</strong>
+      <%= @account.street %>
+    </p>
+
+    <p>
+      <strong>Suburb:</strong>
+      <%= @account.suburb %>
+    </p>
+
+    <p>
+      <strong>State:</strong>
+      <%= @account.state %>
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      <%= @account.phone %>
+    </p>
+
+    <% if !@account.approved? %>
+    <p>
+      <strong>Interested in:</strong>
+      <%= @account.brands %>
+    </p>
+    <% end %>
+
+    <p>
+      <strong>Contact name:</strong>
+      <%= @account.contact %>
+    </p>
+
+    <p>
+      <strong>Website:</strong>
+      <%= @account.website %>
+    </p>
+
+
+
+    <% if !@account.approved? %>
+    <p>
+      Account is pending approval.
+    </p>
+    <% end %>
+    <% if current_user.has_role? :admin %>
+
+    <p>
+      <strong>Seller level:</strong>
+      <% if @account.seller_level  && @account.seller_level != '' %>
+      <%= @account.seller_level %>
+      <% else %>
+      <%= link_to 'Please moderate', edit_account_path(@account), class: 'btn btn-warning' %>
+      <% end %>
+    </p>
+    <% end %>
+    <% if (current_user.account) || (current_user.has_role? :admin) %>
+    <%= link_to 'Edit account details', edit_account_path(@account), class: 'btn btn-default' %>
+    <% if current_user.has_role? :admin %>
     <%= link_to 'Order for this customer', orderas_account_path(account: @account.id), class: 'btn btn-info' %>
-  <% end %>
-<% end %>
-</div>
-<div class="col-md-6">
-<%= render 'orders/index' %>
-</div>
+    <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'orders/index' %>
+  </div>
 </div>
