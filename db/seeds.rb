@@ -356,7 +356,15 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       createrep('nz@roccloudy.com', 'REPNZ')
       createrep('office@roccloudy.com', 'ADMINOFFICE')
 
-
+# ----------------update credit report for each account -------------
+  dbh = RDBI.connect :ODBC, :db => "wholesaleportalnz"
+  customer = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
+  customer.each do |t|
+    if account = Account.find_by(code: t.Code)
+      account.update(current: t.CurrentBal, days30: t.Period1Bal, days60: t.Period2Bal, days90: t.Period3Bal)
+    end
+  end
+  dbh.disconnect 
 
 
 # ---------------destroy all old quantities ---------------
