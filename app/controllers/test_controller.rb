@@ -8,7 +8,7 @@ class TestController < ApplicationController
       # transactions = dbh.execute("SELECT * FROM customer_transactions WHERE TranDate >= '#{(Date.today - 30.days).strftime('%Y-%m-%d')}'").fetch(:all, :Struct)
       # transactions = dbh.execute("SELECT * FROM customer_transactions WHERE Code LIKE '%VALLEYGI%'").fetch(:all, :Struct)
 
-      customer = dbh.execute("SELECT * FROM customer_master WHERE Code LIKE '%VALLEYGI%'").fetch(:all, :Struct)
+      customer = dbh.execute("SELECT * FROM customer_master WHERE Code LIKE '%HAVANA%'").fetch(:all, :Struct)
 
       customer.each do |t|
         @results << "CODE = " + t.Code.to_s
