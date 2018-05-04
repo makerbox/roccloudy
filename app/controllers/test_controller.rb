@@ -12,11 +12,13 @@ class TestController < ApplicationController
 
       customer.each do |t|
         @results << "CODE = " + t.Code.to_s
-        @results << "CURRENT BALANCE = " + t.CurrentBal.to_s
-        @results << "PERIOD 1 BALANCE = " + t.Period1Bal.to_s
-        @results << "PERIOD 2 BALANCE = " + t.Period2Bal.to_s
-        @results << "PERIOD 3 BALANCE = " + t.Period3Bal.to_s
-        @results << "OUTSTANDING BALANCE = " + t.UnallocBal.to_s
+        @results << "CURRENT = " + t.CurrentBal.to_s
+        @results << "30 = " + t.Period1Bal.to_s
+        @results << "60 = " + t.Period2Bal.to_s
+        @results << "90 = " + t.Period3Bal.to_s
+        @results << "UNALLOCATED = " + t.UnallocBal.to_s
+        @results << "POST DATED = " + t.PostDatedBal.to_s
+        @results << "TOTAL OUTSTANDING = " + (t.CurrentBal + t.Period1Bal + t.Period2Bal + t.Period3Bal).to_s
         @results << "-----------------------------------------------"
       end
       dbh.disconnect 
