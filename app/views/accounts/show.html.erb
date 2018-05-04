@@ -11,19 +11,19 @@
         </tr>
         <tr>
           <td>30 Days:</td>
-          <td><%= @account.30days %></td>
+          <td><%= @account.days30 %></td>
         </tr>
         <tr>
           <td>60 days:</td>
-          <td><%= @account.60days %></td>
+          <td><%= @account.days60 %></td>
         </tr>
         <tr>
           <td>90 Days:</td>
-          <td><%= @account.90days %></td>
+          <td><%= @account.days90 %></td>
         </tr>
         <tr>
           <td>Total Outstanding:</td>
-          <td><%= (@account.current + @account.30days + @account.60days + @account.90days) %></td>
+          <td><%= @account.current + @account.days30 + @account.days60 + @account.days90 %></td>
         </tr>
       </table>
 
