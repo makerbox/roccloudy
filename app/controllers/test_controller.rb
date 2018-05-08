@@ -2,6 +2,7 @@ class TestController < ApplicationController
 	skip_before_action :authenticate_user!
 	
 	def index 
+    @results = []
     # -------------------------GET CUSTOMERS AND ADD / UPDATE THE DB----------------------------------
 
       counter = 0
@@ -33,7 +34,10 @@ class TestController < ApplicationController
           when '6'
             payterms =  ce.TermsDays.to_s + 'Days after Month end'
           end
-          email = ce.EmailAddr.downcase
+          if !ce.EmailAddr.blank?
+            email = ce.EmailAddr.downcase
+            @results << email
+          end
           if !Account.all.find_by(code: code)
             if email.blank?
               email = counter
