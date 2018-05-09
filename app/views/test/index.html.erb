@@ -6,6 +6,6 @@
           <%= link_to 'PULL', home_pull_path, class: 'btn btn-info' %><%= link_to 'SEED', home_seed_path, class: 'btn btn-info' %><%= link_to 'SUICIDE', home_test_path, class: 'btn btn-danger' %>
           <hr>
 <% @results.each do |p| %>
-|<%= p.email %>|<%= p.id %><br>
+|<%= p.email %>|<%= p.id %>|<%= p.account.id %>|<br>
 <% end %>
 <%= link_to 'test params', test_index_path(order: Order.last) %>
