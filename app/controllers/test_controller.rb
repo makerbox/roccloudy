@@ -11,7 +11,7 @@ class TestController < ApplicationController
       @customers_ext.each do |ce|
         counter += 1
         code = ce.Code.strip
-        if ce.InactiveCust == 1
+        if ce.InactiveCust == 0
           @results << code
         end
       end
