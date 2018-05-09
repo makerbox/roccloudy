@@ -7,7 +7,11 @@ class TestController < ApplicationController
     @suspects.each do |s|
       thisuser = User.find_by(email: s.email.strip)
       @results << thisuser.email
-      @results << thisuser.account
+      if thisacct = thisuser.account
+        @results << thisacct.id
+        @results << thisacct.code
+      end
+      @results << '=' * 10
     end
 
 
