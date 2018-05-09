@@ -114,7 +114,6 @@
 
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-            <%= current_user.email %><%= current_user.id %>
             <% if (current_user.has_role? :admin) || (current_user.has_role? :rep) %>
             <li><%= link_to 'Customers', accounts_path %></li>
             <% else %>
