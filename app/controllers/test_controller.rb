@@ -13,7 +13,6 @@ class TestController < ApplicationController
         code = ce.Code.strip
         if code == 'SHIMMERS'
           @results << code
-          @results << ce.
         end
       end
       dbh.disconnect 
