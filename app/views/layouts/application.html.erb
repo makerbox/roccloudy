@@ -121,6 +121,7 @@
             <li><%= link_to 'My Account', new_user_session_path %></li>
             <% else %>
             <% if !current_user.account %>
+            <%= current_user.email %>
             <li><%= link_to 'create account for approval', new_account_path(current_user) %></li>
             <% else %>
             <% if current_user.account.approved != 'approved' %>
