@@ -5,7 +5,9 @@ class TestController < ApplicationController
     @results = []
     @suspects = User.all.where('email LIKE ?', '%    %')
     @suspects.each do |s|
-      @results << User.find_by(email: s.email.strip)
+      thisuser = User.find_by(email: s.email.strip)
+      @results << thisuser.email
+      @results << thisuser.account
     end
 
 
