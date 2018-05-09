@@ -239,7 +239,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
             payterms =  ce.TermsDays.to_s + 'Days after Month end'
           end
           if !ce.EmailAddr.blank?
-            email = ce.EmailAddr.downcase
+            email = ce.EmailAddr.downcase.strip
           end
           if !Account.all.find_by(code: code)
             if email.blank?
