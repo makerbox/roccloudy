@@ -14,6 +14,7 @@ class TestController < ApplicationController
         if ce.InactiveCust == 1
           @results << code
         end
+      end
       dbh.disconnect 
 
 
