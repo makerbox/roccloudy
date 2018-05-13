@@ -306,7 +306,7 @@ def add_product_to_cart
   # htmlstring += number_with_precision(prodprice, precision: 2)
   subtotal = qty.to_i * prodprice
 
-  htmlstring += '<div class="qty"> x '
+  htmlstring += '<div class="qty test"> x '
   htmlstring += qty
   htmlstring += '<a href="' + edit_quantity_path(@newquantity.id) + '" class="fa fa-pencil-alt"></a>'
   htmlstring += '</div> ------- $'+subtotal.to_s
