@@ -242,10 +242,10 @@ def add_product_to_cart
     else
       @order = Order.new(user: current_user, active: true, approved: false, complete: false)
     end
+    @order.save
     #update the order to have an order number based on it's ID
     order_num = 'W' + @order.id.to_s
-    @order.order_number = order_num
-    @order.save
+    @order.update(order_number: order_num)    
     #and then add it to the new order
     @newquantity.order = @order
   end
