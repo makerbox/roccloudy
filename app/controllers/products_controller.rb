@@ -235,7 +235,7 @@ def add_product_to_cart
   order_id = params[:order_id]
   @newquantity = Quantity.new(qty: qty, product_id: product_id, order_id: order_id)
   @newquantity.brand = @newquantity.product.group
-  if @newquantity.order == nil
+  if @newquantity.order_id == nil
     #if there is not active order to add this to, we will just make one
     if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
       @order = Order.new(user: current_user.mimic.account.user, active: true, approved: false, complete: false)
@@ -247,7 +247,7 @@ def add_product_to_cart
     order_num = 'W' + @order.id.to_s
     @order.update(order_number: order_num)    
     #and then add it to the new order
-    @newquantity.order = @order
+    @newquantity.order_id = @order.id
   end
 
   case @newquantity.product.group
