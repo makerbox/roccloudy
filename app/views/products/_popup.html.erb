@@ -88,7 +88,7 @@
 					type: "GET",
 					data: { qty: $("#<%= @thisproduct.code %> .quantity_qty .form-control").val(),
 					product: '<%= @thisproduct.id %>',
-					order_id: $("#quantity_order_id").val(); },
+					order_id: $("#quantity_order_id").val() },
 					success: function(data) {
 						$('#quantity_order_id').val(data.id);
 						var locationString = location.href + ' #cart-container';
