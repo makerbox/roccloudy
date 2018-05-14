@@ -251,19 +251,16 @@ def add_product_to_cart
   end
 
   case @newquantity.product.group
-  when 'C' , 'J'
-    group = 'roc'
-  when 'L'
-    group = 'polasports'
-  when 'LC'
-    group = 'locello'
-  when 'E' , 'R' , 'D' , 'A'
-    group = 'unity'
+    when 'C' , 'J'
+      group = 'roc'
+    when 'L'
+      group = 'polasports'
+    when 'LC'
+      group = 'locello'
+    when 'E' , 'R' , 'D' , 'A'
+      group = 'unity'
   end
   @newquantity.save
-else
-
-end
 end
 
 # GET /products/new
