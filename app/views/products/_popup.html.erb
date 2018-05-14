@@ -55,7 +55,7 @@
 	<% if @order %>
 		<%= f.hidden_field :order_id, value: @order.id %>
 	<% else %>
-		<%= f.hidden_field :order_id %>
+		<input type="hidden" id="quantity_order_id">
 	<% end %>
 	<%= f.hidden_field :thisgroup, value: @thisproduct.group %>
 	<%= f.hidden_field :product_id, value: @thisproduct.id %>
