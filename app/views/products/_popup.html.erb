@@ -82,18 +82,13 @@
 						});
 				$('#cart-container').html('ADDING... <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
-				if ($('#orderid').val()){
-					var orderid = $('#orderid').val();
-				}else{
-					var orderid = $("#<%= @thisproduct.code %> #quantity_order_id").val();
-				};
 				$.ajax({
 					url: route,
 					dataType: "json",
 					type: "GET",
 					data: { qty: $("#<%= @thisproduct.code %> .quantity_qty .form-control").val(),
 					product: '<%= @thisproduct.id %>',
-					order_id: orderid },
+					order_id: var orderid = $("#quantity_order_id").val(); },
 					success: function(data) {
 						$('#quantity_order_id').val(data.id);
 						var locationString = location.href + ' #cart-container';
