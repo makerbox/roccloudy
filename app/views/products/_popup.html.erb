@@ -55,7 +55,7 @@
 	<% if @order %>
 		<%= f.hidden_field :order_id, value: @order.id %>
 	<% else %>
-		<input type="hidden" id="quantity_order_id">
+		<input type="hidden" id="quantity_order_id" val="">
 	<% end %>
 	<%= f.hidden_field :thisgroup, value: @thisproduct.group %>
 	<%= f.hidden_field :product_id, value: @thisproduct.id %>
@@ -88,7 +88,7 @@
 					type: "GET",
 					data: { qty: $("#<%= @thisproduct.code %> .quantity_qty .form-control").val(),
 					product: '<%= @thisproduct.id %>',
-					order_id: var orderid = $("#quantity_order_id").val(); },
+					order_id: $("#quantity_order_id").val(); },
 					success: function(data) {
 						$('#quantity_order_id').val(data.id);
 						var locationString = location.href + ' #cart-container';
