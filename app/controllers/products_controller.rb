@@ -235,19 +235,18 @@ def add_product_to_cart
   order_id = params[:order_id]
   @newquantity = Quantity.new(qty: qty, product_id: product_id, order_id: order_id)
   @newquantity.brand = @newquantity.product.group
-  if @newquantity.order_id == nil
-    #if there is not active order to add this to, we will just make one
-    if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
-      @order = Order.new(user: current_user.mimic.account.user, active: true, approved: false, complete: false)
-    else
-      @order = Order.new(user: current_user, active: true, approved: false, complete: false)
-    end
-    @order.save
+  if @newquantity.order == nil
+  #if there is not active order to add this to, we will just make one
+  if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
+    @order = Order.create(user: current_user.mimic.account.user, active: true, approved: false, complete: false)
+  else
+    @order = Order.create(user: current_user, active: true, approved: false, complete: false)
+  end
     #update the order to have an order number based on it's ID
     order_num = 'W' + @order.id.to_s
-    @order.update(order_number: order_num)    
+    @order.update(order_number: order_num)
     #and then add it to the new order
-    @newquantity.order_id = @order.id
+    @newquantity.order = @order
   end
 
   case @newquantity.product.group
@@ -269,18 +268,18 @@ def add_product_to_cart
     else
      htmlstring += '<div class="po">'
     end
-    htmlstring += '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
-    htmlstring += '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
-    htmlstring += '</div>'+thisproduct.code.to_s
-    htmlstring += '</a>'
-    if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?)
+     htmlstring += '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
+     htmlstring += '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
+     htmlstring += '</div>'+thisproduct.code.to_s
+     htmlstring += '</a>'
+     if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (!current_user.mimic.nil?)
       level = current_user.mimic.account.seller_level.to_i
       thisperson = current_user.mimic.account.user
     else
       level = current_user.account.seller_level.to_i
       thisperson = current_user
     end
-  case level
+    case level
     when 1
       oldprice = thisproduct.price1
       prodprice = thisproduct.calc_discount(thisperson, thisproduct.price1, thisproduct.group, thisproduct.code, thisproduct.pricecat, qty)
@@ -299,24 +298,25 @@ def add_product_to_cart
     when 6
       oldprice = thisproduct.rrp
       prodprice = thisproduct.rrp
+    end
+
+    htmlstring += '$'
+    htmlstring += prodprice.to_s
+    # htmlstring += number_with_precision(prodprice, precision: 2)
+    subtotal = qty.to_i * prodprice
+
+    htmlstring += '<div class="qty"> x '
+    htmlstring += qty
+    htmlstring += '<a href="' + edit_quantity_path(@newquantity.id) + '" class="fa fa-pencil-alt"></a>'
+    htmlstring += '</div> ------- $'+subtotal.to_s
+    htmlstring += '<a data-qty="'+qty+'" data-price="'+prodprice.to_s+'" data-disable-with="removing..." class="btn btn-warning remove-btn" data-remote="true" href="/products/' + @newquantity.id.to_s + '/remove" onclick="removeMe(this)">remove</a>' 
+    htmlstring += '</div>'
+
+    respond_to do |format|
+      format.json { render json: {result: htmlstring.html_safe} }
+    end
+
   end
-
-  htmlstring += '$'
-  htmlstring += prodprice.to_s
-  # htmlstring += number_with_precision(prodprice, precision: 2)
-  subtotal = qty.to_i * prodprice
-
-  htmlstring += '<div class="qty test"> x '
-  htmlstring += qty
-  htmlstring += '<a href="' + edit_quantity_path(@newquantity.id) + '" class="fa fa-pencil-alt"></a>'
-  htmlstring += '</div> ------- $'+subtotal.to_s
-  htmlstring += '<a data-qty="'+qty+'" data-price="'+prodprice.to_s+'" data-disable-with="removing..." class="btn btn-warning remove-btn" data-remote="true" href="/products/' + @newquantity.id.to_s + '/remove" onclick="removeMe(this)">remove</a>' 
-  htmlstring += '</div>'
-
-  respond_to do |format|
-    format.json { render json: {result: htmlstring.html_safe} }
-  end
-
 end
 
 # GET /products/new
