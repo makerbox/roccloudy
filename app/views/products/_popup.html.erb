@@ -54,8 +54,6 @@
 	<% end %>
 	<% if @order %>
 		<%= f.hidden_field :order_id, value: @order.id %>
-	<% else %>
-		<%= f.hidden_field :order_id %>
 	<% end %>
 	<%= f.hidden_field :thisgroup, value: @thisproduct.group %>
 	<%= f.hidden_field :product_id, value: @thisproduct.id %>
@@ -82,13 +80,18 @@
 						});
 				$('#cart-container').html('ADDING... <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
+				if ($('#orderid')){
+					var orderid = $('#orderid').val();
+				}else{
+					var orderid = $("#<%= @thisproduct.code %> #quantity_order_id").val();
+				};
 				$.ajax({
 					url: route,
 					dataType: "json",
 					type: "GET",
 					data: { qty: $("#<%= @thisproduct.code %> .quantity_qty .form-control").val(),
 					product: '<%= @thisproduct.id %>',
-					order_id: $("#<%= @thisproduct.code %> #quantity_order_id").val() },
+					order_id: orderid },
 					success: function(data) {
 						var locationString = location.href + ' #cart-container';
 						$('#cart-container').load(locationString, function(){
