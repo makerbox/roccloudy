@@ -316,7 +316,7 @@ def add_product_to_cart
       format.json { render json: {result: htmlstring.html_safe} }
     end
 
-    return @order.id
+    return @order
   end
 end
 
