@@ -246,7 +246,7 @@ def add_product_to_cart
     order_num = 'W' + @order.id.to_s
     @order.update(order_number: order_num)
     #and then add it to the new order
-    @newquantity.order = @order
+    @newquantity.order_id = @order.id
   end
 
   case @newquantity.product.group
