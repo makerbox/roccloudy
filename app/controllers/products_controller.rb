@@ -249,6 +249,7 @@ def add_product_to_cart
     @newquantity.order_id = @order.id
     htmlstring = '<div id="orderid" value="'+@order.id.to_s+'"></div>'
   else
+    @order = Order.find(order_id)
     htmlstring = ''
   end
 
