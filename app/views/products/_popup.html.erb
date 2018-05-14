@@ -90,6 +90,7 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: $("#quantity_order_id").val() },
 					success: function(data) {
+						console.log(data.id);
 						$('#quantity_order_id').val(data.id);
 						var locationString = location.href + ' #cart-container';
 						$('#cart-container').load(locationString, function(){
