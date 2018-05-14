@@ -315,7 +315,7 @@ def add_product_to_cart
     htmlstring += '</div>'
 
     respond_to do |format|
-      format.json { render json: {result: @order} }
+      format.json { render json: {result: @order.id} }
     end
 
   end
