@@ -318,7 +318,6 @@ def add_product_to_cart
       format.json { render json: {result: @order} }
     end
 
-    return @order
   end
 end
 

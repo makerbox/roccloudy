@@ -93,6 +93,7 @@
 					product: '<%= @thisproduct.id %>',
 					order_id: orderid },
 					success: function(data) {
+						console.log(data);
 						var locationString = location.href + ' #cart-container';
 						$('#cart-container').load(locationString, function(){
 							$('#<%= @thisproduct.code %> .add-to-cart').css({
