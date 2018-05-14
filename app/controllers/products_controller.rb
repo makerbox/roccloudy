@@ -268,7 +268,7 @@ def add_product_to_cart
     if @newquantity.order.quantities.where(product: thisproduct).count > 1
       htmlstring += '<div class="po warning">Item already in cart<br>'
     else
-     htmlstring += '<div class="po">'
+     htmlstring += '<div class="po test">'
     end
      htmlstring += '<a href="/products/' + product_id.to_s + '"><div class="product-thumbnail">'
      htmlstring += '<img src="http://res.cloudinary.com/ddmbp4xnw/image/upload/'+thisproduct.code.to_s+'.jpg">'
