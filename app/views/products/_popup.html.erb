@@ -80,7 +80,7 @@
 						});
 				$('#cart-container').html('ADDING... <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>');
 				var route = "/products/<%= @thisproduct.id %>/add_product_to_cart";
-				if ($('#orderid')){
+				if ($('#orderid').val()){
 					var orderid = $('#orderid').val();
 				}else{
 					var orderid = $("#<%= @thisproduct.code %> #quantity_order_id").val();
