@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
       q.product.update(qty: newqty)
     end
     sent = DateTime.now
-    @order.update(active: false, sent: sent, total: params[:total]) # move order to pending and give it a total
+    @order.update(active: false, sent: sent) # move order to pending and give it a total
     
     @account = @order.user.account
     OrderEmailJob.perform_async(@order)
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     if ((current_user.has_role? :admin) || (current_user.has_role? :rep)) && (current_user.mimic)
       current_user.mimic.destroy
     end
-
+    
     redirect_to "http://218.214.73.21:3200/orders/#{@order.id}/kfime"
     # redirect_to "http://wholesale.roccloudy.com/home/confirm"
   end
