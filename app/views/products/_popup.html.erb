@@ -59,7 +59,7 @@
 	<% end %>
 	<%= f.hidden_field :thisgroup, value: @thisproduct.group %>
 	<%= f.hidden_field :product_id, value: @thisproduct.id %>
-	<%= f.hidden_field :product_id, value: prodprice %>
+	<%= f.hidden_field :product_price, value: prodprice %>
 	<%= f.submit "ADD TO CART", data: {"disable-with": "adding.."}, class: 'btn btn-success add-to-cart' %>
 	<script>
 		$('.add-to-cart').css('display','none');
