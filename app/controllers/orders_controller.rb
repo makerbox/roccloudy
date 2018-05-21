@@ -16,9 +16,10 @@ class OrdersController < ApplicationController
       oldqty = q.product.qty
       newqty = oldqty - q.qty
       q.product.update(qty: newqty)
+      total += (q.qty * q.price)
     end
     sent = DateTime.now
-    @order.update(active: false, sent: sent, total: params[:total]) # move order to pending and give it a total
+    @order.update(active: false, sent: sent, total: total) # move order to pending and give it a total
     
     @account = @order.user.account
     OrderEmailJob.perform_async(@order)
