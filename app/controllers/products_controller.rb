@@ -232,8 +232,9 @@ end
 def add_product_to_cart
   qty = params[:qty]
   product_id = params[:product]
+  product_price = params[:product_price]
   order_id = params[:order_id]
-  @newquantity = Quantity.new(qty: qty, product_id: product_id, order_id: order_id)
+  @newquantity = Quantity.new(qty: qty, product_id: product_id, order_id: order_id, price: product_price)
   @newquantity.brand = @newquantity.product.group
   if @newquantity.order == nil
     #if there is not active order to add this to, we will just make one
