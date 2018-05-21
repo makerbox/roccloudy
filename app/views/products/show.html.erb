@@ -69,6 +69,7 @@
 				  		<% if @order %>
 				  			<%= f.hidden_field :order_id, value: @order.id %>
 				  			<%= f.hidden_field :thisgroup, value: @product.group %>
+                <%= f.hidden_field :price, value: prodprice %>
 				  		<% end %>
 				  		<%= f.hidden_field :product_id, value: @product.id %>
 				  		<%= f.submit "ADD TO CART", class: 'btn btn-success' %>
