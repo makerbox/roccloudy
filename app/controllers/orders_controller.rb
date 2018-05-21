@@ -11,12 +11,12 @@ class OrdersController < ApplicationController
       original.update(qty: newqty)
       these_quantities.all.where.not(id: original.id).destroy_all
     end
-
+    total = 0
     @order.quantities.each do |q| # change stock levels and calc order total
       oldqty = q.product.qty
       newqty = oldqty - q.qty
       q.product.update(qty: newqty)
-      total += (q.qty * q.price)
+      total = total + (q.qty * q.price)
     end
     sent = DateTime.now
     @order.update(active: false, sent: sent, total: total) # move order to pending and give it a total
