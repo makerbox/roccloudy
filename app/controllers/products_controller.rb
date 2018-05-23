@@ -255,7 +255,7 @@ def add_product_to_cart
   if @newquantity.save
     respond_to do |format|
       format.json { render json: {result: @order.id} }
-  end
+    end
 
   end
 end
