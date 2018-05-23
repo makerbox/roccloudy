@@ -269,7 +269,9 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
         if Account.all.find_by(code: code)
           account = Account.all.find_by(code: code)
           if c.InDispute == 1
-            account.update(dispute: true)
+            dispute = true
+          else
+            dispute = false
           end
           compname = c.Name
           street = c.Street
