@@ -346,7 +346,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
             Account.create(code: repcode, company: 'Roc', user: repuser, sort: 'U/L/R/P')
           end
         else
-          repuser = User.new(email: repemail, password:'cloudy_16', password_confirmation: 'cloudy_16')
+          repuser = User.new(email: repemail, password:'1023@Ralph', password_confirmation: '1023@Ralph')
           repuser.add_role :rep
           repuser.save(validate: false)
           Account.create(code: repcode, company: 'Roc', user: repuser, sort: 'U/L/R/P')
@@ -356,9 +356,19 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       createrep('nsw@roccloudy.com', 'REPNSW')
       createrep('vic@roccloudy.com', 'REPVIC')
       createrep('qld1@roccloudy.com', 'REPQLD1')
-      createrep('qld2@roccloudy.com', 'REPQLD2')
+      # createrep('qld2@roccloudy.com', 'REPQLD2')
       createrep('nz@roccloudy.com', 'REPNZ')
       createrep('office@roccloudy.com', 'ADMINOFFICE')
+
+      # def editrep(repemail)
+      #   repuser = User.all.find_by(email: repemail)
+      #   repuser.update_attributes(password:'1023@Ralph', password_confirmation: '1023@Ralph')
+      # end
+      # editrep('nsw@roccloudy.com')
+      # editrep('vic@roccloudy.com')
+      # editrep('qld1@roccloudy.com')
+      # editrep('nz@roccloudy.com')
+      # editrep('office@roccloudy.com')
 
 # ----------------update credit report for each account -------------
   dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
