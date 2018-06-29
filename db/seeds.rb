@@ -326,7 +326,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
             Account.create(code: admincode, company: 'Roc', user: adminuser, sort: 'U/L/R/P')
           end
         else
-          adminuser = User.new(email: adminemail, password:'cloudy_16', password_confirmation: 'cloudy_16')
+          adminuser = User.new(email: adminemail, password:'1023@Ralph', password_confirmation: '1023@Ralph')
           adminuser.add_role :admin
           adminuser.save(validate: false)
           Account.create(code: admincode, company: 'Roc', user: adminuser, sort: 'U/L/R/P')
