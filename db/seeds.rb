@@ -360,6 +360,10 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       createrep('nz@roccloudy.com', 'REPNZ')
       createrep('office@roccloudy.com', 'ADMINOFFICE')
 
+      # CODE FOR HEROKU CONSOLE TO EDIT ADMIN AND REP PASSWORDS
+      # -----------------------------------
+      # REP PASSWORDS
+      # -------------
       # def editrep(repemail)
       #   repuser = User.all.find_by(email: repemail)
       #   repuser.update_attributes(password:'1023@Ralph', password_confirmation: '1023@Ralph')
@@ -369,6 +373,15 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # editrep('qld1@roccloudy.com')
       # editrep('nz@roccloudy.com')
       # editrep('office@roccloudy.com')
+      # ----------------------------------
+      # ADMIN PASSWORDS
+      # -------------
+      # def editadmin(adminemail)
+      #   adminuser = User.all.find_by(email: adminemail)
+      #   adminuser.update_attributes(password:'1023@Ralph', password_confirmation: '1023@Ralph')
+      # end
+      # editadmin('web@roccloudy.com')
+      # editadmin('office@roccloudy.com')
 
 # ----------------update credit report for each account -------------
   dbh = RDBI.connect :ODBC, :db => "wholesaleportal"

@@ -3,59 +3,35 @@ class TestController < ApplicationController
 	
 	def index 
     @results = []
-    counter = 0
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
-      @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
-      @customers_ext.each do |ce|
-        counter += 1
-        code = ce.Code.strip
-        if ce.InactiveCust == 1
-          if Account.all.find_by(code: code)
-            account = Account.all.find_by(code: code) # if there is an attache inactive account already in the portal, we delete it and its user
-            user = account.user
-            account.destroy
-            user.destroy
-          end
+    dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+    @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
+    @products.each do |p|
+      if Product.all.where(code: code).exists?
+        @results << 'product exists'
+        Product.all.find_by(code: code).update_attributes(allow_disc: allow_disc, pricecat: pricecat, group: group, code: code, description: description, price1: price1, price2: price2, price3: price3, price4: price4, price5: price5, rrp: rrp, qty: qty)
+        filename = "E:\\Attache\\Attache\\Roc\\Images\\Product\\" + code + ".jpg"
+        if File.exist?(filename)
+          @results << 'image exists'
+          # Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
+          # stop from overloading transformations
         else
-          payterms = ce.PaymentTerms.to_s
-          case payterms
-          when '1'
-            payterms = 'COD'
-          when '2'
-            payterms = 'Set Day of Month (' + ce.TermsDays.to_s + ')'
-          when '3'
-            payterms = 'Set Day of Next Month (' + ce.TermsDays.to_s + ')'
-          when '4'
-            payterms = 'Day of Month after Next (' + ce.TermsDays.to_s + ')'
-          when '5'
-            payterms = ce.TermsDays.to_s + ' Days'
-          when '6'
-            payterms =  ce.TermsDays.to_s + 'Days after Month end'
-          end
-          if !ce.EmailAddr.blank?
-            email = ce.EmailAddr.downcase.strip
-            @results << email
-          end
-          if !Account.all.find_by(code: code)
-            if email.blank?
-              email = counter
-            end
-            if !User.all.find_by(email: email)
-              newuser = User.new(email: email, password: "roccloudyportal", password_confirmation: "roccloudyportal") #create the user
-              if newuser.save(validate: false) #false to skip validation
-                newuser.add_role :user
-                newaccount = Account.new(payterms: payterms, code: code, user: newuser) #create the account and associate with user
-                newaccount.save
-              end
-            end
-          else
-            Account.all.find_by(code: code).update(payterms: payterms)
-            Account.all.find_by(code: code).user.update(email: email)
-          end
+          @results << 'destroy when image not existent'
         end
+        @results << filename
+        @results << '-------------------------------'
+      else
+        'no such product'
+        filename = "E:\\Attache\\Attache\\Roc\\Images\\Product\\" + code + ".jpg"
+        if File.exist?(filename)
+          @results << 'image exists'
+          # Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
+          # stop from overloading transformations
+          
+        end
+        @results << filename
+        @results << '-------------------------------'
+        
       end
-      dbh.disconnect 
-
-
+    end
   end
 end
