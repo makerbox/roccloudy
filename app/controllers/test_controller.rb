@@ -10,21 +10,21 @@ class TestController < ApplicationController
         if p.Inactive == 0
           code = p.Code.strip
           description = p.Description.to_s.strip
-          price1 = p.Salesprice1
-          price2 = p.Salesprice2
-          price3 = p.Salesprice3
-          price4 = p.Salesprice4
-          price5 = p.Salesprice5
-          rrp = p.Salesprice6
-          qty = p.Qtyinstock
-          qty = qty - p.Qtyreserve
-          if p.Allowdisc == 1
+          price1 = p.SalesPrice1
+          price2 = p.SalesPrice2
+          price3 = p.SalesPrice3
+          price4 = p.SalesPrice4
+          price5 = p.SalesPrice5
+          rrp = p.SalesPrice6
+          qty = p.QtyInStock
+          qty = qty - p.QtyReserve
+          if p.AllowDisc == 1
             allow_disc = true
           else
             allow_disc = false
           end
-          group = p.Productgroup.to_s.strip
-          pricecat = p.Pricecat.to_s.strip
+          group = p.ProductGroup.to_s.strip
+          pricecat = p.PriceCat.to_s.strip
           puts pricecat
               # # needs category
               if Product.all.where(code: code).exists?
