@@ -8,23 +8,23 @@ class TestController < ApplicationController
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
       @products.each do |p|
         if p.Inactive == 0
-          code = p.code.strip
-          description = p.description.to_s.strip
-          price1 = p.salesprice1
-          price2 = p.salesprice2
-          price3 = p.salesprice3
-          price4 = p.salesprice4
-          price5 = p.salesprice5
-          rrp = p.salesprice6
-          qty = p.qtyinstock
-          qty = qty - p.qtyreserve
-          if p.allowdisc == 1
+          code = p.Code.strip
+          description = p.Description.to_s.strip
+          price1 = p.Salesprice1
+          price2 = p.Salesprice2
+          price3 = p.Salesprice3
+          price4 = p.Salesprice4
+          price5 = p.Salesprice5
+          rrp = p.Salesprice6
+          qty = p.Qtyinstock
+          qty = qty - p.Qtyreserve
+          if p.Allowdisc == 1
             allow_disc = true
           else
             allow_disc = false
           end
-          group = p.productgroup.to_s.strip
-          pricecat = p.pricecat.to_s.strip
+          group = p.Productgroup.to_s.strip
+          pricecat = p.Pricecat.to_s.strip
           puts pricecat
               # # needs category
               if Product.all.where(code: code).exists?
