@@ -49,7 +49,7 @@ class TestController < ApplicationController
               end
             else
               #destroy inactive
-              code = p.code.strip
+              code = p.Code.strip
               if thisprod = Product.all.find_by(code: code)
                 thisprod.destroy
               end
