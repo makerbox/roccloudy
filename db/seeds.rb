@@ -7,24 +7,24 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
       @products.each do |p|
-        if p.inactive == 0
-          code = p.code.strip
-          description = p.description.to_s.strip
-          price1 = p.salesprice1
-          price2 = p.salesprice2
-          price3 = p.salesprice3
-          price4 = p.salesprice4
-          price5 = p.salesprice5
-          rrp = p.salesprice6
-          qty = p.qtyinstock
-          qty = qty - p.qtyreserve
-          if p.allowdisc == 1
+        if p.Inactive == 0
+          code = p.Code.strip
+          description = p.Description.to_s.strip
+          price1 = p.SalesPrice1
+          price2 = p.SalesPrice2
+          price3 = p.SalesPrice3
+          price4 = p.SalesPrice4
+          price5 = p.SalesPrice5
+          rrp = p.SalesPrice6
+          qty = p.QtyInStock
+          qty = qty - p.QtyReserve
+          if p.AllowDisc == 1
             allow_disc = true
           else
             allow_disc = false
           end
-          group = p.productgroup.to_s.strip
-          pricecat = p.pricecat.to_s.strip
+          group = p.ProductGroup.to_s.strip
+          pricecat = p.PriceCat.to_s.strip
           puts pricecat
               # # needs category
               if Product.all.where(code: code).exists?
@@ -49,7 +49,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
               end
             else
               #destroy inactive
-              code = p.code.strip
+              code = p.Code.strip
               if thisprod = Product.all.find_by(code: code)
                 thisprod.destroy
               end
@@ -64,9 +64,9 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       @categories = dbh.execute("SELECT * FROM prodmastext").fetch(:all, :Struct)
       @categories.each do |cat|
             if cat.costcentre #if the prodmastext record has a category, then let's do it
-              categorycode = cat.code.strip
+              categorycode = cat.Code.strip
               if Product.find_by(code: categorycode) #if the product exists, let's give it the category (some products without images have no dice)
-                Product.find_by(code: categorycode).update_attributes(category: cat.costcentre.strip)
+                Product.find_by(code: categorycode).update_attributes(category: cat.CostCentre.strip)
               end
             end
           end
@@ -80,7 +80,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       @datedata.each do |d|
         code = d.Code.strip
         if Product.find_by(code: code)
-          Product.find_by(code: code).update_attributes(new_date: d.datefld)
+          Product.find_by(code: code).update_attributes(new_date: d.DateFld)
         end
       end
 
@@ -92,10 +92,10 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       @fabdata = dbh.execute("SELECT * FROM produdefdata").fetch(:all, :Struct)
       fab = ''
       @fabdata.each do |d|
-        code = d.code.strip
+        code = d.Code.strip
         if Product.find_by(code: code)
-          if !d.textfld.blank?
-            fab = d.textfld.strip
+          if !d.TextFld.blank?
+            fab = d.TextFld.strip
             Product.find_by(code: code).update_attributes(fab: fab)
           end
         end
@@ -157,52 +157,52 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
 
           discounts.each do |d|
             if (d.levelnum >= 1) 
-              percentage = d.discperc1
-              fixed = d.price1
-              fixedprice = d.pricecode1
+              percentage = d.DiscPerc1
+              fixed = d.Price1
+              fixedprice = d.PriceCode1
               level = 1
-              maxqty = d.maxqty1
-              disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
+              maxqty = d.MaxQty1
+              disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
             end
-            if (d.levelnum >= 2) 
-              percentage = d.discperc2
-              fixed = d.price2
-              fixedprice = d.pricecode2
+            if (d.LevelNum >= 2) 
+              percentage = d.DiscPerc2
+              fixed = d.Price2
+              fixedprice = d.PriceCode2
               level = 2
-              maxqty = d.maxqty2
-              disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
+              maxqty = d.MaxQty2
+              disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
             end
             if (d.LevelNum >= 3) 
-              percentage = d.discperc3
-              fixed = d.price3
-              fixedprice = d.pricecode3
+              percentage = d.DiscPerc3
+              fixed = d.Price3
+              fixedprice = d.PriceCode3
               level = 3
-              maxqty = d.maxqty3
-              disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
+              maxqty = d.MaxQty3
+              disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
             end
-            if (d.levelnum >= 4) 
-              percentage = d.discperc4
-              fixed = d.price4
-              fixedprice = d.pricecode4
+            if (d.LevelNum >= 4) 
+              percentage = d.DiscPerc4
+              fixed = d.Price4
+              fixedprice = d.PriceCode4
               level = 4
-              maxqty = d.maxqty4
+              maxqty = d.MaxQty4
               disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
             end
-            if (d.levelnum >= 5) 
-              percentage = d.discperc5
-              fixed = d.price5
-              fixedprice = d.pricecode5
+            if (d.LevelNum >= 5) 
+              percentage = d.DiscPerc5
+              fixed = d.Price5
+              fixedprice = d.PriceCode5
               level = 5
-              maxqty = d.maxqty5
-              disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
+              maxqty = d.MaxQty5
+              disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
             end
-            if (d.levelnum >= 6) 
-              percentage = d.discperc6
-              fixed = d.price6
-              fixedprice = d.pricecode6
+            if (d.LevelNum >= 6) 
+              percentage = d.DiscPerc6
+              fixed = d.Price6
+              fixedprice = d.PriceCode6
               level = 6
-              maxqty = d.maxqty6
-              disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
+              maxqty = d.MaxQty6
+              disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
             end
           end
 
@@ -215,8 +215,8 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
       @customers_ext.each do |ce|
         counter += 1
-        code = ce.code.strip
-        if ce.inactivecust == 1
+        code = ce.Code.strip
+        if ce.InactiveCust == 1
           if Account.all.find_by(code: code)
             account = Account.all.find_by(code: code) # if there is an attache inactive account already in the portal, we delete it and its user
             user = account.user
@@ -224,7 +224,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
             user.destroy
           end
         else
-          payterms = ce.paymentterms.to_s
+          payterms = ce.PaymentTerms.to_s
           case payterms
           when '1'
             payterms = 'COD'
@@ -239,8 +239,8 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
           when '6'
             payterms =  ce.termsdays.to_s + 'Days after Month end'
           end
-          if !ce.emailaddr.blank?
-            email = ce.emailaddr.downcase.strip
+          if !ce.EmailAddr.blank?
+            email = ce.EmailAddr.downcase.strip
           end
           if !Account.all.find_by(code: code)
             if email.blank?
@@ -266,24 +266,24 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       @customers = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
       @customers.each do |c|
-        code = c.code.strip
+        code = c.Code.strip
         if Account.all.find_by(code: code)
           account = Account.all.find_by(code: code)
-          if c.indispute == 1
+          if c.InDispute == 1
             dispute = true
           else
             dispute = false
           end
-          compname = c.name
-          street = c.street
-          suburb = c.suburb 
-          state = c.territory
-          postcode = c.postcode 
-          phone = c.phone 
-          sort = c.sort 
-          discount = c.specialpricecat 
-          seller_level = c.pricecat
-          rep = c.salesrep
+          compname = c.Name
+          street = c.Street
+          suburb = c.Suburb 
+          state = c.Territory
+          postcode = c.Postcode 
+          phone = c.Phone 
+          sort = c.Sort 
+          discount = c.SpecialPriceCat 
+          seller_level = c.PriceCat
+          rep = c.SalesRep
           account.update_attributes(approved: 'approved', phone: phone, street: street, state: state, suburb: suburb, postcode: postcode, sort: sort, company: compname, rep: rep, seller_level: seller_level, discount: discount)
         end
       end
@@ -295,7 +295,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       contacts.each do |contact|
         if contact.Active == 1
           if account = Account.all.find_by(code: contact.Code.strip)
-            if email = contact.emailaddress
+            if email = contact.EmailAddress
               email = email.strip.downcase
               if !User.all.find_by(email: email)
                 thisuser = account.user
@@ -388,8 +388,8 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
   dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
   customer = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
   customer.each do |t|
-    if account = Account.find_by(code: t.code.strip)
-      account.update(current: t.currentbal, days30: t.period1bal, days60: t.period2bal, days90: t.period3bal)
+    if account = Account.find_by(code: t.Code.strip)
+      account.update(current: t.CurrentBal, days30: t.Period1Bal, days60: t.Period2Bal, days90: t.Period3Bal)
     end
   end
   dbh.disconnect 
