@@ -2,7 +2,7 @@
 # Contact.create(code:'running', email:'running')
 
 puts 'RUNNING SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED'
-dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
 
       # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
@@ -59,7 +59,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
           dbh.disconnect
 
       #-------------------------UPDATE PRODUCTS WITH CATEGORIES -------------------------------------
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
       @categories = dbh.execute("SELECT * FROM prodmastext").fetch(:all, :Struct)
       @categories.each do |cat|
@@ -73,7 +73,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
           dbh.disconnect
 
       #------------------------GET DATES AND UPDATE THE PRODUCTS WITH new_date FIELD-----------------------
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
 
       @datedata = dbh.execute("SELECT * FROM produdefdata").fetch(:all, :Struct)
 
@@ -87,7 +87,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       dbh.disconnect
 
       # ------------------------GET FABS, CONNECT THEM, AND UPDATE THE PRODUCTS-----------------------
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
 
       @fabdata = dbh.execute("SELECT * FROM produdefdata").fetch(:all, :Struct)
       fab = ''
@@ -105,7 +105,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
 
       # ------------------------DISCOUNTS---------------------------------------------------------
        Discount.destroy_all #wipe existing discounts in case of some deletions in Attache
-       dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+       dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
        discounts = dbh.execute("SELECT * FROM product_special_prices").fetch(:all, :Struct)
 
        def disco(percentage, fixed, fixedprice, level, maxqty, ctype, ptype, cust, prod)
@@ -211,7 +211,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # -------------------------GET CUSTOMERS AND ADD / UPDATE THE DB----------------------------------
 
       counter = 0
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
       @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
       @customers_ext.each do |ce|
         counter += 1
@@ -263,7 +263,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       dbh.disconnect 
 
 
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
       @customers = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
       @customers.each do |c|
         code = c.Code.strip
@@ -290,7 +290,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       dbh.disconnect 
 
       # --------------------- ADD EMAIL ADDRESSES ----------------------
-      dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
       contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
       contacts.each do |contact|
         if contact.Active == 1
@@ -385,7 +385,7 @@ dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
       # editadmin('office@roccloudy.com')
 
 # ----------------update credit report for each account -------------
-  dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+  dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
   customer = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
   customer.each do |t|
     if account = Account.find_by(code: t.Code.strip)
