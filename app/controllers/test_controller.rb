@@ -2,7 +2,9 @@ class TestController < ApplicationController
 	skip_before_action :authenticate_user!
 	
 	def index 
-    dbh = RDBI.connect :ODBC, :db => "wholesaleportal"
+    
+		
+		dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
 
       # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
@@ -30,8 +32,10 @@ class TestController < ApplicationController
               if Product.all.where(code: code).exists?
                 Product.all.find_by(code: code).update_attributes(allow_disc: allow_disc, pricecat: pricecat, group: group, code: code, description: description, price1: price1, price2: price2, price3: price3, price4: price4, price5: price5, rrp: rrp, qty: qty)
                 # filename = "E:\\Attache\\Attache\\Roc\\Images\\Product\\" + code + ".jpg"
-                filename = "Z:\\AttacheBI\\Resources\\ROC\\images\\Product\\1\\" + code + ".jpg"
+                # filename = "Z:\\AttacheBI\\Resources\\ROC\\images\\Product\\1\\" + code + ".jpg"
+                filename = "E:\\AttacheBI\\Resources\\ROC\\images\\Product\\1\\" + code + ".jpg"
                 if File.exist?(filename)
+			@results << filename
                   Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
                   # stop from overloading transformations
                 else
@@ -39,8 +43,10 @@ class TestController < ApplicationController
                 end
               else
                 newproduct = Product.new(allow_disc: allow_disc, pricecat: pricecat, group: group, code: code, description: description, price1: price1, price2: price2, price3: price3, price4: price4, price5: price5, rrp: rrp, qty: qty, hidden: false)
-                filename = "Z:\\AttacheBI\\Resources\\ROC\\images\\Product\\1\\" + code + ".jpg"
+                # filename = "Z:\\AttacheBI\\Resources\\ROC\\images\\Product\\1\\" + code + ".jpg"
+                filename = "E:\\AttacheBI\\Resources\\ROC\\images\\Product\\1\\" + code + ".jpg"
                 if File.exist?(filename)
+			@results << filename
                   Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
                   # stop from overloading transformations
                   newproduct.save
@@ -57,5 +63,7 @@ class TestController < ApplicationController
           end
 
           dbh.disconnect
+	
+	
   end
 end
