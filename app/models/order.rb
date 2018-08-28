@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   
   def kfi
   	filename = 'W' + self.id.to_s
-  	path = "E:\\Attache\\Attache\\Roc\\KFIDATA\\Orders\\" + filename + ".kfi"
+  	path = "E:\\Attache\\AttacheBI\\ROC\\KFIDATA\\Orders\\" + filename + ".kfi"
   	items = []
     myquantities = self.quantities.order(brand: :asc)
     myquantities = myquantities.joins(:product).merge(Product.order(code: :asc)) #to order by associated product's code
