@@ -164,7 +164,7 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
           end
 
           discounts.each do |d|
-            if (d.levelnum >= 1) 
+            if (d.LevelNum >= 1) 
               percentage = d.DiscPerc1
               fixed = d.Price1
               fixedprice = d.PriceCode1
