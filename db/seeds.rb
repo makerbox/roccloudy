@@ -4,7 +4,7 @@
 puts 'RUNNING SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED'
 dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
 
-      # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
+       # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
       @products.each do |p|
         if p.Inactive == 0
@@ -65,7 +65,7 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
       @categories = dbh.execute("SELECT * FROM prodmastext").fetch(:all, :Struct)
       @categories.each do |cat|
-            if cat.costcentre #if the prodmastext record has a category, then let's do it
+            if cat.CostCentre #if the prodmastext record has a category, then let's do it
               categorycode = cat.Code.strip
               if Product.find_by(code: categorycode) #if the product exists, let's give it the category (some products without images have no dice)
                 Product.find_by(code: categorycode).update_attributes(category: cat.CostCentre.strip)
@@ -158,7 +158,7 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
           end
 
           discounts.each do |d|
-            if (d.levelnum >= 1) 
+            if (d.LevelNum >= 1) 
               percentage = d.DiscPerc1
               fixed = d.Price1
               fixedprice = d.PriceCode1
