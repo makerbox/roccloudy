@@ -218,156 +218,156 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
 
       # -------------------------GET CUSTOMERS AND ADD / UPDATE THE DB----------------------------------
 
-      counter = 0
-      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
-      @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
-      @customers_ext.each do |ce|
-        counter += 1
-        code = ce.Code.strip
-        if ce.InactiveCust == 1
-          if Account.all.find_by(code: code)
-            account = Account.all.find_by(code: code) # if there is an attache inactive account already in the portal, we delete it and its user
-            user = account.user
-            account.destroy
-            user.destroy
-          end
-        else
-          payterms = ce.PaymentTerms.to_s
-          case payterms
-          when '1'
-            payterms = 'COD'
-          when '2'
-            payterms = 'Set Day of Month (' + ce.termsdays.to_s + ')'
-          when '3'
-            payterms = 'Set Day of Next Month (' + ce.termsdays.to_s + ')'
-          when '4'
-            payterms = 'Day of Month after Next (' + ce.termsdays.to_s + ')'
-          when '5'
-            payterms = ce.termsdays.to_s + ' Days'
-          when '6'
-            payterms =  ce.termsdays.to_s + 'Days after Month end'
-          end
-          if !ce.EmailAddr.blank?
-            email = ce.EmailAddr.downcase.strip
-          end
-          if !Account.all.find_by(code: code)
-            if email.blank?
-              email = counter
-            end
-            if !User.all.find_by(email: email)
-              newuser = User.new(email: email, password: "roccloudyportal", password_confirmation: "roccloudyportal") #create the user
-              if newuser.save(validate: false) #false to skip validation
-                newuser.add_role :user
-                newaccount = Account.new(payterms: payterms, code: code, user: newuser) #create the account and associate with user
-                newaccount.save
-              end
-            end
-          else
-            Account.all.find_by(code: code).update(payterms: payterms)
-            Account.all.find_by(code: code).user.update(email: email)
-          end
-        end
-      end
-      dbh.disconnect 
+#       counter = 0
+#       dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
+#       @customers_ext = dbh.execute("SELECT * FROM customer_mastext").fetch(:all, :Struct)
+#       @customers_ext.each do |ce|
+#         counter += 1
+#         code = ce.Code.strip
+#         if ce.InactiveCust == 1
+#           if Account.all.find_by(code: code)
+#             account = Account.all.find_by(code: code) # if there is an attache inactive account already in the portal, we delete it and its user
+#             user = account.user
+#             account.destroy
+#             user.destroy
+#           end
+#         else
+#           payterms = ce.PaymentTerms.to_s
+#           case payterms
+#           when '1'
+#             payterms = 'COD'
+#           when '2'
+#             payterms = 'Set Day of Month (' + ce.termsdays.to_s + ')'
+#           when '3'
+#             payterms = 'Set Day of Next Month (' + ce.termsdays.to_s + ')'
+#           when '4'
+#             payterms = 'Day of Month after Next (' + ce.termsdays.to_s + ')'
+#           when '5'
+#             payterms = ce.termsdays.to_s + ' Days'
+#           when '6'
+#             payterms =  ce.termsdays.to_s + 'Days after Month end'
+#           end
+#           if !ce.EmailAddr.blank?
+#             email = ce.EmailAddr.downcase.strip
+#           end
+#           if !Account.all.find_by(code: code)
+#             if email.blank?
+#               email = counter
+#             end
+#             if !User.all.find_by(email: email)
+#               newuser = User.new(email: email, password: "roccloudyportal", password_confirmation: "roccloudyportal") #create the user
+#               if newuser.save(validate: false) #false to skip validation
+#                 newuser.add_role :user
+#                 newaccount = Account.new(payterms: payterms, code: code, user: newuser) #create the account and associate with user
+#                 newaccount.save
+#               end
+#             end
+#           else
+#             Account.all.find_by(code: code).update(payterms: payterms)
+#             Account.all.find_by(code: code).user.update(email: email)
+#           end
+#         end
+#       end
+#       dbh.disconnect 
 
 
-      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
-      @customers = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
-      @customers.each do |c|
-        code = c.Code.strip
-        if Account.all.find_by(code: code)
-          account = Account.all.find_by(code: code)
-          if c.InDispute == 1
-            dispute = true
-          else
-            dispute = false
-          end
-          compname = c.Name
-          street = c.Street
-          suburb = c.Suburb 
-          state = c.Territory
-          postcode = c.Postcode 
-          phone = c.Phone 
-          sort = c.Sort 
-          discount = c.SpecialPriceCat 
-          seller_level = c.PriceCat
-          rep = c.SalesRep
-          account.update_attributes(approved: 'approved', phone: phone, street: street, state: state, suburb: suburb, postcode: postcode, sort: sort, company: compname, rep: rep, seller_level: seller_level, discount: discount)
-        end
-      end
-      dbh.disconnect 
+#       dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
+#       @customers = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
+#       @customers.each do |c|
+#         code = c.Code.strip
+#         if Account.all.find_by(code: code)
+#           account = Account.all.find_by(code: code)
+#           if c.InDispute == 1
+#             dispute = true
+#           else
+#             dispute = false
+#           end
+#           compname = c.Name
+#           street = c.Street
+#           suburb = c.Suburb 
+#           state = c.Territory
+#           postcode = c.Postcode 
+#           phone = c.Phone 
+#           sort = c.Sort 
+#           discount = c.SpecialPriceCat 
+#           seller_level = c.PriceCat
+#           rep = c.SalesRep
+#           account.update_attributes(approved: 'approved', phone: phone, street: street, state: state, suburb: suburb, postcode: postcode, sort: sort, company: compname, rep: rep, seller_level: seller_level, discount: discount)
+#         end
+#       end
+#       dbh.disconnect 
 
       # --------------------- ADD EMAIL ADDRESSES ----------------------
-      dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
-      contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
-      contacts.each do |contact|
-        if contact.Active == 1
-          if account = Account.all.find_by(code: contact.Code.strip)
-            if email = contact.EmailAddress
-              email = email.strip.downcase
-              if !User.all.find_by(email: email)
-                thisuser = account.user
-                thisuser.email = email.strip
-                thisuser.save(validate: false)
-              end
-            end
-          end
-        end
-      end
-      dbh.disconnect 
+#       dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
+#       contacts = dbh.execute("SELECT * FROM contact_details_file").fetch(:all, :Struct)
+#       contacts.each do |contact|
+#         if contact.Active == 1
+#           if account = Account.all.find_by(code: contact.Code.strip)
+#             if email = contact.EmailAddress
+#               email = email.strip.downcase
+#               if !User.all.find_by(email: email)
+#                 thisuser = account.user
+#                 thisuser.email = email.strip
+#                 thisuser.save(validate: false)
+#               end
+#             end
+#           end
+#         end
+#       end
+#       dbh.disconnect 
 
       #------------------------- SET DEFAULT SELLER LEVEL ---------------------
-      unset = Account.all.where(seller_level: nil)
-      unset.each do |acct|
-        acct.update_attributes(seller_level: '1')
-      end
+#       unset = Account.all.where(seller_level: nil)
+#       unset.each do |acct|
+#         acct.update_attributes(seller_level: '1')
+#       end
 
 
       #-------------------------- CREATE ADMIN USER -------------------------------------
 
-      def createadmin(adminemail, admincode)
-        if adminuser = User.all.find_by(email: adminemail)
-          adminuser.add_role :admin
-          adminuser.remove_role :user
-          if adminuser.account
-            adminuser.account.update_attributes(approved: 'approved', sort: 'U/L/R/P')
-          else
-            Account.create(code: admincode, company: 'Roc', user: adminuser, sort: 'U/L/R/P')
-          end
-        else
-          adminuser = User.new(email: adminemail, password:'1023@Ralph', password_confirmation: '1023@Ralph')
-          adminuser.add_role :admin
-          adminuser.save(validate: false)
-          Account.create(code: admincode, company: 'Roc', user: adminuser, sort: 'U/L/R/P')
-        end
-      end
-      createadmin('web@roccloudy.com', 'ADMIN')
-      createadmin('office@roccloudy.com', 'OFFICE')
+#       def createadmin(adminemail, admincode)
+#         if adminuser = User.all.find_by(email: adminemail)
+#           adminuser.add_role :admin
+#           adminuser.remove_role :user
+#           if adminuser.account
+#             adminuser.account.update_attributes(approved: 'approved', sort: 'U/L/R/P')
+#           else
+#             Account.create(code: admincode, company: 'Roc', user: adminuser, sort: 'U/L/R/P')
+#           end
+#         else
+#           adminuser = User.new(email: adminemail, password:'1023@Ralph', password_confirmation: '1023@Ralph')
+#           adminuser.add_role :admin
+#           adminuser.save(validate: false)
+#           Account.create(code: admincode, company: 'Roc', user: adminuser, sort: 'U/L/R/P')
+#         end
+#       end
+#       createadmin('web@roccloudy.com', 'ADMIN')
+#       createadmin('office@roccloudy.com', 'OFFICE')
 
       #-------------------------- CREATE REP ACCOUNTS -----------------------------------
-      def createrep(repemail, repcode)
-        if repuser = User.all.find_by(email: repemail)
-          repuser.add_role :rep
-          repuser.remove_role :user
-          if repuser.account
-            repuser.account.update_attributes(approved: 'approved', sort: 'U/L/R/P')
-          else
-            Account.create(code: repcode, company: 'Roc', user: repuser, sort: 'U/L/R/P')
-          end
-        else
-          repuser = User.new(email: repemail, password:'1023@Ralph', password_confirmation: '1023@Ralph')
-          repuser.add_role :rep
-          repuser.save(validate: false)
-          Account.create(code: repcode, company: 'Roc', user: repuser, sort: 'U/L/R/P')
-        end
-      end
+#       def createrep(repemail, repcode)
+#         if repuser = User.all.find_by(email: repemail)
+#           repuser.add_role :rep
+#           repuser.remove_role :user
+#           if repuser.account
+#             repuser.account.update_attributes(approved: 'approved', sort: 'U/L/R/P')
+#           else
+#             Account.create(code: repcode, company: 'Roc', user: repuser, sort: 'U/L/R/P')
+#           end
+#         else
+#           repuser = User.new(email: repemail, password:'1023@Ralph', password_confirmation: '1023@Ralph')
+#           repuser.add_role :rep
+#           repuser.save(validate: false)
+#           Account.create(code: repcode, company: 'Roc', user: repuser, sort: 'U/L/R/P')
+#         end
+#       end
 
-      createrep('nsw@roccloudy.com', 'REPNSW')
-      createrep('vic@roccloudy.com', 'REPVIC')
-      createrep('qld1@roccloudy.com', 'REPQLD1')
-      # createrep('qld2@roccloudy.com', 'REPQLD2')
-      createrep('nz@roccloudy.com', 'REPNZ')
-      createrep('office@roccloudy.com', 'ADMINOFFICE')
+#       createrep('nsw@roccloudy.com', 'REPNSW')
+#       createrep('vic@roccloudy.com', 'REPVIC')
+#       createrep('qld1@roccloudy.com', 'REPQLD1')
+#       # createrep('qld2@roccloudy.com', 'REPQLD2')
+#       createrep('nz@roccloudy.com', 'REPNZ')
+#       createrep('office@roccloudy.com', 'ADMINOFFICE')
 
       # CODE FOR HEROKU CONSOLE TO EDIT ADMIN AND REP PASSWORDS
       # -----------------------------------
@@ -393,20 +393,20 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
       # editadmin('office@roccloudy.com')
 
 # ----------------update credit report for each account -------------
-  dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
-  customer = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
-  customer.each do |t|
-    if account = Account.find_by(code: t.Code.strip)
-      account.update(current: t.CurrentBal, days30: t.Period1Bal, days60: t.Period2Bal, days90: t.Period3Bal)
-    end
-  end
-  dbh.disconnect 
+#   dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
+#   customer = dbh.execute("SELECT * FROM customer_master").fetch(:all, :Struct)
+#   customer.each do |t|
+#     if account = Account.find_by(code: t.Code.strip)
+#       account.update(current: t.CurrentBal, days30: t.Period1Bal, days60: t.Period2Bal, days90: t.Period3Bal)
+#     end
+#   end
+#   dbh.disconnect 
 
 
 # ---------------destroy all old quantities ---------------
 # Quantity.all.where('created_at <= ?', (Date.today - 30.days)).destroy
 # ---------------destroy all old, unsent orders ---------------
-Order.all.where(sent: nil).where('created_at <= ?', (Date.today - 30.days)).destroy_all
+# Order.all.where(sent: nil).where('created_at <= ?', (Date.today - 30.days)).destroy_all
       # ------------------------META DATA--------------------------------------------------------------
 
       
