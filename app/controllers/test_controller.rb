@@ -164,9 +164,22 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
           end
 
           discounts.each do |d|
+		  @results << "========================"
+		  @results << 'level num'
 		  @results << d.LevelNum
+		  @results << 'disc perc'
 		  @results << d.DiscPerc1
+		  @results << 'price code'
 		  @results << d.PriceCode1
+		  @results << 'cust type'
+		  @results << d.CustomerType
+		  @results << 'prod type'
+		  @results << d.ProductType
+		  @results << 'cust'
+		  @results << d.Customer
+		  @results << 'prod'
+		  @results << d.Product
+		  @results << "------------------------"
 		  
 #             if (d.LevelNum >= 1) 
 #               percentage = d.DiscPerc1
