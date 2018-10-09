@@ -53,7 +53,7 @@ class TestController < ApplicationController
         puts cust.strip
         discount = sprintf("%.2f", discount)
         puts discount
-        if customertype == blank
+        if customertype.nil?
           @results << "========================"
           @results << d.CustomerType
           @results << "------------------------"
