@@ -153,19 +153,20 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
                 maxqty = 9999
               end
             end
+            end
             if !prod.nil? && !cust.nil?
               puts 'DISCOUNT------------------------------'
               puts cust.strip
               discount = sprintf("%.2f", discount)
               puts discount
-		     if !customertype
-		  @results << "========================"
-		  @results << d.CustomerType
-		  @results << "------------------------"
-		     else
-              		Discount.create(customertype: customertype, producttype: producttype, customer: cust.strip, product: prod.strip, discount: discount, level: level, maxqty: maxqty, disctype: disctype)
-		     end
-		end
+              if !customertype
+                @results << "========================"
+                @results << d.CustomerType
+                @results << "------------------------"
+              else
+                Discount.create(customertype: customertype, producttype: producttype, customer: cust.strip, product: prod.strip, discount: discount, level: level, maxqty: maxqty, disctype: disctype)
+              end
+            end
 		
           end
 
