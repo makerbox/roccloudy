@@ -231,15 +231,15 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
           when '1'
             payterms = 'COD'
           when '2'
-            payterms = 'Set Day of Month (' + ce.termsdays.to_s + ')'
+            payterms = 'Set Day of Month (' + ce.TermsDays.to_s + ')'
           when '3'
-            payterms = 'Set Day of Next Month (' + ce.termsdays.to_s + ')'
+            payterms = 'Set Day of Next Month (' + ce.TermsDays.to_s + ')'
           when '4'
-            payterms = 'Day of Month after Next (' + ce.termsdays.to_s + ')'
+            payterms = 'Day of Month after Next (' + ce.TermsDays.to_s + ')'
           when '5'
-            payterms = ce.termsdays.to_s + ' Days'
+            payterms = ce.TermsDays.to_s + ' Days'
           when '6'
-            payterms =  ce.termsdays.to_s + 'Days after Month end'
+            payterms =  ce.TermsDays.to_s + 'Days after Month end'
           end
           if !ce.EmailAddr.blank?
             email = ce.EmailAddr.downcase.strip
