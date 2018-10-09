@@ -158,7 +158,7 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
               puts cust.strip
               discount = sprintf("%.2f", discount)
               puts discount
-              Discount.create(customertype: ctype, producttype: ptype, customer: cust.strip, product: prod.strip, discount: discount, level: level, maxqty: maxqty, disctype: disctype)
+              Discount.create(customertype: customertype, producttype: producttype, customer: cust.strip, product: prod.strip, discount: discount, level: level, maxqty: maxqty, disctype: disctype)
             end
 
           end
