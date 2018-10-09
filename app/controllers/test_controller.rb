@@ -10,13 +10,13 @@ class TestController < ApplicationController
   puts 'RUNNING SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED'
   dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
   discounts = dbh.execute("SELECT * FROM product_special_prices").fetch(:all, :Struct)
-
+  
     def disco(percentage, fixed, fixedprice, level, maxqty, ctype, ptype, cust, prod)
       if fixedprice == 9 #if the discount is a fixed price
         disctype = 'fixedtype'
         discount = fixed
         if ctype == 10
-          customertype = 'code_fixed'
+          customertype1 = 'code_fixed'
         else
           customertype = 'group_fixed'
         end
@@ -31,9 +31,9 @@ class TestController < ApplicationController
         disctype = 'percentagetype'
         discount = percentage
         if ctype == 10
-          customertype = 'code_percent'
+          customertype2 = 'code_percent'
         else
-          customertype = 'group_percent'
+          customertype3 = 'group_percent'
         end
         if ptype == 10
           producttype = 'code_percent'
@@ -53,11 +53,11 @@ class TestController < ApplicationController
         puts cust.strip
         discount = sprintf("%.2f", discount)
         puts discount
-        if customertype.nil?
-          @results << "========================"
-          @results << d.CustomerType
-          @results << "------------------------"
-        end 
+#         if customertype.nil?
+#           @results << "========================"
+#           @results << d.CustomerType
+#           @results << "------------------------"
+#         end 
         # Discount.create(customertype: customertype, producttype: producttype, customer: cust.strip, product: prod.strip, discount: discount, level: level, maxqty: maxqty, disctype: disctype)
       end
     end
