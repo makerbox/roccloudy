@@ -159,7 +159,7 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
               puts cust.strip
               discount = sprintf("%.2f", discount)
               puts discount
-              if !customertype
+              if customertype == blank
                 @results << "========================"
                 @results << d.CustomerType
                 @results << "------------------------"
