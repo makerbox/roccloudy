@@ -158,28 +158,18 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
               puts cust.strip
               discount = sprintf("%.2f", discount)
               puts discount
-              Discount.create(customertype: customertype, producttype: producttype, customer: cust.strip, product: prod.strip, discount: discount, level: level, maxqty: maxqty, disctype: disctype)
-            end
-
+		     if !customertype
+		  @results << "========================"
+		  @results << d.CustomerType
+		  @results << "------------------------"
+		     else
+              		Discount.create(customertype: customertype, producttype: producttype, customer: cust.strip, product: prod.strip, discount: discount, level: level, maxqty: maxqty, disctype: disctype)
+		     end
+		end
+		
           end
 
-          discounts.each do |d|
-		  @results << "========================"
-		  @results << 'level num'
-		  @results << d.LevelNum
-		  @results << 'disc perc'
-		  @results << d.DiscPerc1
-		  @results << 'price code'
-		  @results << d.PriceCode1
-		  @results << 'cust type'
-		  @results << d.CustomerType
-		  @results << 'prod type'
-		  @results << d.ProductType
-		  @results << 'cust'
-		  @results << d.Customer
-		  @results << 'prod'
-		  @results << d.Product
-		  @results << "------------------------"
+		 
 		  
             if (d.LevelNum >= 1) 
               percentage = d.DiscPerc1
