@@ -15,6 +15,7 @@ class TestController < ApplicationController
       if fixedprice == 9 #if the discount is a fixed price
         disctype = 'fixedtype'
         discount = fixed
+        @results << ctype
         if ctype == 10
 #           customertype = 'code_fixed'
         else
