@@ -16,12 +16,12 @@ class TestController < ApplicationController
         disctype = 'fixedtype'
         discount = fixed
         if ctype == 10
-          customertype1 = 'code_fixed'
+#           customertype = 'code_fixed'
         else
-          customertype2 = 'group_fixed'
+#           customertype = 'group_fixed'
         end
         if ptype == 10
-          producttype = 'code_fixed'
+#           producttype = 'code_fixed'
         elsif ptype == 30
           producttype = 'group_fixed'
         else
@@ -31,9 +31,9 @@ class TestController < ApplicationController
         disctype = 'percentagetype'
         discount = percentage
         if ctype == 10
-          customertype3 = 'code_percent'
+#           customertype = 'code_percent'
         else
-          customertype4 = 'group_percent'
+#           customertype = 'group_percent'
         end
         if ptype == 10
           producttype = 'code_percent'
@@ -57,54 +57,54 @@ class TestController < ApplicationController
     end
 
     discounts.each do |d|
-#       if (d.LevelNum >= 1) 
-#         percentage = d.DiscPerc1
-#         fixed = d.Price1
-#         fixedprice = d.PriceCode1
-#         level = 1
-#         maxqty = d.MaxQty1
-#         disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
-#       end
-#       if (d.LevelNum >= 2) 
-#         percentage = d.DiscPerc2
-#         fixed = d.Price2
-#         fixedprice = d.PriceCode2
-#         level = 2
-#         maxqty = d.MaxQty2
-#         disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
-#       end
-#       if (d.LevelNum >= 3) 
-#         percentage = d.DiscPerc3
-#         fixed = d.Price3
-#         fixedprice = d.PriceCode3
-#         level = 3
-#         maxqty = d.MaxQty3
-#         disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
-#       end
-#       if (d.LevelNum >= 4) 
-#         percentage = d.DiscPerc4
-#         fixed = d.Price4
-#         fixedprice = d.PriceCode4
-#         level = 4
-#         maxqty = d.MaxQty4
-#         disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
-#       end
-#       if (d.LevelNum >= 5) 
-#         percentage = d.DiscPerc5
-#         fixed = d.Price5
-#         fixedprice = d.PriceCode5
-#         level = 5
-#         maxqty = d.MaxQty5
-#         disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
-#       end
-#       if (d.LevelNum >= 6) 
-#         percentage = d.DiscPerc6
-#         fixed = d.Price6
-#         fixedprice = d.PriceCode6
-#         level = 6
-#         maxqty = d.MaxQty6
-#         disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
-#       end
+      if (d.LevelNum >= 1) 
+        percentage = d.DiscPerc1
+        fixed = d.Price1
+        fixedprice = d.PriceCode1
+        level = 1
+        maxqty = d.MaxQty1
+        disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
+      end
+      if (d.LevelNum >= 2) 
+        percentage = d.DiscPerc2
+        fixed = d.Price2
+        fixedprice = d.PriceCode2
+        level = 2
+        maxqty = d.MaxQty2
+        disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
+      end
+      if (d.LevelNum >= 3) 
+        percentage = d.DiscPerc3
+        fixed = d.Price3
+        fixedprice = d.PriceCode3
+        level = 3
+        maxqty = d.MaxQty3
+        disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
+      end
+      if (d.LevelNum >= 4) 
+        percentage = d.DiscPerc4
+        fixed = d.Price4
+        fixedprice = d.PriceCode4
+        level = 4
+        maxqty = d.MaxQty4
+        disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
+      end
+      if (d.LevelNum >= 5) 
+        percentage = d.DiscPerc5
+        fixed = d.Price5
+        fixedprice = d.PriceCode5
+        level = 5
+        maxqty = d.MaxQty5
+        disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
+      end
+      if (d.LevelNum >= 6) 
+        percentage = d.DiscPerc6
+        fixed = d.Price6
+        fixedprice = d.PriceCode6
+        level = 6
+        maxqty = d.MaxQty6
+        disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
+      end
     end
     dbh.disconnect
   end 
