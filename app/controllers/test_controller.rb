@@ -1,5 +1,6 @@
 class TestController < ApplicationController
-
+      skip_before_action :authenticate_user!
+      
       # ------------------------DISCOUNTS---------------------------------------------------------
        Discount.destroy_all #wipe existing discounts in case of some deletions in Attache
        dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
