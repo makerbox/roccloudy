@@ -1,8 +1,8 @@
 # Contact.create(code:'clock', email:'start')
 # Contact.create(code:'running', email:'running')
 
-puts 'RUNNING SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED'
-dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
+# puts 'RUNNING SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEED'
+# dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
 
        # -------------------------GET PRODUCTS AND CREATE / UPDATE PRODUCT RECORDS------------------------
 #       @products = dbh.execute("SELECT * FROM product_master").fetch(:all, :Struct)
