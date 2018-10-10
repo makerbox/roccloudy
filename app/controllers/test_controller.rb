@@ -105,6 +105,6 @@ class TestController < ApplicationController
           end
 
           dbh.disconnect 
-
+@results << 'ALL DONE :)'
    
 end
