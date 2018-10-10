@@ -1,4 +1,4 @@
-
+class TestController < ApplicationController
 
       # ------------------------DISCOUNTS---------------------------------------------------------
        Discount.destroy_all #wipe existing discounts in case of some deletions in Attache
@@ -106,3 +106,4 @@
           dbh.disconnect 
 
    
+end
