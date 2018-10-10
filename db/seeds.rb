@@ -188,7 +188,7 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
               fixedprice = d.PriceCode4
               level = 4
               maxqty = d.MaxQty4
-              disco(percentage, fixed, fixedprice, level, maxqty, d.customertype, d.producttype, d.customer, d.product)
+              disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
             end
             if (d.LevelNum >= 5) 
               percentage = d.DiscPerc5
