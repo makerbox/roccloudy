@@ -7,6 +7,7 @@ class TestController < ApplicationController
        discounts = dbh.execute("SELECT * FROM product_special_prices").fetch(:all, :Struct)
 
        def disco(percentage, fixed, fixedprice, level, maxqty, ctype, ptype, cust, prod)
+             @results << 'disco'
             if fixedprice == 9 #if the discount is a fixed price
               disctype = 'fixedtype'
               discount = fixed
@@ -102,6 +103,7 @@ class TestController < ApplicationController
               maxqty = d.MaxQty6
               disco(percentage, fixed, fixedprice, level, maxqty, d.CustomerType, d.ProductType, d.Customer, d.Product)
             end
+                
           end
 
           dbh.disconnect 
