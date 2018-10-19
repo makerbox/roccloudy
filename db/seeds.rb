@@ -33,7 +33,7 @@ dbh = RDBI.connect :ODBC, :db => "WHOLESALEPORTAL"
                 # filename = "Z:\\AttacheBI\\Resources\\ROC\\images\\Product\\1\\" + code + ".jpg"
                 filename = "E:\\Attache\\AttacheBI\\Resources\\ROC\\Images\\product\\1\\" + code + ".jpg"
                 if File.exist?(filename)
-                  Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
+#                   Cloudinary::Uploader.upload(filename, :public_id => code, :overwrite => true)
                   # stop from overloading transformations
                 else
                   Product.all.find_by(code: code).destroy
